@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+
+<!--부트스트랩-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!--js-->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+    <link rel="stylesheet" th:href="@{/css/side.css}">
+    <script th:src="@{/javascript/side.js}"></script>
+</head>
+<body>
+    <div style="width: 1440px; height: 800px; display: flex;">
+        <div style="width: 265px; height: 800px;">
+            <div th:replace="fragment/side::side"></div>
+        </div>
+        <div>
+            <div style="width: 1185px; height: 70px;">
+                <div th:replace="fragment/header::header"></div>
+            </div>
+            <div style="width: 1185px; height: 730px;">
+                <div layout:fragment="content" id="content"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
