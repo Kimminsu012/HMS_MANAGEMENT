@@ -13,17 +13,29 @@
     <th:block layout:fragment="script"></th:block>
     <link rel="stylesheet" th:href="@{/css/side.css}">
     <script th:src="@{/javascript/side.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <div style="width: 1440px; height: 800px; display: flex;">
-        <div style="width: 265px; height: 800px;">
+    <div style="width: 1440px; height: 900px; display: flex;">
+        <div style="width: 265px; height: 900px;">
             <div th:replace="fragment/side::side"></div>
         </div>
-        <div>
-            <div style="width: 1185px; height: 70px;">
+        <div style="width: 1185px; height: 900px;">
+            <div style="width: 1185px; height: 70px; display: flex; justify-content: space-around; align-items: center; background-color: #071228;
+                opacity: 90%; border-left: 2px white solid; position: relative;">
                 <div th:replace="fragment/header::header"></div>
+                <div style="position: absolute; right: 40px; color: white;">
+                    <i class="bi bi-person-circle"></i>
+                    <span>사용자</span>
+                </div>
             </div>
-            <div style="width: 1185px; height: 730px;">
+            <div style="width: 1185px; height: 830px;">
                 <div layout:fragment="content" id="content"></div>
             </div>
         </div>

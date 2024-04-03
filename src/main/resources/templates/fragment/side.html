@@ -1,7 +1,7 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
 
 
 
@@ -10,10 +10,12 @@
         <div class="top_text">
             <span>Administration</span>
         </div>
-        <div class="home menu_bar">
-            <div>
-                <i class="bi bi-house-door-fill"></i>
-                <span>홈</span>
+        <div class="menu_out_box">
+            <div class="home menu_bar">
+                <div>
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>홈</span>
+                </div>
             </div>
         </div>
         <div class="inventory menu_bar">
@@ -26,13 +28,13 @@
             </div>
         </div>
         <div class="sub_menu inventory_sub_menu">
-            <div class="invenList ">
+            <div class="invenList subList">
                 <span>재고 목록</span>
             </div>
-            <div class="buyList">
+            <div class="buyList subList">
                 <span>구매 리스트</span>
             </div>
-            <div class=" sortList">
+            <div class=" sortList subList">
                 <span>판매 리스트</span>
             </div>
         </div>
@@ -46,20 +48,22 @@
             </div>
         </div>
         <div class="sub_menu designer_sub_menu">
-            <div class="scheduleList">
+            <div class="scheduleList subList">
                 <span>일정 관리</span>
             </div>
-            <div class="salaryList">
+            <div class="salaryList subList">
                 <span>월급 관리</span>
             </div>
-            <div class="commuteList">
+            <div class="commuteList subList">
                 <span>근태 관리</span>
             </div>
         </div>
-        <div class="sales menu_bar">
-            <div>
-                <i class="bi bi-house-door-fill"></i>
-                <span>매출관리</span>
+        <div class="menu_out_box">
+            <div class="sales menu_bar">
+                <div>
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>매출관리</span>
+                </div>
             </div>
         </div>
         <div class="customer menu_bar">
@@ -72,10 +76,10 @@
             </div>
         </div>
         <div class="customer_sub_menu sub_menu">
-            <div class="cusList">
+            <div class="cusList subList">
                 <span>고객정보</span>
             </div>
-            <div class="useList">
+            <div class="useList subList">
                 <span>고객 이용 기록</span>
             </div>
         </div>
@@ -89,7 +93,7 @@
             </div>
         </div>
         <div class="shop_sub_menu sub_menu">
-            <div class="serviceList">
+            <div class="serviceList subList">
                 <span>서비스 관리</span>
             </div>
         </div>
@@ -102,8 +106,13 @@
         <div class="blink">
 
         </div>
-        <div class="blink">
-
+        <div class="menu_out_box lopo">
+            <div class="logout menu_bar">
+                <div>
+                    <i class="bi bi-door-open-fill"></i>
+                    <span>로그아웃</span>
+                </div>
+            </div>
         </div>
         <div class="logo">
             <img src="/images/white.png" alt="로고">
