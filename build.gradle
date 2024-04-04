@@ -49,6 +49,10 @@ dependencies {
 
 //	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 //	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	// https://mvnrepository.com/artifact/com.microsoft.graph/microsoft-graph
+	implementation group: 'com.microsoft.graph', name: 'microsoft-graph', version: '6.5.1'
+
 }
 
 tasks.named('bootBuildImage') {

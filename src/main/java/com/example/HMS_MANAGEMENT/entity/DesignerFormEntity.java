@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class DesignerEntity {
+public class DesignerFormEntity {
 
     @Id
     @Column
@@ -15,19 +17,15 @@ public class DesignerEntity {
     private Long id; // 디자이너 번호
 
     @Column
-    private String name; // 디자이너 이름
+    private String customerNm; // 고객 이름
 
     @Column
-    private Integer phonNum; // 연락처
+    private LocalDateTime time; // 시간
 
     @Column
-    private Integer date; // 등록일
+    private LocalDate date; // 날짜
 
     @Column
-    private Integer salary; // 월급
-
-    @Column
-    private String free; // 휴일
-
+    private String cuts; // 시술
 
 }

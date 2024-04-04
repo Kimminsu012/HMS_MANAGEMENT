@@ -1,7 +1,14 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+
+<th:block layout:fragment="css">
+
+</th:block>
+
+<th:block layout:fragment="script">
+
+</th:block>
 
 
 
@@ -11,17 +18,19 @@
             <span>Administration</span>
         </div>
         <div class="menu_out_box">
-            <div class="home menu_bar">
-                <div>
-                    <i class="bi bi-house-door-fill"></i>
-                    <span>홈</span>
+            <a href="/">
+                <div class="home menu_bar">
+                    <div>
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>홈</span>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="inventory menu_bar">
             <div>
-                <i class="bi bi-house-door-fill"></i>
-                <span>재고관리</span>
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>재고관리</span>
             </div>
             <div>
                 <i class="bi bi-plus"></i>
@@ -29,19 +38,21 @@
         </div>
         <div class="sub_menu inventory_sub_menu">
             <div class="invenList subList">
-                <span>재고 목록</span>
+                <a href="/inven/invenList"><span>재고 목록</span></a>
             </div>
             <div class="buyList subList">
-                <span>구매 리스트</span>
+                <a href="/inven/buyList"><span>구매 리스트</span></a>
             </div>
             <div class=" sortList subList">
-                <span>판매 리스트</span>
+                <a href="/inven/sortList"><span>판매 리스트</span></a>
             </div>
         </div>
         <div class="designer menu_bar">
             <div>
-                <i class="bi bi-house-door-fill"></i>
-                <span>디자이너관리</span>
+                <a href="/designer">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>디자이너관리</span>
+                </a>
             </div>
             <div>
                 <i class="bi bi-plus"></i>
@@ -49,20 +60,22 @@
         </div>
         <div class="sub_menu designer_sub_menu">
             <div class="scheduleList subList">
-                <span>일정 관리</span>
+                <a href="/designer/scheduleList"><span>일정 관리</span></a>
             </div>
             <div class="salaryList subList">
-                <span>월급 관리</span>
+                <a href="/designer/salaryList"><span>월급 관리</span></a>
             </div>
             <div class="commuteList subList">
-                <span>근태 관리</span>
+                <a href="/designer/commuteList"><span>근태 관리</span></a>
             </div>
         </div>
         <div class="menu_out_box">
             <div class="sales menu_bar">
                 <div>
-                    <i class="bi bi-house-door-fill"></i>
-                    <span>매출관리</span>
+                    <a href="/sales">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>매출관리</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -77,10 +90,10 @@
         </div>
         <div class="customer_sub_menu sub_menu">
             <div class="cusList subList">
-                <span>고객정보</span>
+                <a href="/customer/cusList"><span>고객정보</span></a>
             </div>
             <div class="useList subList">
-                <span>고객 이용 기록</span>
+                <a href="/customer/useList"><span>고객 이용 기록</span></a>
             </div>
         </div>
         <div class="shop menu_bar">
@@ -94,7 +107,7 @@
         </div>
         <div class="shop_sub_menu sub_menu">
             <div class="serviceList subList">
-                <span>서비스 관리</span>
+                <a href="/shop/service"><span>서비스 관리</span></a>
             </div>
         </div>
         <div class="blink">
@@ -109,8 +122,10 @@
         <div class="menu_out_box lopo">
             <div class="logout menu_bar">
                 <div>
-                    <i class="bi bi-door-open-fill"></i>
-                    <span>로그아웃</span>
+                    <a href="/login">
+                        <i class="bi bi-door-open-fill"></i>
+                        <span>로그아웃</span>
+                    </a>
                 </div>
             </div>
         </div>

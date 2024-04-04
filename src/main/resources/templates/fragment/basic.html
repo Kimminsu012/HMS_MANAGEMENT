@@ -9,33 +9,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <th:block layout:fragment="css"></th:block>
-    <th:block layout:fragment="script"></th:block>
+
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}">
+    <link rel="stylesheet" th:href="@{css/main.css}">
     <link rel="stylesheet" th:href="@{/css/side.css}">
     <script th:src="@{/javascript/side.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/mainPage.css}">
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+
+
+
+
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-    <div style="width: 1440px; height: 900px; display: flex;">
-        <div style="width: 265px; height: 900px;">
+
+    <div class="wrap">
+        <div class="sideBar">
             <div th:replace="fragment/side::side"></div>
         </div>
-        <div style="width: 1185px; height: 900px;">
-            <div style="width: 1185px; height: 70px; display: flex; justify-content: space-around; align-items: center; background-color: #071228;
-                opacity: 90%; border-left: 2px white solid; position: relative;">
-                <div th:replace="fragment/header::header"></div>
-                <div style="position: absolute; right: 40px; color: white;">
+        <div class="middleOut">
+            <div class="middleBox">
+                <div class="headerIcon">
                     <i class="bi bi-person-circle"></i>
                     <span>사용자</span>
                 </div>
             </div>
-            <div style="width: 1185px; height: 830px;">
+            <div class="mainContent">
                 <div layout:fragment="content" id="content"></div>
             </div>
         </div>

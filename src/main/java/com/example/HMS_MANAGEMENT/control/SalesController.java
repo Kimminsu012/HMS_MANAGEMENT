@@ -4,14 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class SalesController {
 
-    @GetMapping("/")
-    public String main(){
+    @GetMapping("/sales")
+    public String cusList(){
 
-        return "main";
+        return "sales/salesPage";
     }
-
-
 
 }
