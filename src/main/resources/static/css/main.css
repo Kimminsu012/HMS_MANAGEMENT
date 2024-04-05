@@ -49,6 +49,7 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
+    border-radius: 10px;
 }
 .work_header{
     width: 100%;
@@ -68,6 +69,7 @@
 .work_content_box{
     width: 100%;
     height: 130px;
+
 }
 .cont_box{
     width: 25%;
@@ -96,6 +98,8 @@
     background-color: #ffffff;
     width: 375px;
     height: 175px;
+    border-radius: 10px;
+
 }
 .today_work_title{
     width: 100%;
