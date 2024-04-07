@@ -7,7 +7,7 @@
 </th:block>
 
 <th:block layout:fragment="script">
-
+    <script th:src="@{/javascript/inven.js}"></script>
 </th:block>
 
 <div layout:fragment="content">
@@ -18,7 +18,10 @@
                 <i class="bi bi-search"></i>
             </div>
             <div class="list_ac_bt">
-
+                <button type="button">구매</button>
+                <button type="button">판매</button>
+                <button type="button">수정</button>
+                <button type="button">삭제</button>
             </div>
         </div>
         <div class="list_content_box">
@@ -209,8 +212,20 @@
                     <span>20</span>
                 </div>
             </div>
+            <div class="list_count">
+                <i class="bi bi-caret-left-fill"></i>
+                <div class="page_count">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+                <i class="bi bi-caret-right-fill"></i>
+            </div>
         </div>
+
     </div>
+
 </div>
 
 </html>
