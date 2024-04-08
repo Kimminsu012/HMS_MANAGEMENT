@@ -29,6 +29,19 @@
 .sub_menu{
     display: none;
     position: relative;
+    height: 85px;
+}
+.customer_sub_menu{
+    height: 55px;
+}
+.shop_sub_menu{
+    height: 25px;
+}
+.sales div{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
 }
 .menu_bar:hover, .sub_menu:hover{
     cursor: pointer;
@@ -85,4 +98,13 @@ a{
     bottom: 3px;
     display: none;
     font-size: 10px;
+}
+.home_border, .inven_border, .designer_border, .sales_border, .customer_border, .shop_border{
+    width: 15px;
+    height: 50px;
+    position: absolute;
+    background-color: blue;
+    right: 0;
+    z-index: -1;
+    display: none;
 }

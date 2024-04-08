@@ -2,16 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
 
-<th:block layout:fragment="css">
-
-</th:block>
-
-<th:block layout:fragment="script">
-
-</th:block>
-
-
-
 <div th:fragment="side" id="side">
     <div id="sideBar">
         <div class="top_side">
@@ -25,6 +15,7 @@
                             <i class="bi bi-house-door-fill"></i>
                             <span>홈</span>
                         </div>
+                        <div class="home_border"></div>
                     </div>
                 </a>
             </div>
@@ -38,6 +29,7 @@
                 <div>
                     <i class="bi bi-plus"></i>
                 </div>
+                <div class="inven_border"></div>
             </div>
             <div class="sub_menu inventory_sub_menu">
                 <div class="invenList subList">
@@ -60,6 +52,7 @@
                 <div>
                     <i class="bi bi-plus"></i>
                 </div>
+                <div class="designer_border"></div>
             </div>
             <div class="sub_menu designer_sub_menu">
                 <div class="scheduleList subList">
@@ -79,6 +72,7 @@
                             <i class="bi bi-house-door-fill"></i>
                             <span>매출관리</span>
                         </a>
+                        <div class="sales_border"></div>
                     </div>
                 </div>
             </div>
@@ -90,6 +84,7 @@
                 <div>
                     <i class="bi bi-plus"></i>
                 </div>
+                <div class="customer_border"></div>
             </div>
             <div class="customer_sub_menu sub_menu">
                 <div class="cusList subList">
@@ -107,6 +102,7 @@
                 <div>
                     <i class="bi bi-plus"></i>
                 </div>
+                <div class="shop_border"></div>
             </div>
             <div class="shop_sub_menu sub_menu">
                 <div class="serviceList subList">
