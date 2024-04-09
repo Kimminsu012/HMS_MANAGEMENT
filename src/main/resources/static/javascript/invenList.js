@@ -15,9 +15,10 @@ $(function() {
     $(".deleteBt").on("click",function(){
         $(".list_chk").show();
         $(".buyBt, .sortBt, .editBt").hide();
+        $(".backBt").show();
 
         $(".all_chk").on("click",function(){
-           $(".list_chk").prop("checked" , $(this).prop("checked"));
+            $(".list_chk").prop("checked" , $(this).prop("checked"));
 
         });
     });
@@ -44,17 +45,25 @@ $(function() {
         allCheck.prop("checked", allCheckedBox);
     });
 
+    $(".backBt").on("click",function(){
+        if(confirm("취소 하시겠습니까?")){
+            alert("취소 되었습니다.");
+            $(".buyBt, .sortBt, .editBt").show();
+            $(".list_chk, .backBt").hide();
+        }
+    });
+
     $(".deleteGo").on("click",function(){
-       if($(".list_chk:checked").length > 0){
-           if(confirm("정말 삭제 하시겠습니까?")){
-               $(this).parents('.list_content_text').remove();
-               alert("삭제 되었습니다.");
-               $(".buyBt, .sortBt, .editBt").show();
-               $(".list_chk").hide();
-           }
-       }else{
-           alert("삭제할 데이터를 체크 해주세요.");
-       }
+        if($(".list_chk:checked").length > 0){
+            if(confirm("정말 삭제 하시겠습니까?")){
+                $(this).parents('.list_content_text').remove();
+                alert("삭제 되었습니다.");
+                $(".buyBt, .sortBt, .editBt").show();
+                $(".list_chk").hide();
+            }
+        }else{
+            alert("삭제할 데이터를 체크 해주세요.");
+        }
 
     });
 

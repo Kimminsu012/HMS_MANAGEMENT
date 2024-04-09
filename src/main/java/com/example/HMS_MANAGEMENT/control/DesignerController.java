@@ -29,4 +29,16 @@ public class DesignerController {
 
         return "designer/commuteList";
     }
+
+    @GetMapping("/designer/detailPage")
+    public String detailPage(){
+
+        return "designer/detailPage";
+    }
+
+    @GetMapping("/designer/regPage")
+    public String regPage(){
+
+        return "designer/designerReg";
+    }
 }

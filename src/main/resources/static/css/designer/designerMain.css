@@ -25,10 +25,7 @@
 }
 #designer_reg_bt{
     height: 40px;
-    width: 116px;
     border: none;
-    background: yellowgreen;
-    border-radius: 10px;
     font-size: 15px;
 }
 .designer_middle_box{
@@ -91,3 +88,4 @@
 .designer_border_bottom{
    border-bottom: 1px solid rgba(0, 0, 0, 20%);
 }
+a{color: #000000}
