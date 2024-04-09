@@ -1,10 +1,21 @@
 package com.example.HMS_MANAGEMENT.control;
 
+import com.example.HMS_MANAGEMENT.dto.DesignerCalendarDto;
+import com.example.HMS_MANAGEMENT.entity.DesignerCalendarEntity;
+import com.example.HMS_MANAGEMENT.repository.DesignerCalendarRepo;
+import com.example.HMS_MANAGEMENT.service.DesignerCalendarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class DesignerController {
+
 
     @GetMapping("/designer")
     public String designerMain(){
@@ -41,4 +52,7 @@ public class DesignerController {
 
         return "designer/designerReg";
     }
+
+
+
 }
