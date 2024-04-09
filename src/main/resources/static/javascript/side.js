@@ -20,6 +20,8 @@ $(function(){
         $(".shop_border").show();
     }else if( url.indexOf("/sales") > 0){
         $(".sales_border").show();
+    }else if( url.indexOf("/") > 0){
+        $(".home_border").show();
     }
 
     $(".inventory").on("click",function(){

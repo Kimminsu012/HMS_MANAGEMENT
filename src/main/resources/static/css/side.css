@@ -37,12 +37,6 @@
 .shop_sub_menu{
     height: 25px;
 }
-.sales div{
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    align-items: center;
-}
 .menu_bar:hover, .sub_menu:hover{
     cursor: pointer;
 }
