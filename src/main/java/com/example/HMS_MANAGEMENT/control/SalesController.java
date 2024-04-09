@@ -11,5 +11,9 @@ public class SalesController {
 
         return "sales/salesPage";
     }
+    @GetMapping("/sales/monPage")
+    public String monPage(){
+        return "sales/monPage";
+    }
 
 }

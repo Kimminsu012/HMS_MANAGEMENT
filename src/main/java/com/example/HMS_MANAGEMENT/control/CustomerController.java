@@ -18,4 +18,8 @@ public class CustomerController {
         return "customer/useList";
     }
 
+    @GetMapping("/customer/cusReg")
+    public String cusReg(){
+        return "customer/cusReg";
+    }
 }

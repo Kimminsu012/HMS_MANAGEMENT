@@ -49,6 +49,8 @@ $(function() {
            if(confirm("정말 삭제 하시겠습니까?")){
                $(this).parents('.list_content_text').remove();
                alert("삭제 되었습니다.");
+               $(".buyBt, .sortBt, .editBt").show();
+               $(".list_chk").hide();
            }
        }else{
            alert("삭제할 데이터를 체크 해주세요.");

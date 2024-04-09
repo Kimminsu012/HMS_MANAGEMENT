@@ -1,0 +1,41 @@
+
+.cusInfo {
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translate(-85%,-50%);
+}
+.cusInfoHeader{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid rgba(170,170,170,.2);
+    color: #333;
+}
+.cusInfoBtn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #A9F28F;
+}
+.cusInfoList {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.cusInfoList th, .cusInfoList td {
+    padding: 10px;
+}
+.cusInfoList td {
+    text-align: center;
+}

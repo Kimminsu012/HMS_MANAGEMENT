@@ -1,0 +1,18 @@
+table {
+    width: 500px;
+    border-collapse: collapse;
+}
+thead{
+    width: 100%;
+    border-bottom: 1px solid #aaa;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+
+}
+
+.total {
+    border-top: 1px solid #aaa;
+    font-weight: bold;
+}

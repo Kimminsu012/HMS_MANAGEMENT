@@ -29,13 +29,13 @@
 .sub_menu{
     display: none;
     position: relative;
-    height: 85px;
+    height: 91px;
 }
 .customer_sub_menu{
-    height: 55px;
+    height: 61px;
 }
 .shop_sub_menu{
-    height: 25px;
+    height: 31px;
 }
 .menu_bar:hover, .sub_menu:hover{
     cursor: pointer;
@@ -100,5 +100,8 @@ a{
     background-color: blue;
     right: 0;
     z-index: -1;
+    display: none;
+}
+.bi-dash{
     display: none;
 }
