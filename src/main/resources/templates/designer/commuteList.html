@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
 <th:block layout:fragment="css">
-
+    <link rel="stylesheet" th:href="@{/css/designer/commuteList.css}">
 </th:block>
 
 <th:block layout:fragment="script">
@@ -11,7 +11,92 @@
 </th:block>
 
 <div layout:fragment="content">
+    <div id="commute_list_wrap">
+        <div id="commute_list_in_wrap">
+            <div id="commute_list_tile">
+                인호성 디자이너
+            </div>
+            <div id="commute_list_date">
+                <i class="bi bi-arrow-left"></i>
+                <span>2024.04</span>
+                <i class="bi bi-arrow-right"></i>
+            </div>
+            <div id="commute_list_content">
+                <div class="commute_list_text">
+                    <div class="commute_list_cont">
+                        <span>
+                            날짜
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            부재사항
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            계획 근로시간
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            근태 기록시간
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            근태정보
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            근로시간
+                        </span>
+                    </div>
+                </div>
+                <div class="commute_list_text">
+                    <div class="commute_list_cont">
+                        <span>
+                            4.1
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
 
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            10:00~21:00
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            9:50~21:15
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            정상
+                        </span>
+                    </div>
+                    <div class="commute_list_cont">
+                        <span>
+                            8
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="commute_list_page">
+                <i class="bi bi-caret-left-fill"></i>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <i class="bi bi-caret-right-fill"></i>
+            </div>
+        </div>
+    </div>
 </div>
 
 </html>

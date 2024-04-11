@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
 <th:block layout:fragment="css">
-
+    <link rel="stylesheet" th:href="@{/css/designer/salaryPage.css}">
 </th:block>
 
 <th:block layout:fragment="script">
@@ -11,7 +11,155 @@
 </th:block>
 
 <div layout:fragment="content">
+    <div id="salary_wrap">
+        <div id="salary_in_wrap">
+            <div class="salary_bt_box">
+                <a href="/designer/salaryList">
+                    <button type="button" class="btn btn-light" id="salaryBt">급여명세서 보내기</button>
+                </a>
+            </div>
+            <div id="salary_content_box">
+                <div class="salary_cont_title">
+                    <div class="salary_date">
+                        <span>2024.04</span>
+                    </div>
+                    <div class="salary_date_text">
+                        <span>급여 지급일</span>
+                        <span>2024.04.31</span>
+                    </div>
+                    <div class="salary_date_choice">
+                        <div class="salary_tex">
+                            <span>이번달</span>
+                        </div>
+                        <div class="salary_tex">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>3월</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="salary_second">
+                    <div class="second_box">
+                        <div class="second_text">
+                            <span>급여</span>
+                        </div>
+                        <div class="second_text">
+                            <span>4,500,000원</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="salary_third">
+                    <div class="third_box border_right">
+                        <div class="third_text">
+                            <span>근로일수</span>
+                        </div>
+                        <div class="third_text">
+                            <span>19일</span>
+                        </div>
+                    </div>
+                    <div class="third_box">
+                        <div class="third_text">
+                            <span>총 근무시간</span>
+                        </div>
+                        <div class="third_text">
+                            <span>160시간</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="salary_fourth">
+                    <div class="fourth_box border_right">
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>기본급</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>2,500,000원</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>초과근무수당</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>700,000원</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
 
+                            </div>
+                            <div class="fourth_cont">
+
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>식비</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>200,000</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+
+                            </div>
+                            <div class="fourth_cont">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fourth_box">
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>공제내역</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>국민연금</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>193,500원</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>건강보험</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>152,430원</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>고용보험</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>38,700원</span>
+                            </div>
+                        </div>
+                        <div class="fourth_text">
+                            <div class="fourth_cont">
+                                <span>근로소득세</span>
+                            </div>
+                            <div class="fourth_cont">
+                                <span>236,010원</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="salary_foot">
+                    <div class="salary_foot_text">
+                        <span>실 수령액</span>
+                    </div>
+                    <div class="salary_foot_text">
+                        <span>3,836,030원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </html>

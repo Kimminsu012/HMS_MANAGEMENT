@@ -1,5 +1,5 @@
 .cont_head{
-    width: 985px;
+    width: 1100px;
     height: 60px;
     display: flex;
     justify-content: space-between;
@@ -13,8 +13,8 @@
     align-items: center;
 }
 .graph_box{
-    width: 985px;
-    height: 340px;
+    width: 1100px;
+    height: 500px;
     position: relative;
     background-color: #ffffff;
 }
@@ -38,13 +38,13 @@
     border: none;
 }
 .cont_footer{
-    width: 985px;
+    width: 1100px;
     height: 175px;
     display: flex;
     gap: 15px;
 }
 .designer_work_list{
-    width: 595px;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -93,10 +93,12 @@
     align-items: center;
     flex-direction: column;
     gap: 27px;
+    position: relative;
+    bottom: 40px;
 }
 .today_work_list{
     background-color: #ffffff;
-    width: 375px;
+    width: 70%;
     height: 175px;
     border-radius: 10px;
 
@@ -115,14 +117,14 @@
     display: flex;
 }
 .today_status{
-    width: 20%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .today_content{
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;

@@ -15,7 +15,6 @@
     justify-content: center;
     text-align: center;
     border-bottom: 1px solid rgba(170,170,170,.2);
-    color: #333;
 }
 .cusInfoBtn {
     position: absolute;
@@ -27,6 +26,10 @@
     border: none;
     border-radius: 10px;
     background-color: #A9F28F;
+    color: #fff;
+}
+.cusInfoBtn a{
+    color: #000;
 }
 .cusInfoList {
     width: 100%;
@@ -38,4 +41,22 @@
 }
 .cusInfoList td {
     text-align: center;
+}
+.cusNum{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cusCount{
+    padding: 15px;
+}
+.cusCount span:first-child{
+    margin-left: 0;
+}
+.cusCount span{
+    margin-left: 10px;
+}
+.cusBtn{
+    background: #fff;
+    border: none;
 }

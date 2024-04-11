@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
@@ -12,6 +12,8 @@
 <!--js-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/1e004d0ef1.js" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 
@@ -37,7 +39,8 @@
             <div class="middleBox">
                 <div class="headerIcon">
                     <i class="bi bi-person-circle"></i>
-                    <span>사용자</span>
+                    <span th:if="${#httpServletRequest.getSession().getAttribute('user') != null}"
+                            th:text="${#httpServletRequest.getSession().getAttribute('user').name}"></span>
                 </div>
             </div>
             <div class="mainContent">

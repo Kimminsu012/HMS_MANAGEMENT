@@ -8,7 +8,6 @@ public class SalesController {
 
     @GetMapping("/sales")
     public String cusList(){
-
         return "sales/salesPage";
     }
     @GetMapping("/sales/monPage")
@@ -16,4 +15,13 @@ public class SalesController {
         return "sales/monPage";
     }
 
+    @GetMapping("/sales/dayPage")
+    public String dayPage(){
+        return "sales/dayPage";
+    }
+
+    @GetMapping("/sales/weekPage")
+    public String weekPage(){
+        return "sales/weekPage";
+    }
 }

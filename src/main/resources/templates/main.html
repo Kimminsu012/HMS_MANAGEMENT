@@ -4,12 +4,11 @@
 
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/main.css}">
-
-
+    <link rel="stylesheet" th:href="@{/css/salesPage.css}">
 </th:block>
 
 <th:block layout:fragment="script">
-
+    <script th:src="@{/javascript/salesPage.js}"></script>
 </th:block>
 
 <div layout:fragment="content">
@@ -29,10 +28,19 @@
             </div>
         </div>
         <div class="graph_box">
-            <div class="select_day">
-                <button type="button" id="today_bt" class="bt"><span>일별</span></button>
-                <button type="button" id="week_bt" class="bt"><span>주간</span></button>
-                <button type="button" id="month_bt" class="bt"><span>월별</span></button>
+            <div class="salesWarp">
+                <div class="canvas">
+                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart1"></canvas>
+                    <canvas id="myChart2"></canvas>
+                </div>
+                <script th:src="@{/javascript/chart.js}"></script>
+                <div class="salesDetail">
+                    <button type="button" class="btn btn-primary day">Day</button>
+                    <button type="button" class="btn btn-success week">Week</button>
+                    <button type="button" class="btn btn-danger mon">Month</button>
+                    <button class="salesContent">상세보기</button>
+                </div>
             </div>
         </div>
         <div class="cont_footer">

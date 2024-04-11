@@ -53,6 +53,12 @@ public class DesignerController {
         return "designer/designerReg";
     }
 
+    @GetMapping("/designer/salaryPage")
+    public String salaryPage(){
+
+        return "designer/salaryPage";
+    }
+
 
 
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter @Setter
@@ -21,7 +22,7 @@ public class DesignerEntity {
     private Integer phonNum; // 연락처
 
     @Column
-    private Integer date; // 등록일
+    private Date date; // 등록일
 
     @Column
     private Integer salary; // 월급

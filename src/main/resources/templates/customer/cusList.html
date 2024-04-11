@@ -13,7 +13,7 @@
 <div layout:fragment="content">
     <div class="cusInfo">
         <div class="cusInfoHeader">
-            <h1>고객 정보</h1>
+            <h3>고객 정보</h3>
             <button class="cusInfoBtn">
                 <a href="/customer/cusReg">등록하기</a>
             </button>
@@ -68,8 +68,22 @@
                 <td>특별 요청사항 없음</td>
             </tr>
         </table>
-        <div></div>
+        <div class="cusNum">
+            <button type="button" class="cusBtn">
+                <i class="fa-solid fa-caret-left"></i>
+            </button>
+            <div class="cusCount">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+            </div>
+            <button type="button" class="cusBtn">
+                <i class="fa-solid fa-caret-right"></i>
+            </button>
+        </div>
     </div>
+
 </div>
 
 </html>

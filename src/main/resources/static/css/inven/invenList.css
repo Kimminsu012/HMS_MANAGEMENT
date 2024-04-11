@@ -45,6 +45,8 @@
     height: 550px;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 15px;
 }
 .list_content_title{
     width: 100%;
