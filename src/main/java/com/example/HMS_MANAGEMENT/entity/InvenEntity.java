@@ -14,7 +14,7 @@ public class InvenEntity {
     private Long id; // 제품 코드
 
     @Column
-    private Integer itemNm; // 제품 이름
+    private String itemNm; // 제품 이름
 
     @Column
     private Integer count; // 제품 수량
@@ -24,4 +24,7 @@ public class InvenEntity {
 
     @Column
     private Integer itemL; // 제품 용량
+
+
+
 }

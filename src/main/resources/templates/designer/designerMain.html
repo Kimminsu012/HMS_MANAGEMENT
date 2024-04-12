@@ -37,18 +37,20 @@
                         <span>휴무</span>
                     </div>
                 </div>
-                <div class="designer_middle_content">
+                <div class="designer_middle_content" th:each="designerDto : ${designerDtoList}">
                     <div class="designer_middle_cont">
-                        <span>1</span>
+                        <span th:text="${designerDto.id}"></span>
                     </div>
                     <div class="designer_middle_cont">
-                        <a href="/designer/detailPage"><span>인호성</span></a>
+                        <a th:href="@{/designer/detailPage/{id}(id=${designerDto.id})}">
+                            <span th:text="${designerDto.name}"></span>
+                        </a>
                     </div>
                     <div class="designer_middle_cont">
-                        <span>010-1234-5678</span>
+                        <span th:text="${designerDto.tel}"></span>
                     </div>
                     <div class="designer_middle_cont">
-                        <span>수,목</span>
+                        <span th:each="dayOff : ${designerDto.dayOffList}" th:text="${dayOff}"></span>
                     </div>
                 </div>
             </div>

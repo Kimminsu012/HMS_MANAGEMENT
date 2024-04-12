@@ -13,7 +13,7 @@ public class InvenDto {
 
     private Long id; // 제품 코드
 
-    private Integer itemNm; // 제품 이름
+    private String itemNm; // 제품 이름
 
     private Integer count; // 제품 수량
 

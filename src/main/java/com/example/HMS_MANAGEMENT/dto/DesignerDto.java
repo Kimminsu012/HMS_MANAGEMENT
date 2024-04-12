@@ -1,30 +1,35 @@
 package com.example.HMS_MANAGEMENT.dto;
 
+import com.example.HMS_MANAGEMENT.entity.DayOffEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 public class DesignerDto {
 
 
-    private Long id; // 디자이너 번호
-
+    private Long id;
     @NotNull(message = "이름을 입력 해주세요.")
-    private String name; // 디자이너 이름
+    @NotEmpty(message = "이름을 입력 해주세요.")
+    private String name;
     @NotNull(message = "전화번호를 입력 해주세요.")
-    private Integer phonNum; // 연락처
+    @NotEmpty(message = "전화번호를 입력 해주세요.")
+    private String tel;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "등록일을 선택 해주세요.")
-    private Date date;
+    private LocalDate date;
     @NotNull(message = "월급을 입력 해주세요.")
-    private Integer salary; // 월급
-    @NotNull(message = "휴일을 선택 해주세요.")
-    private String free; // 휴일
+    private Integer sal;
+    private List<String> dayOffList;
+
+
+
 }
