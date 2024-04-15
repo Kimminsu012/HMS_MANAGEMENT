@@ -28,6 +28,9 @@ public class DesignerDto {
     private LocalDate date;
     @NotNull(message = "월급을 입력 해주세요.")
     private Integer sal;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "월급 지급일을 선택 해주세요.")
+    private LocalDate salDate;
     private List<String> dayOffList;
 
 }

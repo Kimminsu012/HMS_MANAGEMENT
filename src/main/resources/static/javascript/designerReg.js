@@ -10,3 +10,4 @@ function submitForm(){
     $("#designerForm").submit();
 
 }
+

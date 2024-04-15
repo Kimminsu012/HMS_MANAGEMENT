@@ -76,7 +76,7 @@
 .editBt{
     display: none;
 }
-.name_dng, .tel_dng, .date_dng, .sal_dng{
+.name_dng, .tel_dng, .date_dng, .sal_dng, .sal_date_reg{
     position: absolute;
     bottom: 5px;
     right: 50px;

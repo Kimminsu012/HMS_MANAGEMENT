@@ -5,6 +5,7 @@ import com.example.HMS_MANAGEMENT.entity.DayOffEntity;
 import com.example.HMS_MANAGEMENT.entity.DesignerEntity;
 import com.example.HMS_MANAGEMENT.repository.DayOffRepo;
 import com.example.HMS_MANAGEMENT.repository.DesignerRepo;
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,8 +30,21 @@ public class DesignerService {
         designer.setTel(dto.getTel());
         designer.setDate(dto.getDate());
         designer.setSal(dto.getSal());
+        designer.setSalDate(dto.getSalDate());
         designer = designerRepo.save(designer);
+        saveDayOffs(dto, designer);
         return designer;
+    }
+
+    private void saveDayOffs(DesignerDto dto, DesignerEntity designer) {
+        List<DayOffEntity> dayOffEntities = new ArrayList<>();
+        for (String day : dto.getDayOffList()) {
+            DayOffEntity dayOffEntity = new DayOffEntity();
+            dayOffEntity.setDay(day);
+            dayOffEntity.setDesigner(designer);
+            dayOffEntities.add(dayOffEntity);
+        }
+        dayOffRepo.saveAll(dayOffEntities);
     }
 
     public List<DesignerDto> getAllDesigners() {
@@ -65,6 +80,33 @@ public class DesignerService {
         dto.setTel(designerEntity.getTel());
         dto.setDate(designerEntity.getDate());
         dto.setSal(designerEntity.getSal());
+        dto.setSalDate(designerEntity.getSalDate());
         return dto;
     }
+
+    public DesignerDto getDesignerByID(Long id){
+        Optional<DesignerEntity> designerEntityOptional = designerRepo.findById(id);
+        if (designerEntityOptional.isPresent()) {
+            DesignerEntity designerEntity = designerEntityOptional.get();
+            DesignerDto designerDto = new DesignerDto();
+            // 다른 필드 채우기
+            designerDto.setId(designerEntity.getId());
+            designerDto.setName(designerEntity.getName());
+            designerDto.setTel(designerEntity.getTel());
+            designerDto.setDate(designerEntity.getDate());
+            designerDto.setSal(designerEntity.getSal());
+            designerDto.setSalDate(designerEntity.getSalDate());
+            // dayOffList 채우기
+            List<String> dayOffList = new ArrayList<>();
+            for (DayOffEntity dayOffEntity : designerEntity.getDayOffs()) {
+                dayOffList.add(dayOffEntity.getDay());
+            }
+            designerDto.setDayOffList(dayOffList);
+            return designerDto;
+        } else {
+            // 주어진 ID의 디자이너가 없는 경우 처리
+            return null;
+        }
+        }
+
 }

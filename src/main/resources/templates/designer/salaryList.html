@@ -31,84 +31,20 @@
                         <span>명세서 발급</span>
                     </div>
                 </div>
-                <div class="salary_content_title">
+                <div class="salary_content_title" th:each="designer : ${designerDtoList}">
                     <div class="salary_text">
-                        <span>인호성</span>
+                        <span th:text="${designer.name}"></span>
                     </div>
                     <div class="salary_text">
-                        <span>2024.04.01</span>
+                        <span th:text="${#temporals.format(designer.date, 'yyyy.MM.dd')}"></span>
                     </div>
                     <div class="salary_text">
-                        <span>2,200,000</span>
+                        <span th:text="${#numbers.formatInteger(designer.sal, 3, 'COMMA')+'원'}"></span>
                     </div>
                     <div class="salary_text">
-                        <a href="/designer/salaryPage">
+                        <a th:href="@{/designer/salaryPage/{id}(id=${designer.id})}">
                             <span>발급하기</span>
                         </a>
-                    </div>
-                </div>
-                <div class="salary_content_title">
-                    <div class="salary_text">
-                        <span>인호성</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2024.04.01</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2,200,000</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>명세서 발급</span>
-                    </div>
-                </div>
-                <div class="salary_content_title">
-                    <div class="salary_text">
-                        <span>인호성</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2024.04.01</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2,200,000</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>명세서 발급</span>
-                    </div>
-                </div>
-                <div class="salary_content_title">
-                    <div class="salary_text">
-                        <span>인호성</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2024.04.01</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2,200,000</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>명세서 발급</span>
-                    </div>
-                </div>
-                <div class="salary_content_title salary_border">
-                    <div class="salary_text">
-                        <span>인호성</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2024.04.01</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>2,200,000</span>
-                    </div>
-                    <div class="salary_text">
-                        <span>명세서 발급</span>
-                    </div>
-                </div>
-                <div class="salary_res">
-                    <div class="salary_res_text">
-                        <span>지급 월급 총액</span>
-                    </div>
-                    <div class="salary_res_text">
-                        <span>11,000,000</span>
                     </div>
                 </div>
             </div>

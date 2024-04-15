@@ -16,7 +16,7 @@
             <div class="designer_reg_title">
                 <span>디자이너 등록</span>
             </div>
-            <form id="designerForm" method="POST" action="/designer/regPage" th:object="${designerDto}" class="form_reg">
+            <form id="designerForm" method="POST" action="/designer/reg" th:object="${designerDto}" class="form_reg">
                 <div class="designer_reg_content_box">
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
@@ -25,34 +25,43 @@
                         <div class="designer_reg_right">
                             <input type="text" placeholder="이름을 입력 해주세요." th:field="*{name}">
                         </div>
-                        <span class="name_dng">이름 미입력</span>
+                        <span class="name_dng" th:errors="*{name}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
                             <span>연락처</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}">
+                            <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}" >
                         </div>
-                        <span class="tel_dng">전화번호 미입력</span>
+                        <span class="tel_dng" th:if="${#fields.hasErrors('tel')}">전화번호 미입력</span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
                             <span>등록일</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="date" placeholder="등록일을 입력 해주세요." th:field="*{date}">
+                            <input type="date" th:field="*{date}">
                         </div>
-                        <span class="date_dng">등록일 미입력</span>
+                        <span class="date_dng" th:if="${#fields.hasErrors('date')}">등록일 미지정</span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
                             <span>월급</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}">
+                            <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}" maxlength="9">
                         </div>
-                        <span class="sal_dng">월급 미입력</span>
+                        <span class="sal_dng" th:if="${#fields.hasErrors('sal')}">월급 미입력</span>
+                    </div>
+                    <div class="designer_reg_content">
+                        <div class="designer_reg_left">
+                            <span>월급 지급일</span>
+                        </div>
+                        <div class="designer_reg_right">
+                            <input type="date" th:field="*{salDate}">
+                        </div>
+                        <span class="sal_date_reg" th:if="${#fields.hasErrors('salDate')}">등록일 미지정</span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">

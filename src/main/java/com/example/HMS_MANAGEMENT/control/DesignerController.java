@@ -1,5 +1,6 @@
 package com.example.HMS_MANAGEMENT.control;
 
+import com.example.HMS_MANAGEMENT.dto.DayOffDto;
 import com.example.HMS_MANAGEMENT.dto.DesignerCalendarDto;
 import com.example.HMS_MANAGEMENT.dto.DesignerDto;
 import com.example.HMS_MANAGEMENT.entity.DesignerCalendarEntity;
@@ -41,10 +42,13 @@ public class DesignerController {
     public String designerMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
 
         List<DesignerDto> designerDtoList = designerService.getAllDesigners();
-        Pageable pageable = PageRequest.of(page, 5);
-        model.addAttribute("designerDtoList", designerService.getAllDesignersWithDayOff());
+        Pageable pageable = PageRequest.of(page, 8);
+        List<DesignerDto> designerDtoListWithDayOff = designerService.getAllDesignersWithDayOff();
+        int maxPage = (int)Math.ceil((double) designerDtoListWithDayOff.size()/8);
+        model.addAttribute("designerDtoList", designerDtoListWithDayOff.subList(page * 8, Math.min((page + 1) * 8, designerDtoListWithDayOff.size())));
         model.addAttribute("designerDto", new DesignerDto());
-        model.addAttribute("maxPage",5);
+        model.addAttribute("maxPage",maxPage);
+        model.addAttribute("currentPage", page);
 
 
         return "designer/designerMain";
@@ -57,21 +61,30 @@ public class DesignerController {
     }
 
     @GetMapping("/designer/salaryList")
-    public String salaryList(){
-
+    public String salaryList(Model model){
+        List<DesignerDto> designerDtoList = designerService.getAllDesigners();
+        model.addAttribute("designerDtoList", designerDtoList);
+        
         return "designer/salaryList";
     }
 
     @GetMapping("/designer/commuteList")
-    public String commuteList(){
+    public String commuteList(Model model){
+
+        List<DesignerDto> designerDto = designerService.getAllDesigners();
+        model.addAttribute("designerDto", designerDto);
 
         return "designer/commuteList";
     }
 
     @GetMapping("/designer/detailPage/{id}")
-    public String detailPage(){
+    public String detailPage(@PathVariable Long id, Model model){
 
-        return "designer/detailPage/{id}";
+        DesignerDto designerDto = designerService.getDesignerByID(id);
+
+        model.addAttribute("designerDto",designerDto);
+
+        return "designer/detailPage";
     }
 
     @GetMapping("/designer/regPage")
@@ -82,21 +95,25 @@ public class DesignerController {
         return "designer/designerReg";
     }
 
-    @GetMapping("/designer/salaryPage")
-    public String salaryPage(){
+    @GetMapping("/designer/salaryPage/{id}")
+    public String salaryPage(@PathVariable Long id, Model model){
+
+        DesignerDto dto = designerService.getDesignerByID(id);
+
+        model.addAttribute("designer",dto);
 
         return "designer/salaryPage";
     }
 
-    @PostMapping("/designer/regPage")
+    @PostMapping("/designer/reg")
     public String designerChk(@ModelAttribute("designerDto") @Valid DesignerDto designerDto, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
             return "designer/designerReg";
         }
-
+        designerDto.setSalDate(designerDto.getSalDate());
         designerService.designerSave(designerDto);
-        designerService.getAllDesignersWithDayOff();
+
         return "redirect:/designer";
     }
 

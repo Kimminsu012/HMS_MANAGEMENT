@@ -34,7 +34,7 @@
                         <span>휴무</span>
                     </div>
                 </div>
-                <div class="designer_middle_content" th:each="designerDto : ${designerDtoList}">
+                <div class="designer_middle_content" th:each="designerDto, iterStat : ${designerDtoList}" th:if="${iterStat.index < maxPage * 8}">
                     <div class="designer_middle_cont">
                         <a th:href="@{/designer/detailPage/{id}(id=${designerDto.id})}">
                             <span th:text="${designerDto.name}"></span>
@@ -46,6 +46,13 @@
                     <div class="designer_middle_cont">
                         <span th:each="dayOff : ${designerDto.dayOffList}" th:text="${dayOff}"></span>
                     </div>
+                </div>
+                <div class="pagination">
+                    <a th:href="@{/designer?page=0}" th:if="${currentPage > 0}"><i class="bi bi-caret-left-fill"></i></a>
+                    <span class="page-numbers">
+                        <a th:href="@{'/designer?page=' + ${i}}" th:each="i : ${#numbers.sequence(0, maxPage - 1)}" th:text="${i + 1}" th:class="${i == currentPage ? 'active' : ''}"></a>
+                    </span>
+                    <a th:href="@{/designer(page=${currentPage + 1})}" th:if="${currentPage < maxPage - 1}"><i class="bi bi-caret-right-fill"></i></a>
                 </div>
             </div>
             <div class="designer_bottom_box">

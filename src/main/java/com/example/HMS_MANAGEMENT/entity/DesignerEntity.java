@@ -30,6 +30,9 @@ public class DesignerEntity {
     @Column
     private Integer sal; // 월급
 
+    @Column
+    private LocalDate salDate; // 월급날
+
     @OneToMany(mappedBy = "designer", cascade = CascadeType.ALL)
     private List<DayOffEntity> dayOffs = new ArrayList<>();
 

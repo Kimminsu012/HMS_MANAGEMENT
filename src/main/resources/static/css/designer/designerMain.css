@@ -37,6 +37,7 @@
     height: 320px;
     background-color: white;
     border-radius: 10px;
+    position: relative;
 }
 .designer_middle_title{
     width: 100%;
@@ -93,3 +94,21 @@
    border-bottom: 1px solid rgba(0, 0, 0, 20%);
 }
 a{color: #000000}
+
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    gap: 20px;
+}
+.page-numbers{
+    display: flex;
+    gap: 20px;
+}
+.page_next_bt, .page_prev_bt{
+    border: none;
+    background: none;
+}
