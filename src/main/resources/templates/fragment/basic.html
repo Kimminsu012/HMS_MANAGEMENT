@@ -40,7 +40,7 @@
                 <div class="headerIcon">
                     <i class="bi bi-person-circle"></i>
                     <span th:if="${#httpServletRequest.getSession().getAttribute('user') != null}"
-                            th:text="${#httpServletRequest.getSession().getAttribute('user').name}"></span>
+                            th:text="${#httpServletRequest.getSession().getAttribute('user').userName}"></span>
                 </div>
             </div>
             <div class="mainContent">

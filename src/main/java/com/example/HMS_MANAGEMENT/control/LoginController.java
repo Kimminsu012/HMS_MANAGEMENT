@@ -24,9 +24,9 @@ public class LoginController {
     }
 
     @PostMapping("/login_chk")
-    public String loginChk(@RequestParam("id") String username, @RequestParam("pw") String password, HttpSession session, Model model){
-        if (loginService.authenticate(username, password)) {
-            LoginEntity user = loginService.findByUserName(username);
+    public String loginChk(@RequestParam("id") String userId, @RequestParam("pw") String password, HttpSession session, Model model){
+        if (loginService.authenticate(userId, password)) {
+            LoginEntity user = loginService.findByUserId(userId);
             session.setAttribute("user",user);
             // 로그인 성공
             return "redirect:/";

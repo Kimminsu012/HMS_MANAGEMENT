@@ -9,6 +9,8 @@ import com.example.HMS_MANAGEMENT.repository.DesignerRepo;
 import com.example.HMS_MANAGEMENT.service.DesignerCalendarService;
 import com.example.HMS_MANAGEMENT.service.DesignerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DesignerController {
@@ -35,10 +38,15 @@ public class DesignerController {
     }
 
     @GetMapping("/designer")
-    public String designerMain(Model model){
+    public String designerMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
+
         List<DesignerDto> designerDtoList = designerService.getAllDesigners();
-        model.addAttribute("designerDtoList", designerDtoList);
+        Pageable pageable = PageRequest.of(page, 5);
+        model.addAttribute("designerDtoList", designerService.getAllDesignersWithDayOff());
         model.addAttribute("designerDto", new DesignerDto());
+        model.addAttribute("maxPage",5);
+
+
         return "designer/designerMain";
     }
 
@@ -88,7 +96,7 @@ public class DesignerController {
         }
 
         designerService.designerSave(designerDto);
-
+        designerService.getAllDesignersWithDayOff();
         return "redirect:/designer";
     }
 

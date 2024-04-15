@@ -15,7 +15,7 @@ public class LoginDto {
 
     private String userName;
 
-    private String name;
+    private String userId;
 
     private String password;
 

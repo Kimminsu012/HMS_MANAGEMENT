@@ -22,36 +22,39 @@ public class DesignerService {
     private final DayOffRepo dayOffRepo;
     private final DesignerRepo designerRepo;
 
-    public DesignerEntity designerSave(DesignerDto dto){
+    public DesignerEntity designerSave(DesignerDto dto) {
         DesignerEntity designer = new DesignerEntity();
         designer.setName(dto.getName());
         designer.setTel(dto.getTel());
         designer.setDate(dto.getDate());
         designer.setSal(dto.getSal());
-
-
         designer = designerRepo.save(designer);
-
-
-        saveDayOffs(dto, designer);
-
         return designer;
     }
 
-    private void saveDayOffs(DesignerDto dto, DesignerEntity designer) {
-        List<DayOffEntity> dayOffEntities = new ArrayList<>();
-        for (String day : dto.getDayOffList()) {
-            DayOffEntity dayOffEntity = new DayOffEntity();
-            dayOffEntity.setDay(day);
-            dayOffEntity.setDesigner(designer);
-            dayOffEntities.add(dayOffEntity);
-        }
-        dayOffRepo.saveAll(dayOffEntities);
-    }
     public List<DesignerDto> getAllDesigners() {
         List<DesignerEntity> designers = designerRepo.findAll();
         return designers.stream()
                 .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<DesignerDto> getAllDesignersWithDayOff() {
+        List<DesignerEntity> designers = designerRepo.findAll();
+        List<DesignerDto> designerDtos = new ArrayList<>();
+        for (DesignerEntity designerEntity : designers) {
+            DesignerDto dto = convertToDto(designerEntity);
+            List<String> dayOffs = getDayOffsByDesignerId(designerEntity.getId());
+            dto.setDayOffList(dayOffs);
+            designerDtos.add(dto);
+        }
+        return designerDtos;
+    }
+
+    public List<String> getDayOffsByDesignerId(Long designerId) {
+        List<DayOffEntity> dayOffEntities = dayOffRepo.findByDesignerId(designerId);
+        return dayOffEntities.stream()
+                .map(DayOffEntity::getDay)
                 .collect(Collectors.toList());
     }
 
@@ -62,7 +65,6 @@ public class DesignerService {
         dto.setTel(designerEntity.getTel());
         dto.setDate(designerEntity.getDate());
         dto.setSal(designerEntity.getSal());
-
         return dto;
     }
 }

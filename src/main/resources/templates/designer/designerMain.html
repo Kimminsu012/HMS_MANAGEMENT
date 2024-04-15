@@ -25,9 +25,6 @@
                 </div>
                 <div class="designer_middle_content designer_border_bottom">
                     <div class="designer_middle_cont">
-                        <span>구분</span>
-                    </div>
-                    <div class="designer_middle_cont">
                         <span>이름</span>
                     </div>
                     <div class="designer_middle_cont">
@@ -38,9 +35,6 @@
                     </div>
                 </div>
                 <div class="designer_middle_content" th:each="designerDto : ${designerDtoList}">
-                    <div class="designer_middle_cont">
-                        <span th:text="${designerDto.id}"></span>
-                    </div>
                     <div class="designer_middle_cont">
                         <a th:href="@{/designer/detailPage/{id}(id=${designerDto.id})}">
                             <span th:text="${designerDto.name}"></span>

@@ -1,6 +1,5 @@
 package com.example.HMS_MANAGEMENT.service;
 
-import com.example.HMS_MANAGEMENT.dto.LoginDto;
 import com.example.HMS_MANAGEMENT.entity.LoginEntity;
 import com.example.HMS_MANAGEMENT.repository.LoginRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +19,12 @@ public class LoginService  {
     @Autowired
     private LoginRepo loginRepo;
 
-    public LoginEntity findByUserName(String username){
-        return loginRepo.findByUserName(username);
+    public LoginEntity findByUserId(String userId){
+        return loginRepo.findByUserId(userId);
     }
 
-    public boolean authenticate(String username, String password){
-        LoginEntity user = loginRepo.findByUserName(username);
+    public boolean authenticate(String userId, String password){
+        LoginEntity user = loginRepo.findByUserId(userId);
         return user != null && user.getPassword().equals(password);
     }
 

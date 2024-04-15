@@ -30,6 +30,4 @@ public class DesignerDto {
     private Integer sal;
     private List<String> dayOffList;
 
-
-
 }
