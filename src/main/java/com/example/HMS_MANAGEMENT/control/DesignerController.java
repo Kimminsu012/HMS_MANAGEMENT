@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class DesignerController {
@@ -54,17 +55,17 @@ public class DesignerController {
         return "designer/designerMain";
     }
 
-    @GetMapping("/designer/scheduleList")
-    public String scheduleList(){
 
-        return "designer/scheduleList";
-    }
 
     @GetMapping("/designer/salaryList")
-    public String salaryList(Model model){
+    public String salaryList(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
         List<DesignerDto> designerDtoList = designerService.getAllDesigners();
-        model.addAttribute("designerDtoList", designerDtoList);
-        
+        Pageable pageable = PageRequest.of(page, 8);
+        int maxPage = (int)Math.ceil((double) designerDtoList.size()/8);
+        model.addAttribute("designerDtoList", designerDtoList.subList(page * 8, Math.min((page + 1) * 8, designerDtoList.size())));
+        model.addAttribute("maxPage",maxPage);
+        model.addAttribute("currentPage", page);
+
         return "designer/salaryList";
     }
 
@@ -106,11 +107,17 @@ public class DesignerController {
     }
 
     @PostMapping("/designer/reg")
-    public String designerChk(@ModelAttribute("designerDto") @Valid DesignerDto designerDto, BindingResult bindingResult){
+    public String designerChk(@ModelAttribute("designerDto") @Valid DesignerDto designerDto, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()) {
+            model.addAttribute("designerDto",designerDto);
             return "designer/designerReg";
         }
+        List<String> selectedDayOffList = designerDto.getDayOffList().stream()
+                .filter(dayOff -> !dayOff.isEmpty())
+                .collect(Collectors.toList());
+        designerDto.setDayOffList(selectedDayOffList);
+
         designerDto.setSalDate(designerDto.getSalDate());
         designerService.designerSave(designerDto);
 

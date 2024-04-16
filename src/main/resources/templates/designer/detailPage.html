@@ -35,7 +35,7 @@
                         <span>휴대폰 번호</span>
                     </div>
                     <div class="designer_detail_cont">
-                        <span th:text="${#temporals.format(designerDto.tel, '###-####-####')}"></span>
+                        <span th:text="${designerDto.tel.substring(0, 3) + '-' + designerDto.tel.substring(3, 7) + '-' + designerDto.tel.substring(7)}"></span>
                     </div>
                 </div>
                 <div class="designer_detail_text">
@@ -44,7 +44,7 @@
                         <span>휴무일</span>
                     </div>
                     <div class="designer_detail_cont">
-                        <span th:each="dayOff : ${designerDto.dayOffList}" th:text="${dayOff}"></span>
+                        <span th:text="${#strings.arrayJoin(designerDto.dayOffList, ', ')}"></span>
                     </div>
                 </div>
                 <div class="designer_detail_text">

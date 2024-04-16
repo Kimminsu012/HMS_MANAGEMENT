@@ -14,66 +14,23 @@
     <div class="serviceWrap">
         <div class="serviceHeader">
             <h3>서비스 목록</h3>
+            <a href="/shop/reg">등록하기</a>
         </div>
 
         <div class="serviceContent">
-            <div class="cut">
-                <p class="type">커트</p>
-                <div class="cutType">
-                    <p>남성 컷</p>
-                    <p>여성 컷</p>
-                </div>
-                <div class="cutCost">
-                    <p>20,000원</p>
-                    <p>22,000원</p>
-                </div>
-            </div>
-            <div class="perm">
-                <p class="type">일반펌</p>
-                <div class="permType">
-                    <p>남성 포인트펌</p>
-                    <p>여성 일반펌</p>
-                </div>
-                <div class="permCost">
-                    <p>40,000원</p>
-                    <p>70,000원</p>
+            <div th:each="entry : ${groupedServices}" class="aaa">
+                <div class="cut">
+                    <p class="type" th:text="${entry.key}"></p>
+                    <div class="bbb">
+                        <div class="serviceItems" th:each="service : ${entry.value}">
+                            <p th:text="${service.type}"></p>
+                            <p th:text="${service.cost+'원'}"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="feverPerm">
-                <p class="type">열펌</p>
-                <div class="feverPermType">
-                    <p>셋팅펌</p>
-                </div>
-                <div class="feverPermCost">
-                    <p>90,000원</p>
-                </div>
-            </div>
-            <div class="color">
-                <p class="type">염색</p>
-                <div class="colorType">
-                    <p>뿌리 염색</p>
-                    <p>전체 염색</p>
-                </div>
-                <div class="colorCost">
-                    <p>50,000원</p>
-                    <p>90,000원</p>
-                </div>
-            </div>
-            <div class="clinic">
-                <p class="type">클리닉</p>
-                <div class="clinicType">
-                    <p>두피케어</p>
-                </div>
-                <div class="clinicCost">
-                    <p>50,000원</p>
-                </div>
-            </div>
-            <form class="serviceBtn">
-                <button type="button" class="btn btn-outline-primary">수정하기</button>
-                <button type="button" class="btn btn-outline-danger">삭제하기</button>
-            </form>
         </div>
     </div>
-
 </div>
+
 </html>

@@ -7,7 +7,7 @@
 </th:block>
 
 <th:block layout:fragment="script">
-    <script th:src="@{/javascript/designerCalendar.js}"></script>
+    <script th:src="@{/javascript/designerReg.js}"></script>
 </th:block>
 
 <div layout:fragment="content">
@@ -32,7 +32,7 @@
                             <span>연락처</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}" >
+                            <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}" oninput="formatInputValue('tel')" maxlength="13">
                         </div>
                         <span class="tel_dng" th:if="${#fields.hasErrors('tel')}">전화번호 미입력</span>
                     </div>
@@ -50,7 +50,7 @@
                             <span>월급</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}" maxlength="9">
+                            <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}" maxlength="9" oninput="formatInputValue('sal')">
                         </div>
                         <span class="sal_dng" th:if="${#fields.hasErrors('sal')}">월급 미입력</span>
                     </div>
@@ -68,24 +68,24 @@
                             <span>휴무</span>
                         </div>
                         <div class="designer_reg_right_date">
-                            <input type="checkbox" class="btn-check dayBt" id="mondayCheck" value="월" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="mondayCheck" value="월" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('월')}">
                             <label class="btn btn-outline-secondary" for="mondayCheck">월</label>
-                            <input type="checkbox" class="btn-check dayBt" id="tuesdayCheck" value="화" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="tuesdayCheck" value="화" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('화')}">
                             <label class="btn btn-outline-secondary" for="tuesdayCheck">화</label>
-                            <input type="checkbox" class="btn-check dayBt" id="wednesdayCheck" value="수" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="wednesdayCheck" value="수" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('수')}">
                             <label class="btn btn-outline-secondary" for="wednesdayCheck">수</label>
-                            <input type="checkbox" class="btn-check dayBt" id="thursdayCheck" value="목" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="thursdayCheck" value="목" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('목')}">
                             <label class="btn btn-outline-secondary" for="thursdayCheck">목</label>
-                            <input type="checkbox" class="btn-check dayBt" id="fridayCheck" value="금" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="fridayCheck" value="금" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('금')}">
                             <label class="btn btn-outline-secondary" for="fridayCheck">금</label>
-                            <input type="checkbox" class="btn-check dayBt" id="saturdayCheck" value="토" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="saturdayCheck" value="토" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('토')}">
                             <label class="btn btn-outline-secondary" for="saturdayCheck">토</label>
-                            <input type="checkbox" class="btn-check dayBt" id="sundayCheck" value="일" autocomplete="off" name="dayOffList">
+                            <input type="checkbox" class="btn-check dayBt" id="sundayCheck" value="일" autocomplete="off" name="dayOffList" th:checked="${designerDto != null && designerDto.dayOffList != null && designerDto.dayOffList.contains('일')}">
                             <label class="btn btn-outline-secondary" for="sundayCheck">일</label>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" th:field="*{dayOffList}" id="designerDto_free">
+                <input type="hidden" th:field="*{dayOffList}" th:value="${designerDto.dayOffList}" >
                 <div class="designer_bt_box">
                     <a href="/designer">
                         <button type="submit" class="btn btn-success pushBt" onclick="submitForm()">등록하기</button>

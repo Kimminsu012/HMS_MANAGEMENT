@@ -36,7 +36,7 @@
                         <span th:text="${designer.name}"></span>
                     </div>
                     <div class="salary_text">
-                        <span th:text="${#temporals.format(designer.date, 'yyyy.MM.dd')}"></span>
+                        <span th:text="${#temporals.format(designer.date, 'MM.dd')}"></span>
                     </div>
                     <div class="salary_text">
                         <span th:text="${#numbers.formatInteger(designer.sal, 3, 'COMMA')+'원'}"></span>
@@ -46,6 +46,13 @@
                             <span>발급하기</span>
                         </a>
                     </div>
+                </div>
+                <div class="pagination">
+                    <a th:href="@{/designer/salaryList?page=0}" th:if="${currentPage > 0}"><i class="bi bi-caret-left-fill"></i></a>
+                    <span class="page-numbers">
+                        <a th:href="@{'/designer/salaryList?page=' + ${i}}" th:each="i : ${#numbers.sequence(0, maxPage - 1)}" th:text="${i + 1}" th:class="${i == currentPage ? 'active' : ''}"></a>
+                    </span>
+                    <a th:href="@{/designer/salaryList(page=${currentPage + 1})}" th:if="${currentPage < maxPage - 1}"><i class="bi bi-caret-right-fill"></i></a>
                 </div>
             </div>
         </div>
