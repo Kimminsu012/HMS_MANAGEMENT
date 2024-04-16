@@ -5,22 +5,24 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Getter @Setter
+@Table(name = "designer_calendar")
 public class DesignerCalendarEntity {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 이벤트 ID
 
     @Column
     private String title; // 이벤트 제목
     @Column
-    private LocalDateTime start; // 이벤트 시작 시간
+    private LocalDateTime start;
     @Column
-    private LocalDateTime end; // 이벤트 종료 시간
+    private LocalDateTime end;
     @Column
     private boolean allDay; // 종일 이벤트 여부
     @Column

@@ -18,16 +18,7 @@ public class DesignerCalendarController {
 
     @Autowired
     public DesignerCalendarController(DesignerCalendarService calendarService){
-
         this.calendarService = calendarService;
-    }
-
-    @GetMapping("/scheduleList")
-    public String scheduleList(Model model){
-
-
-
-        return "designer/scheduleList";
     }
 
     @PostMapping("/scheduleList/calendarSave")
@@ -36,17 +27,15 @@ public class DesignerCalendarController {
         return new ResponseEntity<>(savedEvent, HttpStatus.CREATED);
     }
 
-    @PostMapping("/scheduleList/calendarUpdate")
+    @GetMapping("/scheduleList/calendarUpdate")
     public ResponseEntity<DesignerCalendarEntity> calendarUpdate(@RequestBody DesignerCalendarDto calendarDto){
         DesignerCalendarEntity updatedEvent = calendarService.calendarUpdate(calendarDto);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
-    @PostMapping("/scheduleList/calendarDelete")
-    public ResponseEntity<?> calendarDelete(@RequestParam Long id){
+    @DeleteMapping("/scheduleList/calendarDelete/{id}")
+    public ResponseEntity<?> calendarDelete(@PathVariable Long id){
         calendarService.calendarDelete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
 }

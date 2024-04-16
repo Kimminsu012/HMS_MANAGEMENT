@@ -71,7 +71,7 @@
                         <span>월급 지급일</span>
                     </div>
                     <div class="designer_detail_cont">
-                        <span th:text="${#temporals.format(designerDto.salDate, 'yyyy.MM.dd')}"></span>
+                        <span th:text="${#temporals.format(designerDto.salDate, 'dd')+' 일'}"></span>
                     </div>
                 </div>
             </div>

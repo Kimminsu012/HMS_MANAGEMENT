@@ -55,7 +55,11 @@ public class DesignerController {
         return "designer/designerMain";
     }
 
+    @GetMapping("/designer/scheduleList")
+    public String scheduleList(){
 
+        return "designer/scheduleList";
+    }
 
     @GetMapping("/designer/salaryList")
     public String salaryList(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){

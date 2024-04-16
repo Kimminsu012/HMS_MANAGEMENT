@@ -21,68 +21,7 @@
             nowIndicator: true, // 현재 시간 마크
             dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
             locale: 'ko', // 한국어 설정
-            eventAdd: function(info) {
-                var eventData = {
-                    title: info.event.title,
-                    start: info.event.startStr,
-                    end: info.event.endStr,
-                    allDay: info.event.allDay,
-                    className: info.event.extendedProps.className // eventType 대신 className 사용
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "/designer/scheduleList/calendarSave",
-                    data: JSON.stringify(eventData),
-                    contentType: "application/json",
-                    success: function(response) {
-                        console.log("이벤트가 성공적으로 추가되었습니다.");
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("이벤트 추가 중 오류가 발생했습니다: " + error);
-                    }
-                });
-            },
-            eventChange: function(info) {
-                var eventData = {
-                    id: info.event.id,
-                    title: info.event.title,
-                    start: info.event.startStr,
-                    end: info.event.endStr,
-                    allDay: info.event.allDay,
-                    className: info.event.extendedProps.className // eventType 대신 className 사용
-                };
 
-                $.ajax({
-                    type: "POST",
-                    url: "/designer/scheduleList/calendarUpdate",
-                    data: JSON.stringify(eventData),
-                    contentType: "application/json",
-                    success: function(response) {
-                        console.log("이벤트가 성공적으로 수정되었습니다.");
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("이벤트 수정 중 오류가 발생했습니다: " + error);
-                    }
-                });
-            },
-            eventRemove: function(info) {
-                var eventData = {
-                    id: info.event.id
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: "/designer/scheduleList/calendarDelete",
-                    data: JSON.stringify(eventData),
-                    contentType: "application/json",
-                    success: function(response) {
-                        console.log("이벤트가 성공적으로 삭제되었습니다.");
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("이벤트 삭제 중 오류가 발생했습니다: " + error);
-                    }
-                });
-            },
             select: function(arg) {
                 var eventType = prompt('입력할 유형을 선택하세요: (휴가, 휴무, 예약, 메모)');
                 if (eventType && (eventType === '휴가' || eventType === '휴무' || eventType === '예약' || eventType === '메모')) {
@@ -116,8 +55,8 @@
                         // 서버에 이벤트 추가 데이터 전송
                         var eventData = {
                             title: title,
-                            start: arg.startStr,
-                            end: arg.endStr,
+                            start: arg.start,
+                            end: arg.end,
                             allDay: arg.allDay,
                             className: eventType
                         };
@@ -143,13 +82,9 @@
                 if (confirm("삭제는 확인 , 수정은 아니요")) {
                     info.event.remove();
                     // 서버에 이벤트 삭제 데이터 전송
-                    var eventData = {
-                        id: info.event.id
-                    };
                     $.ajax({
-                        type: "POST",
-                        url: "/designer/scheduleList/calendarDelete",
-                        data: JSON.stringify(eventData),
+                        type: "DELETE", // DELETE 메서드 사용
+                        url: "/designer/scheduleList/calendarDelete/" + info.event.id, // 이벤트의 ID를 URL에 추가
                         contentType: "application/json",
                         success: function(response) {
                             console.log("이벤트가 성공적으로 삭제되었습니다.");
@@ -166,15 +101,15 @@
                         var eventData = {
                             id: info.event.id,
                             title: newTitle,
-                            start: info.event.startStr,
-                            end: info.event.endStr,
+                            start: info.event.start,
+                            end: info.event.end,
                             allDay: info.event.allDay,
                             className: info.event.extendedProps.className
                         };
                         $.ajax({
                             type: "POST",
                             url: "/designer/scheduleList/calendarUpdate",
-                            data: JSON.stringify(eventData),
+                            data: JSON.stringify(eventData), // 요청 바디에 데이터 포함
                             contentType: "application/json",
                             success: function(response) {
                                 console.log("이벤트가 성공적으로 수정되었습니다.");

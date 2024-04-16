@@ -36,7 +36,7 @@
                         <span th:text="${designer.name}"></span>
                     </div>
                     <div class="salary_text">
-                        <span th:text="${#temporals.format(designer.date, 'MM.dd')}"></span>
+                        <span th:text="${#temporals.format(designer.date, 'dd')+' 일'}"></span>
                     </div>
                     <div class="salary_text">
                         <span th:text="${#numbers.formatInteger(designer.sal, 3, 'COMMA')+'원'}"></span>

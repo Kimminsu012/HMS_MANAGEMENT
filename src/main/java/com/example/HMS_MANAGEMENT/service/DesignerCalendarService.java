@@ -24,7 +24,7 @@ public class DesignerCalendarService {
         calendar.setStart(calendarDto.getStart());
         calendar.setEnd(calendarDto.getEnd());
         calendar.setAllDay(calendarDto.isAllDay());
-        calendar.setEventType(calendarDto.getEventType());
+        calendar.setEventType(calendarDto.getEventType()); // eventType 설정
         return designerCalendarRepo.save(calendar);
     }
 
@@ -42,7 +42,7 @@ public class DesignerCalendarService {
         event.setStart(calendarDto.getStart());
         event.setEnd(calendarDto.getEnd());
         event.setAllDay(calendarDto.isAllDay());
-        event.setEventType(calendarDto.getEventType());
+        event.setEventType(calendarDto.getEventType()); // eventType 설정
 
         // 업데이트된 이벤트를 저장하고 반환합니다.
         return designerCalendarRepo.save(event);
