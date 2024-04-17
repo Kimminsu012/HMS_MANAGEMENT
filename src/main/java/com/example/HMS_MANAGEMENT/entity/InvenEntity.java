@@ -1,5 +1,6 @@
 package com.example.HMS_MANAGEMENT.entity;
 
+import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,11 +21,12 @@ public class InvenEntity {
     private Integer count; // 제품 수량
 
     @Column
-    private String idCalss; // 제품 분류
+    private String idClass; // 제품 분류
 
     @Column
     private Integer itemL; // 제품 용량
 
-
+    @Enumerated(EnumType.STRING)
+    private InvenStatus getOperationType; // 분류
 
 }

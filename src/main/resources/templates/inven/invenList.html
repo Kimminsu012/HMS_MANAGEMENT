@@ -21,7 +21,6 @@
             <div class="list_ac_bt">
                 <button type="button" class="btn btn-secondary buyBt">구매</button>
                 <button type="button" class="btn btn-secondary sortBt">판매</button>
-                <button type="button" class="btn btn-success editBt">수정</button>
                 <button type="button" class="btn btn-success backBt">취소</button>
                 <button type="button" class="btn btn-danger deleteBt deleteGo">삭제</button>
             </div>
@@ -45,184 +44,22 @@
                     <span>총 수량</span>
                 </div>
             </div>
-            <div class="list_content_text">
+            <div class="list_content_text" th:each="invenDto : ${invenDto}">
                 <div class="list_title_box">
-                    <span>샴푸</span>
+                    <span th:text="${invenDto.idClass}"></span>
                     <input type="checkbox" class="list_chk">
                 </div>
                 <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
+                    <span th:text="${invenDto.itemNm}"></span>
                 </div>
                 <div class="list_title_box">
-                    <span>123456789</span>
+                    <span th:text="${invenDto.id}"></span>
                 </div>
                 <div class="list_title_box">
-                    <span>1000ml</span>
+                    <span th:text="${invenDto.itemL}"></span>
                 </div>
                 <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
-                </div>
-            </div>
-            <div class="list_content_text">
-                <div class="list_title_box">
-                    <span>샴푸</span>
-                    <input type="checkbox" class="list_chk">
-                </div>
-                <div class="list_title_text">
-                    <span>블랙제이 프로페셔널 클리닉 샴푸</span>
-                </div>
-                <div class="list_title_box">
-                    <span>123456789</span>
-                </div>
-                <div class="list_title_box">
-                    <span>1000ml</span>
-                </div>
-                <div class="list_title_box">
-                    <span>20</span>
+                    <span th:text="${invenDto.count}"></span>
                 </div>
             </div>
             <div class="list_count">
@@ -240,15 +77,18 @@
             <div id="modal">
                 <div id="modal_content">
                     <div class="modal_in_box">
-                        <div id="modal_title">
-                            <div class="modal_head">
-                                <span class="modal_text"></span>
+                        <form action="/inven/process" method="post" class="inven_form">
+                            <input type="hidden" name="operationType" id="operationType">
+
+                            <div id="modal_title">
+                                <div class="modal_head">
+                                    <span class="modal_text"></span>
+                                </div>
+                                <div class="modal_close">
+                                    <button type="button" class="btn btn-success modal_bt">작성완료</button>
+                                </div>
                             </div>
-                            <div class="modal_close">
-                                <button type="button" class="btn btn-success modal_bt">작성완료</button>
-                            </div>
-                        </div>
-                        <div id="modal_cont_box">
+                            <div id="modal_cont_box">
                             <div id="modal_cont_title">
                                 <div class="modal_tit">
                                     <span>제품명</span>
@@ -260,27 +100,31 @@
                                     <span>분류</span>
                                 </div>
                                 <div class="modal_tit">
+                                    <span>용량</span>
+                                </div>
+                                <div class="modal_tit">
                                     <span>수량</span>
                                 </div>
                             </div>
                             <div id="modal_cont_text">
                                 <div class="inven_nm">
-                                    <input type="text" class="inven_input_box">
+                                    <input type="text" class="inven_input_box" th:field="*{invenDto.itemNm}">
                                 </div>
                                 <div class="inven_code">
-                                    <select name="code" class="code_select_box">
-                                        <option value="직접입력"></option>
-                                        <option value="123456789">123456789</option>
-                                        <option value="1234567">1234567</option>
-                                        <option value="12345679">12345679</option>
+                                    <select name="code" class="code_select_box" onchange="handleCodeSelection(this)">
+                                        <option value="직접입력" >직접입력</option>
+                                        <option th:value="${invenDto.id}" th:text="${invenDto.id}"></option>
                                     </select>
-                                    <input type="text" name="selectInput">
+                                    <input type="text" name="selectInput" style="display: none;">
                                 </div>
                                 <div class="inven_class">
-                                    <input type="text" class="inven_input_box">
+                                    <input type="text" class="inven_input_box" th:field="*{invenDto.idClass}">
+                                </div>
+                                <div class="inven_l">
+                                    <input type="number" class="inven_input_box input_num" th:field="*{invenDto.itemL}">
                                 </div>
                                 <div class="result_n">
-                                    <input type="number" class="inven_input_box input_num">
+                                    <input type="number" class="inven_input_box input_num" th:field="*{invenDto.count}">
                                 </div>
                             </div>
                         </div>

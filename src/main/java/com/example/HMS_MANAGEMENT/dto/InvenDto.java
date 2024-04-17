@@ -1,5 +1,6 @@
 package com.example.HMS_MANAGEMENT.dto;
 
+import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,13 @@ public class InvenDto {
 
     private Integer count; // 제품 수량
 
-    private String idCalss; // 제품 분류
+    private String idClass; // 제품 분류
 
     private Integer itemL; // 제품 용량
+
+    private InvenStatus invenStatus; // 분류
+
+    public String invenStatus() {
+        return this.invenStatus();
+    }
 }

@@ -21,21 +21,21 @@ public class DesignerCalendarController {
         this.calendarService = calendarService;
     }
 
-    @PostMapping("/scheduleList/calendarSave")
+    @PostMapping("/calendarSave")
     public ResponseEntity<DesignerCalendarEntity> calendarSave(@RequestBody DesignerCalendarDto calendarDto){
         DesignerCalendarEntity savedEvent = calendarService.calendarSave(calendarDto);
         return new ResponseEntity<>(savedEvent, HttpStatus.CREATED);
     }
 
-    @GetMapping("/scheduleList/calendarUpdate")
+    @GetMapping("/calendarUpdate")
     public ResponseEntity<DesignerCalendarEntity> calendarUpdate(@RequestBody DesignerCalendarDto calendarDto){
         DesignerCalendarEntity updatedEvent = calendarService.calendarUpdate(calendarDto);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
-    @DeleteMapping("/scheduleList/calendarDelete/{id}")
+    @GetMapping("/calendarDelete")
     public ResponseEntity<?> calendarDelete(@PathVariable Long id){
         calendarService.calendarDelete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

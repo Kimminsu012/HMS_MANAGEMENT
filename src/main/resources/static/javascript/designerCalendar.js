@@ -62,7 +62,7 @@
                         };
                         $.ajax({
                             type: "POST",
-                            url: "/designer/scheduleList/calendarSave",
+                            url: "/designer/calendarSave",
                             data: JSON.stringify(eventData),
                             contentType: "application/json",
                             success: function(response) {
@@ -79,15 +79,16 @@
                 calendar.unselect();
             },
             eventClick: function(info) {
-                if (confirm("삭제는 확인 , 수정은 아니요")) {
-                    info.event.remove();
-                    // 서버에 이벤트 삭제 데이터 전송
+                if (confirm("삭제는 확인, 수정은 아니요")) {
+                    // 삭제 요청 보내기
                     $.ajax({
-                        type: "DELETE", // DELETE 메서드 사용
-                        url: "/designer/scheduleList/calendarDelete/" + info.event.id, // 이벤트의 ID를 URL에 추가
+                        type: "DELETE",
+                        url: "/designer/calendarDelete",
                         contentType: "application/json",
                         success: function(response) {
                             console.log("이벤트가 성공적으로 삭제되었습니다.");
+                            // 이벤트를 캘린더에서 제거
+                            info.event.remove();
                         },
                         error: function(xhr, status, error) {
                             console.error("이벤트 삭제 중 오류가 발생했습니다: " + error);
@@ -96,8 +97,7 @@
                 } else {
                     var newTitle = prompt('수정할 일정을 입력하세요:');
                     if (newTitle) {
-                        info.event.setProp('title', newTitle);
-                        // 서버에 이벤트 수정 데이터 전송
+                        // 수정 요청 보내기
                         var eventData = {
                             id: info.event.id,
                             title: newTitle,
@@ -107,12 +107,14 @@
                             className: info.event.extendedProps.className
                         };
                         $.ajax({
-                            type: "POST",
-                            url: "/designer/scheduleList/calendarUpdate",
-                            data: JSON.stringify(eventData), // 요청 바디에 데이터 포함
+                            type: "PATCH",
+                            url: "/designer/calendarUpdate",
+                            data: JSON.stringify(eventData),
                             contentType: "application/json",
                             success: function(response) {
                                 console.log("이벤트가 성공적으로 수정되었습니다.");
+                                // 캘린더에서 이벤트 제목 수정
+                                info.event.setProp('title', newTitle);
                             },
                             error: function(xhr, status, error) {
                                 console.error("이벤트 수정 중 오류가 발생했습니다: " + error);

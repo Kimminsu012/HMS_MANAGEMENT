@@ -2,9 +2,10 @@
 $(function() {
     $("#modal_wrap").hide();
     $(".buyBt, .sortBt, .editBt").on("click", function() {
-        $("#modal_wrap").show();
-        var buttonText = $(this).text();
-        $(".modal_text").text(buttonText);
+        var operationType = $(this).text().trim();
+        $("#modal_wrap").show().data("operationType", operationType);
+        $(".modal_text").text(operationType);
+        $("#operationType").val(operationType); // hidden input에 운영 유형 설정
     });
 
 
@@ -67,7 +68,14 @@ $(function() {
 
     });
 
-
+    function handleCodeSelection(select) {
+        var selectInput = select.nextElementSibling;
+        if (select.value === "직접입력") {
+            selectInput.style.display = "block";
+        } else {
+            selectInput.style.display = "none";
+        }
+    }
 
 
 });
