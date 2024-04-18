@@ -68,14 +68,55 @@ $(function() {
 
     });
 
-    function handleCodeSelection(select) {
-        var selectInput = select.nextElementSibling;
-        if (select.value === "직접입력") {
-            selectInput.style.display = "block";
-        } else {
-            selectInput.style.display = "none";
-        }
-    }
 
 
 });
+
+function handleCodeSelection(select){
+    var selectInput = select.nextElementSibling;
+
+    var selectedCode = select.value;
+    if(selectedCode !== "직접 입력"){
+        selectInput.style.display = "none";
+    }else{
+        selectInput.style.display = "block";
+    }
+}
+
+// function handleCodeSelection(select) {
+//     var selectInput = select.nextElementSibling;
+//     var token = $("meta[name='_csrf']").attr("content");
+//     var header = $("meta[name='_csrf_header']").attr("content");
+//
+//     var selectedCode = select.value;
+//     if (selectedCode !== "직접 입력") {
+//         selectInput.style.display = "none";
+//         $.ajax({
+//             url: "/inven/invenList/",
+//             type: "GET",
+//             beforeSend: function(xhr) {
+//                 xhr.setRequestHeader(header, token);
+//             },
+//             data: { code: selectedCode },
+//             dataType: "json",
+//             cache: false,
+//             success: function(response) {
+//                 console.log("서버로부터 받은 응답:", response);
+//                 document.querySelector('.inven_nm input').value = response.itemNm;
+//                 document.querySelector('.inven_l input').value = response.itemL;
+//                 document.querySelector('.inven_class input').value = response.idClass;
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error("AJAX 요청 실패:", status, error);
+//                 // 에러 메시지를 화면에 표시하거나 사용자에게 알리는 등의 처리를 추가할 수 있습니다.
+//                 alert("서버에서 응답을 가져오는 데 문제가 발생했습니다.");
+//             }
+//         });
+//     } else {
+//         selectInput.style.display = "block";
+//         document.querySelector('.inven_nm input').value = '';
+//         document.querySelector('.inven_l input').value = '';
+//         document.querySelector('.inven_class input').value = '';
+//     }
+// }
+

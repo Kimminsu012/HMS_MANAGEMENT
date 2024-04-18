@@ -12,10 +12,13 @@ public class InvenEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; // 제품 코드
+    private Long id; // 제품 번호
 
     @Column
     private String itemNm; // 제품 이름
+
+    @Column
+    private Integer idCode; // 제품 코드
 
     @Column
     private Integer count; // 제품 수량
@@ -27,6 +30,6 @@ public class InvenEntity {
     private Integer itemL; // 제품 용량
 
     @Enumerated(EnumType.STRING)
-    private InvenStatus getOperationType; // 분류
+    private InvenStatus invenStatus; // 분류
 
 }

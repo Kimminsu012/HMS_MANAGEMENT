@@ -3,11 +3,13 @@ package com.example.HMS_MANAGEMENT.control;
 import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import com.example.HMS_MANAGEMENT.dto.InvenDto;
 import com.example.HMS_MANAGEMENT.service.InvenService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class InvenController {
@@ -24,33 +26,43 @@ public class InvenController {
     }
 
     @GetMapping("/inven/invenList")
-    public String invenListPage(InvenDto invenDto, Model model){
-
-        model.addAttribute("invenList",invenDto);
-
+    public String invenListPage(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
+        List<InvenDto> invenList = invenService.getAllInventoryItems();
+        Pageable pageable = PageRequest.of(page,10);
+        int maxPage = (int)Math.ceil((double) invenList.size()/10);
+        model.addAttribute("maxPage",maxPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("invenList", invenList.subList(page * 8, Math.min((page + 1) * 8, invenList.size())));
+        model.addAttribute("invenDto", new InvenDto());
         return "inven/invenList";
     }
 
-    // 운영 유형에 따라 다른 동작 수행
     @PostMapping("/inven/process")
     public String processOperation(@ModelAttribute InvenDto invenDto, Model model) {
-        String invenStatus = invenDto.invenStatus(); // DTO에서 운영 유형 가져오기
-
-        if (invenStatus.equals(InvenStatus.BUY.toString())) {
-            // 구매 처리
-            invenService.invenSave(invenDto);
-            model.addAttribute("invenDto", new InvenDto());
-
-            invenService.processBuy(invenDto);
-        } else if (invenStatus.equals(InvenStatus.SELL.toString())) {
-            // 판매 처리
-            invenService.processSell(invenDto);
-        } else if (invenStatus.equals(InvenStatus.MODIFY.toString())) {
-            // 수정 처리
-            invenService.processModify(invenDto);
+        if (invenDto != null && invenDto.getInvenStatus() != null) {
+            InvenStatus invenStatus = invenDto.getInvenStatus();
+            switch (invenStatus) {
+                case BUY:
+                    invenService.processBuy(invenDto);
+                    break;
+                case SELL:
+                    if (invenDto.getId() != null && invenDto.getCount() > 0) { // id가 null이 아니고 수량이 0보다 큰지 확인
+                        // 판매 처리 - 수량을 감소시킵니다.
+                        invenService.processSell(invenDto.getId(), invenDto.getCount());
+                    } else {
+                        model.addAttribute("errorMsg","판매할 제품명과 수량을 확인해주세요.");
+                    }
+                    break;
+                case MODIFY:
+                    invenService.processModify(invenDto);
+                    break;
+                default:
+                    // 처리할 수 없는 상태입니다. 오류 처리 로직 추가
+                    break;
+            }
+        } else {
+            // 유효하지 않은 입력입니다. 오류 처리 로직 추가
         }
-
-        // 처리 후 리다이렉트 또는 다른 작업 수행
         return "redirect:/inven/invenList";
     }
 }
