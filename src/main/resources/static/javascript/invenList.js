@@ -11,17 +11,22 @@ $(function() {
 
         var invenStatusSelect = $(".inven_status_select");
         invenStatusSelect.find("option").show(); // 모든 옵션을 먼저 표시
+        var invenCodeSelect = $(".code_select_box");
+        invenCodeSelect.find("option").show();
 
         if (operationType === "구매") {
             invenStatusSelect.val("BUY");
             invenStatusSelect.find("option:not(:selected)").hide();
+            $(".code_select_box option[value*='직접 입력']").hide();
         } else if (operationType === "판매") {
             invenStatusSelect.val("SELL"); // 판매 작업의 경우 SELL 값을 전달
             invenStatusSelect.find("option:not(:selected)").hide();
-
+            $(".code_select_box option[value*='직접 입력']").hide();
         } else if (operationType === "작성") {
             invenStatusSelect.val("BASIC");
             invenStatusSelect.find("option:not(:selected)").hide();
+            $(".code_select_box option").hide();
+            $(".code_select_box option[value*='직접 입력']").show();
         }
     });
 
@@ -115,6 +120,7 @@ function handleCodeSelection(select){
         $("#itemNm").val($(".itemNm-list").eq(idx).text());
         $("#idClass").val($(".idClass-list").eq(idx).text());
         $("#itemL").val($(".itemL-list").eq(idx).text());
+        $("#count").val($(".count-list")).focus();
         $("#idCode").val(selectedCode);
 
         $("#count").on("blur",function(){
@@ -124,7 +130,6 @@ function handleCodeSelection(select){
                     alert("수량이 0");
                 else if(itemNowCount < parseInt($(this).val()))
                     alert("재고부족");
-
             }
         });
 
