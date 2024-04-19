@@ -3,6 +3,7 @@ package com.example.HMS_MANAGEMENT.control;
 import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import com.example.HMS_MANAGEMENT.dto.InvenDto;
 import com.example.HMS_MANAGEMENT.service.InvenService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,14 @@ public class InvenController {
     }
 
     @GetMapping("/inven")
-    public String invenMain(Model model){
+    public String invenMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
+
+        List<InvenDto> invenList = invenService.getAllInventoryItems();
+        Pageable pageable = PageRequest.of(page,10);
+        int maxPage = (int)Math.ceil((double) invenList.size()/10);
+        model.addAttribute("maxPage",maxPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("invenList", invenList.subList(page * 10, Math.min((page + 1) * 10, invenList.size())));
         return "inven/invenMain";
     }
 
@@ -33,7 +41,7 @@ public class InvenController {
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
-        model.addAttribute("invenList", invenList.subList(page * 8, Math.min((page + 1) * 8, invenList.size())));
+        model.addAttribute("invenList", invenList.subList(page * 10, Math.min((page + 1) * 10, invenList.size())));
         model.addAttribute("invenDto", new InvenDto());
         return "inven/invenList";
     }
@@ -51,7 +59,7 @@ public class InvenController {
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
-        model.addAttribute("invenList", invenList.subList(page * 8, Math.min((page + 1) * 8, invenList.size())));
+        model.addAttribute("invenList", invenList.subList(page * 10, Math.min((page + 1) * 10, invenList.size())));
         model.addAttribute("invenDto", new InvenDto());
         return "inven/buyList";
     }
@@ -63,10 +71,11 @@ public class InvenController {
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
-        model.addAttribute("invenList", invenList.subList(page * 8, Math.min((page + 1) * 8, invenList.size())));
+        model.addAttribute("invenList", invenList.subList(page * 10, Math.min((page + 1) * 10, invenList.size())));
         model.addAttribute("invenDto", new InvenDto());
         return "inven/sortList";
     }
+
 
 
 }

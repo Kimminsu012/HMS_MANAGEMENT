@@ -21,7 +21,7 @@
     flex-direction: column;
     background-color: #ffffff;
     border-radius: 10px;
-
+    overflow: hidden;
 }
 .now_inven_list_title{
     height: 50px;

@@ -35,51 +35,17 @@
                         <span>재고량</span>
                     </div>
                 </div>
-                <div class="now_inven">
+                <div class="now_inven" th:each="invenDto : ${invenList}" th:if="${invenDto.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}">
                     <div class="now_inven">
-                        <span>샴푸</span>
+                        <span th:text="${invenDto.idClass}"></span>
                     </div>
                     <div class="now_inven">
-                        <span>이름은 뭔지 모르지만 길게 테스트</span>
+                        <span th:text="${invenDto.itemNm}"></span>
                     </div>
                     <div class="now_inven">
-                        <span>20</span>
-                    </div>
-                </div>
-                <div class="now_inven">
-                    <div class="now_inven">
-                        <span>샴푸</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>이름은 뭔지 모르지만 길게 테스트</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>20</span>
+                        <span th:text="${invenDto.count}"></span>
                     </div>
                 </div>
-                <div class="now_inven">
-                    <div class="now_inven">
-                        <span>샴푸</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>이름은 뭔지 모르지만 길게 테스트</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>20</span>
-                    </div>
-                </div>
-                <div class="now_inven">
-                    <div class="now_inven">
-                        <span>샴푸</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>이름은 뭔지 모르지만 길게 테스트</span>
-                    </div>
-                    <div class="now_inven">
-                        <span>20</span>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="inven_graph_out">
