@@ -27,9 +27,8 @@
                 <td th:text="${customer.firstVisit}"></td>
                 <td th:text="${customer.frequentDesigner}"></td>
                 <td th:text="${customer.record}"></td>
-                <td th:text="${customer.cusCost}"></td>
-                <!--                <td th:text="${customer.sales != null ? customer.sales.cut : ''}"></td>-->
-                <!--                <td th:text="${customer.sales != null ? customer.sales.cost : ''}"></td>-->
+                <td th:text="${#numbers.formatInteger(customer.cusCost,3,'COMMA')+'원'}"></td>
+
             </tr>
             </tbody>
         </table>

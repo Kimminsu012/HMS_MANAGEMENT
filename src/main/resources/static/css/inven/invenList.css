@@ -265,3 +265,21 @@
     background-color: rgba(0, 0, 0, 0);
     box-shadow: 1px 1px 1px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox  */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+a{ color: #000000}
+.title_span_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}

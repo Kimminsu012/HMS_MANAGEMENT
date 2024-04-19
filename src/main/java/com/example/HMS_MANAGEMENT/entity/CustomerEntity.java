@@ -33,7 +33,7 @@ public class CustomerEntity {
     private String frequentDesigner; // 자주찾는 디자이너
 
     @Column
-    private Integer cusCost;
+    private int cusCost;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -41,3 +41,8 @@ public class CustomerEntity {
     private SalesEntity sales;
 
 }
+
+
+
+//@Query(" select sum(c.cusCost) from CustomerEntity c where c.firstVisit= :d ")
+// int totalCustomCost(LocalDate d);

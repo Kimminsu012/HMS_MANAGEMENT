@@ -1,11 +1,28 @@
 
 $(function() {
     $("#modal_wrap").hide();
-    $(".buyBt, .sortBt, .editBt").on("click", function() {
+    $(".writeBt, .buyBt, .sortBt, .modifyBt").on("click", function() {
         var operationType = $(this).text().trim();
         $("#modal_wrap").show().data("operationType", operationType);
         $(".modal_text").text(operationType);
         $("#operationType").val(operationType); // hidden input에 운영 유형 설정
+
+
+
+        var invenStatusSelect = $(".inven_status_select");
+        invenStatusSelect.find("option").show(); // 모든 옵션을 먼저 표시
+
+        if (operationType === "구매") {
+            invenStatusSelect.val("BUY");
+            invenStatusSelect.find("option:not(:selected)").hide();
+        } else if (operationType === "판매") {
+            invenStatusSelect.val("SELL"); // 판매 작업의 경우 SELL 값을 전달
+            invenStatusSelect.find("option:not(:selected)").hide();
+
+        } else if (operationType === "작성") {
+            invenStatusSelect.val("BASIC");
+            invenStatusSelect.find("option:not(:selected)").hide();
+        }
     });
 
 
@@ -80,6 +97,7 @@ $(function() {
     });
 
 
+
 });
 
 function handleCodeSelection(select){
@@ -93,20 +111,34 @@ function handleCodeSelection(select){
             return false;
         }
     });
+        $("#id").val( $(".idClass-list").eq(idx).attr("data-id"));
         $("#itemNm").val($(".itemNm-list").eq(idx).text());
         $("#idClass").val($(".idClass-list").eq(idx).text());
         $("#itemL").val($(".itemL-list").eq(idx).text());
         $("#idCode").val(selectedCode);
+
+        $("#count").on("blur",function(){
+            if($("#operationType").text()==='판매') {
+                var itemNowCount = $(".count-list").eq(idx).text();
+                if (itemNowCount === 0)
+                    alert("수량이 0");
+                else if(itemNowCount < parseInt($(this).val()))
+                    alert("재고부족");
+
+            }
+        });
+
         selectInput.style.display = "none";
     }else{
         selectInput.style.display = "block";
         $(".inven_class input").val('');
         $(".inven_l input").val('');
         $(".result_n input").val('');
-        $(".inven_nm input").val('');
+        $(".inven_nm input").val('').focus();
         $(".selectInput").val('');
-        $(".status_s select").val($(".status_s option:first").val());
     }
+
+
 }
 
 

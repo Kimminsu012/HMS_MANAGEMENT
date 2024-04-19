@@ -1,3 +1,4 @@
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
@@ -24,7 +25,7 @@
                     <div class="bbb">
                         <div class="serviceItems" th:each="service : ${entry.value}">
                             <p th:text="${service.type}"></p>
-                            <p th:text="${service.cost+'원'}"></p>
+                            <p th:text="${#numbers.formatInteger(service.cost,3, 'COMMA')+'원'}"></p>
                         </div>
                     </div>
                 </div>

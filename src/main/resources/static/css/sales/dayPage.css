@@ -1,4 +1,4 @@
-.dayWarp {
+.dayPageWrap {
     position: absolute;
     top: 50%;
     left: 60%;
@@ -8,24 +8,13 @@
     background: #FFFF;
     border-radius: 10px;
 }
-.dayTitle{
-    width: 100%;
+.day{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid rgba(170,170,170,.2);
-    text-align: center;
+    padding: 0 10px;
+    height: 100%;
 }
-.dayList{
-    width: 100%;
-}
-.dayList thead{
-    width: 100%;
-}
-.dayList th, .dayList td {
-    padding: 8px;
-    text-align: center;
-}
-.dayTotal {
-    font-weight: bold;
+.day span{
+    padding: 10px;
 }

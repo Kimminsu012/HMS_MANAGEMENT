@@ -12,4 +12,7 @@ public interface InvenRepo extends JpaRepository<InvenEntity,Long> {
             String itemNm, Integer idCode,InvenStatus invenStatus
     );
 
+    InvenEntity findByItemNmAndIdCode(
+            String itemNm, Integer idCode
+    );
 }

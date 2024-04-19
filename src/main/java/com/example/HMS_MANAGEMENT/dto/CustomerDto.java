@@ -1,9 +1,13 @@
 package com.example.HMS_MANAGEMENT.dto;
 
+import com.example.HMS_MANAGEMENT.entity.SalesEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -31,6 +35,12 @@ public class CustomerDto {
     private String frequentDesigner; // 자주찾는 디자이너
 
     private Integer cusCost;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "salesId")
+    private SalesEntity sales;
+
 
 
 }

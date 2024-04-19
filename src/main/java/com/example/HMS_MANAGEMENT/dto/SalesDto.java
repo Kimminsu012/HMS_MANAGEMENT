@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,5 +20,4 @@ public class SalesDto {
 
     @NotBlank(message = "가격은 필수 입력 값입니다.")
     private Integer cost;
-
 }

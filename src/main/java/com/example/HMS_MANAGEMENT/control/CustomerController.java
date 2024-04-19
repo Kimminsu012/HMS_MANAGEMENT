@@ -43,10 +43,15 @@ public class CustomerController {
 
     }
 
+    // 고객정보에서 등록하기를 클릭했을때
     @GetMapping("/customer/cusReg")
     public String cusReg(Model model) {
+        List<String> optionsList = customerService.getOptions();
+        model.addAttribute("optionsList", optionsList);
+//        model.addAttribute("optionsList", customerService.getOptions());
         model.addAttribute("customerDto", new CustomerDto());
         return "customer/cusReg";
+
     }
 
     // 등록 후 고객정보로 이동 컨트롤러
@@ -60,6 +65,7 @@ public class CustomerController {
         return "redirect:/customer/cusList";
     }
 
+
     //고객정보에서 이름 클릭했을때 id값에 맞는 내용 출력하는 컨트롤
     @GetMapping("/customer/useList")
     public String useList(@RequestParam("id") Long customerId, Model model) {
@@ -72,7 +78,6 @@ public class CustomerController {
 
         Map<String, List<CustomerEntity>> groupCustomer = new HashMap<>();
         groupCustomer.put(customer.getName(), customerList);
-
 
 //        SalesEntity sales = salesRepository.findById(customer.getSales().getId())
 //                        .orElseThrow(()-> new NoSuchElementException("id" + customer.getSales().getId()));

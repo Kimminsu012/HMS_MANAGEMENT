@@ -1,4 +1,3 @@
-
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -14,8 +13,7 @@ var myChart = new Chart(ctx, {
                 70000, 60000, 50000, 40000, 30000, 20000, 10000,
                 10000, 20000, 30000, 40000, 50000, 60000, 70000,
                 70000, 60000, 50000, 40000, 30000, 20000, 10000,
-                10000,20000],
-            // 추가적인 옵션들
+                10000,20000], // 데이터 저장해서 배열로 한 다음 넘겨주면됨 ex) datCost
             yAxisID: 'y-axis-0',
             backgroundColor: '#0d6efd',
             borderColor: '#0d6efd',
