@@ -1,5 +1,6 @@
 package com.example.HMS_MANAGEMENT.service;
 
+import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import com.example.HMS_MANAGEMENT.dto.InvenDto;
 import com.example.HMS_MANAGEMENT.entity.InvenEntity;
 import com.example.HMS_MANAGEMENT.repository.InvenRepo;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,17 +51,35 @@ public class InvenService {
     }
 
     public void processSell(Long id, int quantity) {
-        InvenEntity inven = invenRepo.findById(id).orElse(null);
-        if (inven != null) {
+        // 판매할 제품을 데이터베이스에서 조회합니다.
+        Optional<InvenEntity> optionalInven = invenRepo.findById(id);
+        if (optionalInven.isPresent()) {
+            InvenEntity inven = optionalInven.get();
             int currentQuantity = inven.getCount();
-            if (currentQuantity >= quantity) {
+            // 판매할 수량이 현재 재고보다 작거나 같은지 확인합니다.
+            if (currentQuantity >= quantity && quantity > 0) {
+                // 새로운 엔티티를 생성하여 판매 정보를 저장합니다.
+                InvenEntity saleRecord = new InvenEntity();
+                saleRecord.setIdCode(inven.getIdCode());
+                saleRecord.setItemNm(inven.getItemNm());
+                saleRecord.setCount(quantity * -1); // 판매는 수량을 음수로 저장합니다.
+                saleRecord.setItemL(inven.getItemL());
+                saleRecord.setIdClass(inven.getIdClass());
+                saleRecord.setInvenStatus(InvenStatus.SELL); // 판매 상태로 설정합니다.
+                invenRepo.save(saleRecord);
+                // 현재 재고 정보를 갱신합니다.
                 inven.setCount(currentQuantity - quantity);
                 invenRepo.save(inven);
+            } else if (quantity <= 0) {
+                // 판매할 수량이 0보다 작거나 같은 경우에 대한 처리
+                throw new IllegalArgumentException("판매 수량은 0보다 커야 합니다.");
             } else {
-                // 판매할 수량이 현재 재고보다 많습니다. 처리할 수 있는 로직 추가
+                // 판매할 수량이 재고보다 많은 경우에 대한 처리
+                throw new RuntimeException("재고가 부족합니다.");
             }
         } else {
-            // 해당 아이템이 재고에 없습니다. 처리할 수 있는 로직 추가
+            // 해당 아이템이 재고에 없는 경우에 대한 처리
+            throw new RuntimeException("해당 제품이 존재하지 않습니다.");
         }
     }
 

@@ -53,20 +53,20 @@
             </div>
             <div class="list_content_text" th:each="invenDto : ${invenList}">
                 <div class="list_title_box">
-                    <span th:text="${invenDto.idClass}"></span>
+                    <span th:text="${invenDto.idClass}" class="idClass-list"></span>
                     <input type="checkbox" class="list_chk">
                 </div>
                 <div class="list_title_text">
-                    <span th:text="${invenDto.itemNm}"></span>
+                    <span th:text="${invenDto.itemNm}" class="itemNm-list"></span>
                 </div>
                 <div class="list_title_box">
-                    <span th:text="${invenDto.idCode}"></span>
+                    <span th:text="${invenDto.idCode}" class="idCode-list"></span>
                 </div>
                 <div class="list_title_box">
-                    <span th:text="${invenDto.itemL}"></span>
+                    <span th:text="${invenDto.itemL}" class="itemL-list"></span>
                 </div>
                 <div class="list_title_box">
-                    <span th:text="${invenDto.count}"></span>
+                    <span th:text="${invenDto.count}" class="count-list"></span>
                 </div>
                 <div class="list_title_box">
                     <span th:text="${invenDto.invenStatus}"></span>
@@ -93,6 +93,7 @@
                                 </div>
                                 <div class="modal_close">
                                     <button type="submit" class="btn btn-success modal_bt">작성완료</button>
+                                    <button type="button" class="modal_back_bt">X</button>
                                 </div>
                             </div>
                             <div id="modal_cont_box">
@@ -123,16 +124,16 @@
                                     <div class="inven_code">
                                         <select name="code" class="code_select_box" onchange="handleCodeSelection(this)">
                                             <option value="제품 코드 선택">제품 코드 선택</option>
-                                            <option value="직접 입력" >직접 입력</option>
+                                            <option value="직접 입력">직접 입력</option>
                                             <option th:each="invenCode : ${invenList}" th:value="${invenCode.idCode}" th:text="${invenCode.idCode}"></option>
                                         </select>
-                                        <input type="text" name="selectInput" class="selectInput" th:field="*{idCode}">
+                                        <input type="text" name="selectInput" class="selectInput" th:field="*{idCode}" placeholder="추가할 코드 입력">
                                     </div>
                                     <div class="inven_class">
                                         <input type="text" class="inven_input_box" th:field="*{idClass}">
                                     </div>
                                     <div class="inven_l">
-                                        <input type="number" class="inven_input_box input_num" th:field="*{itemL}">
+                                        <input type="number" class="inven_input_box input_num"n  th:field="*{itemL}">
                                     </div>
                                     <div class="result_n">
                                         <input type="number" class="inven_input_box input_num" th:field="*{count}">

@@ -68,55 +68,45 @@ $(function() {
 
     });
 
+    $(".modal_back_bt").on("click",function (){
+        $(".inven_class input").val('');
+        $(".inven_l input").val('');
+        $(".result_n input").val('');
+        $(".inven_nm input").val('');
+        $(".code_select_box").val($(".code_select_box option:first").val());
+        $(".selectInput").hide();
+        $(".status_s select").val($(".status_s option:first").val());
+        $("#modal_wrap").hide();
+    });
 
 
 });
 
 function handleCodeSelection(select){
     var selectInput = select.nextElementSibling;
-
     var selectedCode = select.value;
+    var idx=0;
     if(selectedCode !== "직접 입력"){
+    $(".idCode-list").each(function(i,v){
+        if ( $(this).text() === $(".code_select_box").val() ){
+            idx=i;
+            return false;
+        }
+    });
+        $("#itemNm").val($(".itemNm-list").eq(idx).text());
+        $("#idClass").val($(".idClass-list").eq(idx).text());
+        $("#itemL").val($(".itemL-list").eq(idx).text());
+        $("#idCode").val(selectedCode);
         selectInput.style.display = "none";
     }else{
         selectInput.style.display = "block";
+        $(".inven_class input").val('');
+        $(".inven_l input").val('');
+        $(".result_n input").val('');
+        $(".inven_nm input").val('');
+        $(".selectInput").val('');
+        $(".status_s select").val($(".status_s option:first").val());
     }
 }
 
-// function handleCodeSelection(select) {
-//     var selectInput = select.nextElementSibling;
-//     var token = $("meta[name='_csrf']").attr("content");
-//     var header = $("meta[name='_csrf_header']").attr("content");
-//
-//     var selectedCode = select.value;
-//     if (selectedCode !== "직접 입력") {
-//         selectInput.style.display = "none";
-//         $.ajax({
-//             url: "/inven/invenList/",
-//             type: "GET",
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader(header, token);
-//             },
-//             data: { code: selectedCode },
-//             dataType: "json",
-//             cache: false,
-//             success: function(response) {
-//                 console.log("서버로부터 받은 응답:", response);
-//                 document.querySelector('.inven_nm input').value = response.itemNm;
-//                 document.querySelector('.inven_l input').value = response.itemL;
-//                 document.querySelector('.inven_class input').value = response.idClass;
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error("AJAX 요청 실패:", status, error);
-//                 // 에러 메시지를 화면에 표시하거나 사용자에게 알리는 등의 처리를 추가할 수 있습니다.
-//                 alert("서버에서 응답을 가져오는 데 문제가 발생했습니다.");
-//             }
-//         });
-//     } else {
-//         selectInput.style.display = "block";
-//         document.querySelector('.inven_nm input').value = '';
-//         document.querySelector('.inven_l input').value = '';
-//         document.querySelector('.inven_class input').value = '';
-//     }
-// }
 

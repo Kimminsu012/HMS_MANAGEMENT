@@ -254,3 +254,14 @@
     border: none;
     background: none;
 }
+.modal_back_bt{
+    border: 1px solid rgba(0, 0, 0, 20%);
+    outline: none;
+    height: 100%;
+    width: 50px;
+    border-radius: 20px;
+}
+.modal_back_bt:hover{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 1px 1px 1px;
+}

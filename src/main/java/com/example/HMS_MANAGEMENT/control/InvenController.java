@@ -65,4 +65,17 @@ public class InvenController {
         }
         return "redirect:/inven/invenList";
     }
+
+    @GetMapping("/inven/buyList")
+    public String buyList(){
+
+        return "inven/buyList";
+    }
+
+    @GetMapping("inven/sortList")
+    public String sortList(){
+
+        return "inven/sortList";
+    }
 }
+

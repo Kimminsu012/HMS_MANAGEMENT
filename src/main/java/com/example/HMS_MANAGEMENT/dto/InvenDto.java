@@ -33,7 +33,5 @@ public class InvenDto {
     @NotNull(message = "등록하는 방식을 선택 해주세요.")
     private InvenStatus invenStatus; // 분류
 
-    public String invenStatus() {
-        return this.invenStatus();
-    }
+
 }
