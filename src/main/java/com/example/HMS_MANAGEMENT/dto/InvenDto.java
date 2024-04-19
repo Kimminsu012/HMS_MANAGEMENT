@@ -1,3 +1,4 @@
+
 package com.example.HMS_MANAGEMENT.dto;
 
 import com.example.HMS_MANAGEMENT.constent.InvenStatus;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Getter @Setter
 public class InvenDto {
@@ -33,5 +35,5 @@ public class InvenDto {
     @NotNull(message = "등록하는 방식을 선택 해주세요.")
     private InvenStatus invenStatus; // 분류
 
-
+    private LocalDate date;
 }

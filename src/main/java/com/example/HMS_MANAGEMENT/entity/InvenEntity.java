@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter @Setter
@@ -32,4 +33,6 @@ public class InvenEntity {
     @Enumerated(EnumType.STRING)
     private InvenStatus invenStatus; // 분류
 
+    @Column
+    private LocalDate date;
 }

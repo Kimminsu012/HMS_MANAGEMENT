@@ -1,3 +1,4 @@
+
 package com.example.HMS_MANAGEMENT.service;
 
 import com.example.HMS_MANAGEMENT.constent.InvenStatus;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,6 +31,7 @@ public class InvenService {
         inven.setIdClass(dto.getIdClass());
         inven.setItemNm(dto.getItemNm());
         inven.setInvenStatus(dto.getInvenStatus());
+        inven.setDate(LocalDate.now());
         inven = invenRepo.save(inven);
 
         return inven;
@@ -80,6 +83,7 @@ public class InvenService {
         dto.setIdClass(entity.getIdClass());
         dto.setItemL(entity.getItemL());
         dto.setCount(entity.getCount());
+        dto.setDate(entity.getDate());
         return dto;
     }
 
