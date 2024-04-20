@@ -26,6 +26,9 @@
         <div class="list_content_box">
             <div class="list_content_title">
                 <div class="list_title_box">
+                    <span>판매일</span>
+                </div>
+                <div class="list_title_box">
                     <span>제품 분류</span>
                     <input type="checkbox" class="list_chk all_chk">
                 </div>
@@ -43,6 +46,9 @@
                 </div>
             </div>
             <div class="list_content_text" th:each="invenDto : ${invenList}" th:if="${invenDto.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).SELL}">
+                <div class="list_title_box">
+                    <span th:text="${invenDto.date}"></span>
+                </div>
                 <div class="list_title_box">
                     <span th:text="${invenDto.idClass}" class="idClass-list"></span>
                     <input type="checkbox" class="list_chk">

@@ -35,7 +35,7 @@ public class InvenController {
     }
 
     @GetMapping("/inven/invenList")
-    public String invenListPage(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
+    public String invenListPage(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, @RequestParam(name = "search", required = false) String search, Model model){
         List<InvenDto> invenList = invenService.getAllInventoryItems();
         Pageable pageable = PageRequest.of(page,10);
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
