@@ -67,11 +67,11 @@
                 </div>
             </div>
             <div class="pagination">
-                <a th:href="@{/inven/invenList?page=0}" th:if="${currentPage > 0}"><i class="bi bi-caret-left-fill"></i></a>
+                <a th:href="@{/inven/buyList?page=0}" th:if="${currentPage > 0}"><i class="bi bi-caret-left-fill"></i></a>
                 <span class="page-numbers">
-                        <a th:href="@{'/inven/invenList?page=' + ${i}}" th:each="i : ${#numbers.sequence(0, maxPage - 1)}" th:text="${i + 1}" th:class="${i == currentPage ? 'active' : ''}"></a>
+                        <a th:href="@{'/inven/buyList?page=' + ${i}}" th:each="i : ${#numbers.sequence(0, maxPage - 1)}" th:text="${i + 1}" th:class="${i == currentPage ? 'active' : ''}"></a>
                     </span>
-                <a th:href="@{/inven/invenList(page=${currentPage + 1})}" th:if="${currentPage < maxPage - 1}"><i class="bi bi-caret-right-fill"></i></a>
+                <a th:href="@{/inven/buyList(page=${currentPage + 1})}" th:if="${currentPage < maxPage - 1}"><i class="bi bi-caret-right-fill"></i></a>
             </div>
         </div>
     </div>
