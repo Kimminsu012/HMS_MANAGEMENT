@@ -7,6 +7,12 @@ function submitForm(){
             checkDay.push($(this).val());
     });
 
+    if (checkDay.length === 0) {
+        alert("휴무 요일을 선택해주세요.");
+        return;
+    }
+
+
     $("#designerDto_free").val(checkDay);
 
     $("#designerForm input[type=hidden]").val('');
@@ -14,8 +20,14 @@ function submitForm(){
     // 저장하기 전에 쉼표 제거
     removeCommasBeforeSave("tel");
     removeCommasBeforeSave("sal");
-
+    formatTimeBeforeSave("time");
     $("#designerForm").submit();
+
+    var hour = document.getElementById("hourInput").value;
+    var minute = document.getElementById("minuteInput").value;
+
+    var time = hour + ":" + minute;
+    document.getElementById("hiddenTimeInput").value = time;
 
 }
 
@@ -60,3 +72,19 @@ function removeCommasBeforeSave(inputId) {
     input.value = value; // 쉼표가 제거된 값으로 입력 필드 업데이트
 }
 
+
+function formatTimeInput(inputId) {
+    var input = document.getElementById(inputId);
+    var hours = ('0' + input.value.split(':')[0]).slice(-2);
+    var minutes = ('0' + input.value.split(':')[1]).slice(-2);
+    var formattedTime = hours + ':' + minutes;
+    input.value = formattedTime;
+}
+
+// 저장 전 시간 형식 변환
+function formatTimeBeforeSave(inputId) {
+    var input = document.getElementById(inputId);
+    var timeParts = input.value.split(':');
+    var formattedTime = new Date(0, 0, 0, timeParts[0], timeParts[1]);
+    input.value = formattedTime.toLocaleTimeString('en-US', {hour12: false});
+}

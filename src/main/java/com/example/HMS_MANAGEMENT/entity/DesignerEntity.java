@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class DesignerEntity {
 
     @Column
     private LocalDate salDate; // 월급날
+
+    @Column
+    private LocalTime time; // 근로시간
 
     @OneToMany(mappedBy = "designer", cascade = CascadeType.ALL)
     private List<DayOffEntity> dayOffs = new ArrayList<>();

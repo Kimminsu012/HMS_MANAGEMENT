@@ -19,7 +19,7 @@
     <div class="invenList_box">
         <div class="list_search_box">
             <div class="list_search">
-                <input type="text" class="list_input" id="list_input" name="list_input">
+                <input type="text" class="list_input" id="list_input" name="list_input" placeholder="제품명,코드,분류 검색">
                 <i class="bi bi-search"></i>
             </div>
             <div class="list_ac_bt">
@@ -69,6 +69,9 @@
                 <div class="list_title_box">
                     <span th:text="${invenDto.count}" class="count-list"></span>
                 </div>
+                <div class="status_re" style="display: none">
+                    <input type="hidden" th:field="*{invenDto.invenStatus}">
+                </div>
             </div>
             <div class="pagination">
                 <a th:href="@{/inven/invenList?page=0}" th:if="${currentPage > 0}"><i class="bi bi-caret-left-fill"></i></a>
@@ -88,6 +91,7 @@
                             <div id="modal_title">
                                 <div class="modal_head">
                                     <span class="modal_text"></span>
+                                    <span class="basic_text">코드 선택 이후 작성 해주세요.</span>
                                 </div>
                                 <div class="modal_close">
                                     <button type="submit" class="btn btn-success modal_bt">작성완료</button>
@@ -127,15 +131,19 @@
                                             <option th:each="invenCode : ${invenList}" th:if="${invenCode.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}" th:value="${invenCode.idCode}" th:text="${invenCode.idCode}"></option>
                                         </select>
                                         <input type="text" name="selectInput" class="selectInput" th:field="*{idCode}" placeholder="추가할 코드 입력">
+                                        <span class="error" th:if="${#fields.hasErrors('idCode')}" th:errors="*{idCode}"></span>
                                     </div>
                                     <div class="inven_class">
                                         <input type="text" class="inven_input_box" th:field="*{idClass}">
+                                        <span class="error" th:if="${#fields.hasErrors('idClass')}" th:errors="*{idClass}"></span>
                                     </div>
                                     <div class="inven_l">
                                         <input type="number" class="inven_input_box input_num" th:field="*{itemL}">
+                                        <span class="error" th:if="${#fields.hasErrors('itemL')}" th:errors="*{itemL}"></span>
                                     </div>
                                     <div class="result_n">
                                         <input type="number" class="inven_input_box input_num" th:field="*{count}">
+                                        <span class="error" th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></span>
                                     </div>
                                     <div class="status_s" style="display: none">
                                         <select th:field="*{invenStatus}" class="inven_status_select">

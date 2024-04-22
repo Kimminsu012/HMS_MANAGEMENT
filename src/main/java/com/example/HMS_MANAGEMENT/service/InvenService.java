@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +32,7 @@ public class InvenService {
         inven.setItemNm(dto.getItemNm());
         inven.setInvenStatus(dto.getInvenStatus());
         inven.setDate(LocalDate.now());
+        inven.setTime(LocalTime.now());
         inven = invenRepo.save(inven);
 
         return inven;
@@ -65,11 +66,23 @@ public class InvenService {
 
     }
 
-    public List<InvenDto> getAllInventoryItems() {
-        // 모든 재고 항목을 데이터베이스에서 가져옵니다.
-        List<InvenEntity> invenEntities = invenRepo.findAll();
-        // InvenEntity를 InvenDto로 변환하여 반환합니다.
-        return invenEntities.stream()
+    public List<InvenDto> getAllBasicItems() {
+        List<InvenEntity> basicItems = invenRepo.findAllByInvenStatusOrderByTimeDesc(InvenStatus.BASIC);
+        return basicItems.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<InvenDto> getAllBuyItems() {
+        List<InvenEntity> buyItems = invenRepo.findAllByInvenStatusOrderByTimeDesc(InvenStatus.BUY);
+        return buyItems.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<InvenDto> getAllSellItems() {
+        List<InvenEntity> sellItems = invenRepo.findAllByInvenStatusOrderByTimeDesc(InvenStatus.SELL);
+        return sellItems.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
@@ -84,6 +97,7 @@ public class InvenService {
         dto.setItemL(entity.getItemL());
         dto.setCount(entity.getCount());
         dto.setDate(entity.getDate());
+        dto.setTime(entity.getTime());
         return dto;
     }
 
@@ -91,4 +105,6 @@ public class InvenService {
         InvenEntity invenEntity = invenRepo.findById(invenId).get();
         invenRepo.delete(invenEntity);
     }
+
+
 }

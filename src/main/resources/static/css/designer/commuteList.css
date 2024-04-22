@@ -60,3 +60,6 @@
     align-items: center;
     gap: 20px;
 }
+.com_nt:hover, .com_pt:hover, .now-date:hover{
+    cursor: pointer;
+}

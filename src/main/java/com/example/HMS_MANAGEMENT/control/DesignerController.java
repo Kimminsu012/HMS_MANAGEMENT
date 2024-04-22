@@ -78,6 +78,7 @@ public class DesignerController {
 
         List<DesignerDto> designerDto = designerService.getAllDesigners();
         model.addAttribute("designerDto", designerDto);
+        model.addAttribute("localDate", LocalDate.now());
 
         return "designer/commuteList";
     }
@@ -114,7 +115,7 @@ public class DesignerController {
     public String designerChk(@ModelAttribute("designerDto") @Valid DesignerDto designerDto, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("designerDto",designerDto);
+            model.addAttribute("errorMsg",designerDto);
             return "designer/designerReg";
         }
         List<String> selectedDayOffList = designerDto.getDayOffList().stream()

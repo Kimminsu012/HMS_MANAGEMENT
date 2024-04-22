@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter @Setter
 public class InvenDto {
@@ -32,4 +33,6 @@ public class InvenDto {
     private InvenStatus invenStatus; // 분류
 
     private LocalDate date;
+
+    private LocalTime time;
 }

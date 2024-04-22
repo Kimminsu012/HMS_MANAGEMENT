@@ -25,7 +25,7 @@
                         <div class="designer_reg_right">
                             <input type="text" placeholder="이름을 입력 해주세요." th:field="*{name}">
                         </div>
-                        <span class="name_dng" th:errors="*{name}"></span>
+                        <span class="name_dng" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
@@ -34,7 +34,17 @@
                         <div class="designer_reg_right">
                             <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}" oninput="formatInputValue('tel')" maxlength="13">
                         </div>
-                        <span class="tel_dng" th:if="${#fields.hasErrors('tel')}">전화번호 미입력</span>
+                        <span class="tel_dng" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></span>
+                    </div>
+                    <div class="designer_reg_content">
+                        <div class="designer_reg_left">
+                            <span>계획 근로시간</span>
+                        </div>
+                        <div class="designer_reg_right">
+                            <input type="number" placeholder="시간:분" th:field="*{time}" oninput="formatTimeInput('time')">
+                            <input type="hidden" th:field="*{time}">
+                        </div>
+                        <span class="time_dng" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
@@ -43,7 +53,7 @@
                         <div class="designer_reg_right">
                             <input type="date" th:field="*{date}">
                         </div>
-                        <span class="date_dng" th:if="${#fields.hasErrors('date')}">등록일 미지정</span>
+                        <span class="date_dng" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
@@ -52,7 +62,7 @@
                         <div class="designer_reg_right">
                             <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}" maxlength="9" oninput="formatInputValue('sal')">
                         </div>
-                        <span class="sal_dng" th:if="${#fields.hasErrors('sal')}">월급 미입력</span>
+                        <p class="sal_dng" th:if="${#fields.hasErrors('sal')}" th:errors="*{sal}"></p>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
@@ -61,7 +71,7 @@
                         <div class="designer_reg_right">
                             <input type="date" th:field="*{salDate}">
                         </div>
-                        <span class="sal_date_reg" th:if="${#fields.hasErrors('salDate')}">등록일 미지정</span>
+                        <span class="sal_date_reg" th:if="${#fields.hasErrors('salDate')}" th:errors="*{salDate}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">

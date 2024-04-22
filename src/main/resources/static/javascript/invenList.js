@@ -1,5 +1,7 @@
 
 $(function() {
+    $(".modal_bt").hide();
+
     $("#modal_wrap").hide();
     $(".writeBt, .buyBt, .sortBt, .modifyBt").on("click", function() {
         var operationType = $(this).text().trim();
@@ -7,7 +9,11 @@ $(function() {
         $(".modal_text").text(operationType);
         $("#operationType").val(operationType); // hidden input에 운영 유형 설정
 
-
+        // 작성, 구매, 판매 중 어느 버튼을 클릭했는지에 따라 작성완료 버튼 표시 여부 결정
+        if (operationType === "작성" || operationType === "구매" || operationType === "판매") {
+            // 작성완료 버튼 숨기기
+            $(".modal_bt").hide();
+        }
 
         var invenStatusSelect = $(".inven_status_select");
         invenStatusSelect.find("option").show(); // 모든 옵션을 먼저 표시
@@ -18,21 +24,41 @@ $(function() {
             invenStatusSelect.val("BUY");
             invenStatusSelect.find("option:not(:selected)").hide();
             $(".code_select_box option[value*='직접 입력']").hide();
+            $(".basic_text").hide();
         } else if (operationType === "판매") {
-            invenStatusSelect.val("SELL"); // 판매 작업의 경우 SELL 값을 전달
+            invenStatusSelect.val("SELL");
             invenStatusSelect.find("option:not(:selected)").hide();
             $(".code_select_box option[value*='직접 입력']").hide();
+            $(".basic_text").hide();
         } else if (operationType === "작성") {
             invenStatusSelect.val("BASIC");
             invenStatusSelect.find("option:not(:selected)").hide();
             $(".code_select_box option").hide();
             $(".code_select_box option[value*='직접 입력']").show();
+            $(".basic_text").show();
         }
     });
 
+    // 각 필드에 입력이 완료되면 작성완료 버튼을 보이게 함
+    $(".inven_input_box").on("keyup", function() {
+        var allFieldsFilled = true;
+        $(".inven_input_box").each(function() {
+            if ($(this).val() === "") {
+                allFieldsFilled = false;
+                return false; // 반복문 탈출
+            }
+        });
+        // 모든 필드에 입력이 완료되면 작성완료 버튼 보이기
+        if (allFieldsFilled) {
+            $(".modal_bt").show();
+        } else {
+            $(".modal_bt").hide();
+        }
+    });
 
     $(".modal_bt").on("click", function() {
         $("#modal_wrap").hide();
+        $(".basic_text").hide();
     });
 
     $(".deleteBt").on("click",function(){

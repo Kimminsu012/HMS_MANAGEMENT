@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -27,7 +28,7 @@ public class InvenController {
     @GetMapping("/inven")
     public String invenMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
 
-        List<InvenDto> invenList = invenService.getAllInventoryItems();
+        List<InvenDto> invenList = invenService.getAllBasicItems();
         Pageable pageable = PageRequest.of(page,10);
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
@@ -38,8 +39,7 @@ public class InvenController {
 
     @GetMapping("/inven/invenList")
     public String invenListPage(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, @RequestParam(name = "search", required = false) String search, Model model){
-        List<InvenDto> invenList = invenService.getAllInventoryItems();
-        Pageable pageable = PageRequest.of(page,10);
+        List<InvenDto> invenList = invenService.getAllBasicItems();
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
@@ -49,15 +49,19 @@ public class InvenController {
     }
 
     @PostMapping("/inven/process")
-    public String processOperation(@ModelAttribute InvenDto invenDto, Model model) {
+    public String processOperation(@ModelAttribute InvenDto invenDto, BindingResult bindingResult, Model model) {
         invenService.processBasic(invenDto);
+
+        if(bindingResult.hasErrors()) {
+
+            return "/inven/invenList";
+        }
         return "redirect:/inven/invenList";
     }
 
     @GetMapping("/inven/buyList")
     public String buyList(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
-        List<InvenDto> invenList = invenService.getAllInventoryItems();
-        Pageable pageable = PageRequest.of(page,10);
+        List<InvenDto> invenList = invenService.getAllBuyItems();
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
@@ -68,8 +72,7 @@ public class InvenController {
 
     @GetMapping("inven/sortList")
     public String sortList(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
-        List<InvenDto> invenList = invenService.getAllInventoryItems();
-        Pageable pageable = PageRequest.of(page,10);
+        List<InvenDto> invenList = invenService.getAllSellItems();
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);

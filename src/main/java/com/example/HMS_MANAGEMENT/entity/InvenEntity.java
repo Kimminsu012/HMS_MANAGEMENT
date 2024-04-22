@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter @Setter
@@ -35,4 +36,7 @@ public class InvenEntity {
 
     @Column
     private LocalDate date;
+
+    @Column
+    private LocalTime time;
 }

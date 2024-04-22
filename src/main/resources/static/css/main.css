@@ -2,8 +2,11 @@
     width: 1100px;
     height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #ffffff;
+    gap: 50px;
+    padding-right: 15px;
+    position: relative;
 }
 .favorite_list{
     width: 200px;
@@ -134,3 +137,25 @@
 .cont_head , .graph_box, .cont_footer{
     border-radius: 10px;
 }
+.main_list_bt{
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    top: -50px;
+    right: 0;
+}
+.main_modify_bt, .main_delete_bt, .main_plus_bt{
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 20%);
+    border-radius: 10px;
+    width: 50px;
+}
+.main_modify_bt:hover , .main_delete_bt:hover, .main_plus_bt:hover{
+    background-color: rgba(0, 0, 0, 10%);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,15%);
+}
+
