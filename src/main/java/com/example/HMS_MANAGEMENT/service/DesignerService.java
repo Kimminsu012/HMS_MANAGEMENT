@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,8 @@ public class DesignerService {
         designer.setSal(dto.getSal());
         designer.setSalDate(dto.getSalDate());
         designer = designerRepo.save(designer);
-        designer.setTime(dto.getTime());
+        designer.setAfterTime(LocalTime.parse(dto.getAfterTime()));
+        designer.setMorningTime(LocalTime.parse(dto.getMorningTime()));
         saveDayOffs(dto, designer);
         return designer;
     }
@@ -82,7 +84,8 @@ public class DesignerService {
         dto.setDate(designerEntity.getDate());
         dto.setSal(designerEntity.getSal());
         dto.setSalDate(designerEntity.getSalDate());
-        dto.setTime(designerEntity.getTime());
+        dto.setAfterTime(String.valueOf(designerEntity.getAfterTime()));
+        dto.setMorningTime(String.valueOf(designerEntity.getMorningTime()));
         return dto;
     }
 
@@ -98,7 +101,8 @@ public class DesignerService {
             designerDto.setDate(designerEntity.getDate());
             designerDto.setSal(designerEntity.getSal());
             designerDto.setSalDate(designerEntity.getSalDate());
-            designerDto.setTime(designerEntity.getTime());
+            designerDto.setMorningTime(String.valueOf(designerEntity.getMorningTime()));
+            designerDto.setAfterTime(String.valueOf(designerEntity.getAfterTime()));
             // dayOffList 채우기
             List<String> dayOffList = new ArrayList<>();
             for (DayOffEntity dayOffEntity : designerEntity.getDayOffs()) {

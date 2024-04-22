@@ -1,3 +1,41 @@
+function formatTime(time) {
+    var hour = parseInt(time.split(":")[0]);
+    var minute = parseInt(time.split(":")[1]);
+    return padWithZero(hour) + ":" + padWithZero(minute);
+}
+
+// 시간을 10분 단위로 조정하는 함수
+function padWithZero(number) {
+    return number < 10 ? "0" + number : number;
+}
+
+// 오전과 오후 시간 선택 범위 설정 함수
+function setSelectOptions(selectElement, startHour, endHour) {
+    for (var i = startHour; i <= endHour; i++) {
+        for (var j = 0; j < 60; j += 10) {
+            var hour = padWithZero(i);
+            var minute = padWithZero(j);
+            selectElement.options[selectElement.options.length] = new Option(hour + ":" + minute + (i < 12 ? " 오전" : " 오후"), hour + ":" + minute);
+        }
+    }
+}
+
+// 문서 로딩 후 실행되는 부분
+$(document).ready(function() {
+    // 오전 시간 분 단위 설정
+    setSelectOptions(document.getElementById("morningTime"), 6, 11);
+
+    // 오후 시간 분 단위 설정
+    setSelectOptions(document.getElementById("afternoonTime"), 12, 20);
+
+    // 오후 시간 선택 제한
+    $("#afternoonTime").on("change", function () {
+        var value = $(this).val();
+        if (value < "12:00" || value > "20:50") {
+            $(this).val("12:00");
+        }
+    });
+});
 
 function submitForm(){
 
@@ -12,7 +50,6 @@ function submitForm(){
         return;
     }
 
-
     $("#designerDto_free").val(checkDay);
 
     $("#designerForm input[type=hidden]").val('');
@@ -20,15 +57,8 @@ function submitForm(){
     // 저장하기 전에 쉼표 제거
     removeCommasBeforeSave("tel");
     removeCommasBeforeSave("sal");
-    formatTimeBeforeSave("time");
+
     $("#designerForm").submit();
-
-    var hour = document.getElementById("hourInput").value;
-    var minute = document.getElementById("minuteInput").value;
-
-    var time = hour + ":" + minute;
-    document.getElementById("hiddenTimeInput").value = time;
-
 }
 
 // 쉼표를 제거하여 값 설정
@@ -50,7 +80,7 @@ function formatInputValue(inputId) {
     } else if (inputId === "sal") {
         // 월급 입력 필드인 경우
         // 쉼표 제거 후 적용합니다.
-        value = value.replace(/,/g, "");
+        value = removeCommas(value);
         // 숫자가 3개씩 반복되어 입력될 때마다 쉼표를 추가합니다.
         value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -72,19 +102,3 @@ function removeCommasBeforeSave(inputId) {
     input.value = value; // 쉼표가 제거된 값으로 입력 필드 업데이트
 }
 
-
-function formatTimeInput(inputId) {
-    var input = document.getElementById(inputId);
-    var hours = ('0' + input.value.split(':')[0]).slice(-2);
-    var minutes = ('0' + input.value.split(':')[1]).slice(-2);
-    var formattedTime = hours + ':' + minutes;
-    input.value = formattedTime;
-}
-
-// 저장 전 시간 형식 변환
-function formatTimeBeforeSave(inputId) {
-    var input = document.getElementById(inputId);
-    var timeParts = input.value.split(':');
-    var formattedTime = new Date(0, 0, 0, timeParts[0], timeParts[1]);
-    input.value = formattedTime.toLocaleTimeString('en-US', {hour12: false});
-}

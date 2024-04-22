@@ -35,7 +35,8 @@ public class DesignerDto {
     @NotNull(message = "월급 지급일을 선택 해주세요.")
     private LocalDate salDate;
     @NotNull(message = "시간과 분을 입력 해주세요.")
-    private LocalTime time;
+    private String morningTime;
+    private String afterTime;
     private List<String> dayOffList;
 
 }

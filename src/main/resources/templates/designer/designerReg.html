@@ -41,10 +41,13 @@
                             <span>계획 근로시간</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="number" placeholder="시간:분" th:field="*{time}" oninput="formatTimeInput('time')">
-                            <input type="hidden" th:field="*{time}">
+                            <label for="morningTime" class="morningLabel">오전 시작 시간</label>
+                            <input type="time" id="morningTime" th:field="*{morningTime}" step="600" min="00:00" max="11:50">
+                            <br>
+                            <label for="afternoonTime" class="afterLabel">오후 종료 시간</label>
+                            <input type="time" id="afternoonTime" th:field="*{afterTime}" step="600" min="12:00" max="23:50">
                         </div>
-                        <span class="time_dng" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
+                        <span class="time_dng" th:if="${#fields.hasErrors('morningTime')}" th:errors="*{morningTime}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">

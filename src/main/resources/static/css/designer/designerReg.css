@@ -51,6 +51,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .designer_reg_right input{
     border: none;
@@ -98,10 +99,22 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-#time, #mint{
-    width: 35%;
-}
+
 input[type='number'] {
     -moz-appearance: textfield;
 }
 a{ color: #000000}
+
+#morningTime, #afternoonTime{
+    width: 35%;
+}
+.morningLabel{
+    position: absolute;
+    top: -5px;
+    left: 50px;
+}
+.afterLabel{
+    position: absolute;
+    top: -5px;
+    right: 50px;
+}
