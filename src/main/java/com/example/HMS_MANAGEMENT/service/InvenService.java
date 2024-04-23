@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,12 +53,16 @@ public class InvenService {
 
                 switch (invenDto.getInvenStatus()) {
                     case BUY:
-                        inven.setCount(inven.getCount()+invenDto.getCount());
-                        inven.setBuyCash(inven.getCash()-invenDto.getCash()-(invenDto.getCount()*inven.getCash()));
+                        inven.setCount(inven.getCount() + invenDto.getCount());
+                        invenDto.setBuyCash(invenDto.getCount() * inven.getCash());
+                        if (inven.getBuyCash() != null)
+                            inven.setBuyCash(invenDto.getBuyCash() + inven.getBuyCash());
                         break;
                     case SELL:
-                        inven.setCount(inven.getCount()-invenDto.getCount());
-                        inven.setSellCash(inven.getCash()-invenDto.getCash()+(invenDto.getCount()*inven.getCash()));
+                        inven.setCount(inven.getCount() - invenDto.getCount());
+                        invenDto.setSellCash(invenDto.getCount() * inven.getCash());
+                        if (inven.getSellCash() != null)
+                            inven.setSellCash(invenDto.getSellCash() + inven.getSellCash());
                         break;
                     default:
                         // 처리할 수 없는 상태입니다. 오류 처리 로직 추가
@@ -114,8 +119,16 @@ public class InvenService {
     }
 
     public void deleteInven(Long invenId){
-        InvenEntity invenEntity = invenRepo.findById(invenId).get();
-        invenRepo.delete(invenEntity);
+        // 삭제할 물품을 먼저 찾습니다.
+        Optional<InvenEntity> invenEntityOptional = invenRepo.findById(invenId);
+        if (invenEntityOptional.isPresent()) {
+            // 물품을 찾았다면 삭제합니다.
+            invenRepo.delete(invenEntityOptional.get());
+        } else {
+            // 찾지 못했을 경우 예외 처리를 할 수 있습니다.
+            // 여기에서는 간단히 메시지만 출력합니다.
+            System.out.println("삭제할 물품을 찾을 수 없습니다.");
+        }
     }
 
 

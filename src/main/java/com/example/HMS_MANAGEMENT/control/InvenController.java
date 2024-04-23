@@ -81,12 +81,10 @@ public class InvenController {
         return "inven/sortList";
     }
 
-    @DeleteMapping("inven/deleteList")
-    public @ResponseBody ResponseEntity deleteInven(@PathVariable("invenId") Long idCode, Principal principal){
-
+    @DeleteMapping("/inven/delete/{idCode}")
+    public ResponseEntity<?> deleteInven(@PathVariable Long idCode) {
         invenService.deleteInven(idCode);
-
-        return new ResponseEntity<Long>(idCode, HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
 }

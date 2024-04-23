@@ -27,7 +27,7 @@
                 <button type="button" class="btn btn-info buyBt">구매</button>
                 <button type="button" class="btn btn-primary sortBt">판매</button>
                 <button type="button" class="btn btn-success backBt">취소</button>
-                <button type="button" class="btn btn-danger deleteBt deleteGo">삭제</button>
+                <button type="button" class="btn btn-danger deleteBt deleteGo" onclick="deleteItems()">삭제</button>
             </div>
         </div>
         <div class="list_content_box">
@@ -69,7 +69,7 @@
                 <div class="list_title_box">
                     <span th:text="${invenDto.count}" class="count-list"></span>
                 </div>
-                <div class="result_re">
+                <div class="result_re" style="display: none;">
                     <span th:text="${invenDto.cash}" class="cash-list"></span>
                     <span th:field="*{invenDto.buyCash}" class="buyPrice" th:text="${invenDto.buyCash}"></span>
                     <span th:field="*{invenDto.sellCash}" class="sellPrice" th:text="${invenDto.sellCash}"></span>
