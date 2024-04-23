@@ -69,8 +69,10 @@
                 <div class="list_title_box">
                     <span th:text="${invenDto.count}" class="count-list"></span>
                 </div>
-                <div class="result_re" style="display: none">
+                <div class="result_re">
                     <span th:text="${invenDto.cash}" class="cash-list"></span>
+                    <span th:field="*{invenDto.buyCash}" class="buyPrice" th:text="${invenDto.buyCash}"></span>
+                    <span th:field="*{invenDto.sellCash}" class="sellPrice" th:text="${invenDto.sellCash}"></span>
                 </div>
                 <div class="status_re" style="display: none">
                     <input type="hidden" th:field="*{invenDto.invenStatus}">
@@ -148,7 +150,7 @@
                                         <span class="error" th:if="${#fields.hasErrors('itemL')}" th:errors="*{itemL}"></span>
                                     </div>
                                     <div class="result_n">
-                                        <input type="number" class="inven_input_box input_num" th:field="*{count}">
+                                        <input type="number" class="inven_input_box input_num  input_count" th:field="*{count}">
                                         <span class="error" th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></span>
                                     </div>
                                     <div class="cash_n">

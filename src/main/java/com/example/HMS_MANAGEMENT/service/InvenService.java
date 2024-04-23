@@ -53,11 +53,11 @@ public class InvenService {
                 switch (invenDto.getInvenStatus()) {
                     case BUY:
                         inven.setCount(inven.getCount()+invenDto.getCount());
-                        inven.setBuyCash(inven.getCount()*inven.getCash());
+                        inven.setBuyCash(inven.getCash()-invenDto.getCash()-(invenDto.getCount()*inven.getCash()));
                         break;
                     case SELL:
                         inven.setCount(inven.getCount()-invenDto.getCount());
-                        inven.setSellCash(invenDto.getCount()*inven.getCash());
+                        inven.setSellCash(inven.getCash()-invenDto.getCash()+(invenDto.getCount()*inven.getCash()));
                         break;
                     default:
                         // 처리할 수 없는 상태입니다. 오류 처리 로직 추가
