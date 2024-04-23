@@ -76,26 +76,31 @@ public class CustomerController {
     //고객정보에서 이름 클릭했을때 id값에 맞는 내용 출력하는 컨트롤
     @GetMapping("/customer/useList")
     public String useList(@RequestParam("id") Long customerId, Model model) {
-
+        // 특정 고객 정보 조회
         CustomerEntity customer = customerService.getCustomerById(customerId);
+
+        // 모든 고객 정보 조회
         List<CustomerEntity> customers = customerService.getAllCustomer();
 
-        List<CustomerEntity> customerList = new ArrayList<>();
-        customerList.add(customer);
+        // 특정 고객의 상세 정보 리스트 조회
+        List<CustomerDetailEntity> customerDetails = customerDetailRepo.findByCustomerId(customerId);
 
-        Map<String, List<CustomerEntity>> groupCustomer = new HashMap<>();
-        groupCustomer.put(customer.getName(), customerList);
-
-        model.addAttribute("customers", groupCustomer);
+        // 모델에 고객 정보와 고객 상세 정보를 추가
+        model.addAttribute("customer", customer); // 특정 고객 정보
+        model.addAttribute("customers", customers); // 모든 고객 정보
+        model.addAttribute("customerDetails", customerDetails); // 특정 고객의 상세 정보 리스트
 
         return "customer/useList";
     }
+
 
     @GetMapping("/customer/test")
     public String test(@RequestParam(value = "id", required = false) Long customerId, Model model) {
         List<String> optionsList = customerService.getOptions();
         model.addAttribute("optionsList", optionsList);
-        model.addAttribute("customerDetailDto", new CustomerDetailDto());
+        CustomerDetailDto customerDetailDto = new CustomerDetailDto();
+        customerDetailDto.setCustomerId(customerId);
+        model.addAttribute("customerDetailDto", customerDetailDto);
         if (customerId != null) {
             model.addAttribute("selectedCustomerId", customerId);
         }

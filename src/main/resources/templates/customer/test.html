@@ -15,6 +15,7 @@
     <div class="container">
         <h2>추가 등록</h2>
         <form method="post" th:object="${customerDetailDto}" action="/customer/test" onsubmit="return showAlertOnSubmit();">
+            <input type="hidden" th:field="*{customerId}">
             <div class="form-group">
                 <label>시술종류</label>
                 <select id="cut" th:field="*{cutType}">

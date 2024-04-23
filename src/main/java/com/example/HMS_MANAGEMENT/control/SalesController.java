@@ -22,12 +22,17 @@ public class SalesController {
         this.salesService = salesService;
     }
     @PostMapping("/shop/reg")
-    public String registration(@ModelAttribute("salesDto") SalesDto salesDto){
+    public String registration(@ModelAttribute("salesDto") SalesDto salesDto, Model model){
+        List<String> optionsList = salesService.getOptions();
+        model.addAttribute("optionsList",optionsList);
+
         salesService.saveSales(salesDto);
         return "redirect:/shop/service";
     }
     @GetMapping("/shop/reg")
     public String reg(Model model){
+        List<String> optionsList = salesService.getOptions();
+        model.addAttribute("optionsList",optionsList);
         model.addAttribute("salesDto",new SalesDto());
         return "shop/reg";
     }

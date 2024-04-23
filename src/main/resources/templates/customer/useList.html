@@ -10,11 +10,11 @@
 </th:block>
 
 <div layout:fragment="content">
-    <div class="customer-box" th:each="entry : ${customers}">
-        <h2 th:text="${entry.key}"></h2>
-        <button class="cusInfoBtn" th:each="customer : ${entry.value}">
+    <div class="customer-box">
+        <div class="customer-box-title">
+            <h3 th:text="${customer.name}"></h3>
             <a th:href="@{/customer/test(id=${customer.id})}">추가하기</a>
-        </button>
+        </div>
         <table class="customerList">
             <thead>
             <tr>
@@ -25,11 +25,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="customer : ${entry.value}">
-                <td th:text="${customer.firstVisit}"></td>
-                <td th:text="${customer.frequentDesigner}"></td>
-                <td th:text="${customer.record}"></td>
-                <td th:text="${#numbers.formatInteger(customer.cusCost,3,'COMMA')+'원'}"></td>
+            <tr  th:each="detail : ${customerDetails}">
+                <td th:text="${detail.visit}"></td>
+                <td th:text="${detail.designer}"></td>
+                <td th:text="${detail.cutType}"></td>
+                <td th:text="${#numbers.formatInteger(detail.cost,1,'COMMA') + '원'}"></td>
 
             </tr>
             </tbody>

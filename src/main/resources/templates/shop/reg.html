@@ -25,8 +25,11 @@
 
             <div class="RegList">
                 <div class="typeReg">
-                    <label for="type" class="typeLabel">커트종류</label>
-                    <input type="text" id="type" th:field="*{type}">
+                    <label class="typeLabel">커트종류</label>
+                    <select th:field="*{type}">
+                        <option th:each="option1 : ${optionsList}" th:value="${option1}" th:text="${option1}"></option>
+                    </select>
+
                 </div>
                 <div class="costReg">
                     <label for="cost" class="costLabel">가격</label>

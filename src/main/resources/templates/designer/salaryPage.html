@@ -7,45 +7,15 @@
 </th:block>
 
 <th:block layout:fragment="script">
-    <script th:inline="javascript">
-        function calculateSalary() {
-            var basicSal = parseInt(document.querySelector(".basic_sal span").innerText.replace(/[^0-9.-]+/g, "")) || 0;
-            var overtimeAllowance = parseInt(document.getElementById("overtimeAllowanceInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-            var mealAllowance = parseInt(document.getElementById("mealAllowanceInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-            var pension = parseInt(document.getElementById("pensionInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-            var healthInsurance = parseInt(document.getElementById("healthInsuranceInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-            var employmentInsurance = parseInt(document.getElementById("employmentInsuranceInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-            var incomeTax = parseInt(document.getElementById("incomeTaxInput").value.replace(/[^0-9.-]+/g, "")) || 0;
-
-            var totalIncome = basicSal + overtimeAllowance + mealAllowance;
-            var totalDeductions = pension + healthInsurance + employmentInsurance + incomeTax;
-            var netSalary = totalIncome - totalDeductions;
-
-            document.getElementById("netSalary").innerText = numberWithCommas(netSalary) + "원";
-        }
-
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        // 입력값이 변경될 때 쉼표를 추가하고 계산을 수행하는 함수
-        function handleInputChange(inputId) {
-            var input = document.getElementById(inputId);
-            var value = input.value.replace(/,/g, ""); // 쉼표 제거
-            var formattedValue = numberWithCommas(value); // 쉼표 추가
-            input.value = formattedValue; // 쉼표가 추가된 값으로 입력 필드 업데이트
-            calculateSalary(); // 계산 수행
-        }
-    </script>
+    <script th:src="@{/javascript/salaryPage.js}"></script>
 </th:block>
 
 <div layout:fragment="content">
     <div id="salary_wrap">
         <div id="salary_in_wrap">
             <div class="salary_bt_box">
-                <a href="/designer/salaryList">
-                    <button type="button" class="btn btn-light" id="salaryBt">급여명세서 보내기</button>
-                </a>
+                <span th:text="${designer.email}" id="designerEmail"></span>
+                <button type="button" class="btn btn-light" id="salaryBt" onclick="sendSalaryStatement()">급여명세서 보내기</button>
             </div>
             <div id="salary_content_box">
                 <div class="salary_cont_title">

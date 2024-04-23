@@ -119,9 +119,8 @@ public class CustomerService {
     }
 
 
-
-
     public void detailCustomer(CustomerDetailDto customerDetailDto) {
+
         CustomerDetailEntity customerDetailEntity = new CustomerDetailEntity();
 
         List<SalesEntity> salesEntities = salesRepository.findByType(customerDetailDto.getCutType());
@@ -133,6 +132,8 @@ public class CustomerService {
             customerDetailEntity.setCutType(selectedSale.getType());
             customerDetailEntity.setCost(selectedSale.getCost());
         }
+        CustomerEntity customerEntity = customerRepository.findById(customerDetailDto.getCustomerId()).get();
+        customerDetailEntity.setCustomer(customerEntity);
 
         customerDetailEntity.setVisit(customerDetailDto.getVisit());
         customerDetailEntity.setCutType(customerDetailDto.getCutType());
@@ -144,13 +145,4 @@ public class CustomerService {
         customerDetailRepo.save(customerDetailEntity);
 
     }
-
-
-
-
-
-
-
-
-
 }

@@ -53,6 +53,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.microsoft.graph/microsoft-graph
 	implementation group: 'com.microsoft.graph', name: 'microsoft-graph', version: '6.5.1'
 
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+// https://mvnrepository.com/artifact/javax.activation/activation
+	implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
+
 
 }
 

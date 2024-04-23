@@ -10,6 +10,15 @@
     left: 85%;
     transform: translate(-85%,-50%);
 }
+.customer-box-title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.customer-box-title h3{
+    width: 90%;
+}
 .customer-box h2 {
     width: 100%;
     border-bottom: 1px solid rgba(170,170,170,.2);

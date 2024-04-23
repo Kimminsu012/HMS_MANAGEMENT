@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface CustomerDetailRepo extends JpaRepository<CustomerDetailEntity , Long> {
 
+    List<CustomerDetailEntity> findByCustomerId(Long customerId);
 
 }

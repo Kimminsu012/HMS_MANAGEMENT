@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class CustomerDetailDto {
 
     private Long id;
-
+    private Long customerId;
     private String name; // 이름
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -31,14 +31,11 @@ public class CustomerDetailDto {
     private Integer cost;
 
 
-
-
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salesId")
     private SalesEntity sales;
 
-    @OneToOne(cascade =  CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")
     private CustomerEntity customer;
 }
