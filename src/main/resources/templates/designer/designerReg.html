@@ -23,16 +23,25 @@
                             <span>이름</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="이름을 입력 해주세요." th:field="*{name}">
+                            <input type="text" placeholder="이름 입력" th:field="*{name}">
                         </div>
                         <span class="name_dng" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+                    <div class="designer_reg_content">
+                        <div class="designer_reg_left">
+                            <span>이메일</span>
+                        </div>
+                        <div class="designer_reg_right">
+                            <input type="text" placeholder="이메일 입력" th:field="*{email}">
+                        </div>
+                        <span class="email_dng" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                     </div>
                     <div class="designer_reg_content">
                         <div class="designer_reg_left">
                             <span>연락처</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="전화번호를 입력 해주세요." th:field="*{tel}" oninput="formatInputValue('tel')" maxlength="13">
+                            <input type="text" placeholder="전화번호 입력 (- 제외)" th:field="*{tel}" oninput="formatInputValue('tel')" maxlength="13">
                         </div>
                         <span class="tel_dng" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></span>
                     </div>
@@ -41,9 +50,9 @@
                             <span>계획 근로시간   (10분 단위)</span>
                         </div>
                         <div class="designer_reg_right">
-                            <span class="morningText">오전 00:00 ~ 11:50</span>
+                            <span class="morningText">00:00 ~ 11:50</span>
                             <input type="time" th:field="*{morningTime}" step="600" min="00:00" max="11:50">
-                            <span class="afterText">오후 12:00 ~ 23:50</span>
+                            <span class="afterText">12:00 ~ 23:50</span>
                             <input type="time" th:field="*{afterTime}" step="600" min="12:00" max="23:50">
                         </div>
                         <span class="time_dng" th:if="${#fields.hasErrors('morningTime')}" th:errors="*{morningTime}"></span>
@@ -62,7 +71,7 @@
                             <span>월급</span>
                         </div>
                         <div class="designer_reg_right">
-                            <input type="text" placeholder="월급을 입력 해주세요." th:field="*{sal}" maxlength="9" oninput="formatInputValue('sal')">
+                            <input type="text" placeholder="월급 입력" th:field="*{sal}" maxlength="9" oninput="formatInputValue('sal')">
                         </div>
                         <p class="sal_dng" th:if="${#fields.hasErrors('sal')}" th:errors="*{sal}"></p>
                     </div>

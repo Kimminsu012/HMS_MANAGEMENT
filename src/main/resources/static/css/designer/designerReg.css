@@ -78,15 +78,15 @@
 .editBt{
     display: none;
 }
-.name_dng, .tel_dng, .date_dng, .sal_dng, .sal_date_reg, .time_dng{
+.name_dng, .tel_dng, .date_dng, .sal_dng, .sal_date_reg, .time_dng, .email_dng{
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     right: 50px;
     color: red;
     font-size: 14px;
 }
 .sal_dng{
-    bottom: -15px;
+    bottom: -20px;
 }
 .form_reg{
     width: 100%;
@@ -112,15 +112,15 @@ a{ color: #000000}
 
 .morningText{
     position: absolute;
-    top: 0;
-    left: 26px;
+    bottom: -7px;
+    left: 50px;
     width: 180px;
     color: red;
 }
 .afterText{
     position: absolute;
-    top: 0;
-    right: -23px;
+    bottom: -7px;
+    right: -10px;
     width: 180px;
     color: red;
 }

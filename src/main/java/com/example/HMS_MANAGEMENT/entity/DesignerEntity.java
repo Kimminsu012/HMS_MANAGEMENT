@@ -35,10 +35,13 @@ public class DesignerEntity {
     private LocalDate salDate; // 월급날
 
     @Column
-    private LocalTime morningTime; // 근로시간
+    private LocalTime morningTime; // 오전 근로시간
 
     @Column
-    private LocalTime afterTime;
+    private LocalTime afterTime; // 오후 근로시간
+    
+    @Column
+    private String email; // 명세서 받을 이메일
 
     @OneToMany(mappedBy = "designer", cascade = CascadeType.ALL)
     private List<DayOffEntity> dayOffs = new ArrayList<>();

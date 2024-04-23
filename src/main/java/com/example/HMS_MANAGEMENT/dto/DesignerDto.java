@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -37,6 +38,9 @@ public class DesignerDto {
     @NotNull(message = "시간과 분을 입력 해주세요.")
     private String morningTime;
     private String afterTime;
+    @Email(message = "올바른 이메일 형식을 입력 해주세요.")
+    @NotEmpty(message = "이메일을 입력 해주세요.")
+    private String email;
     private List<String> dayOffList;
 
 }

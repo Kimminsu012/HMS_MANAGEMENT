@@ -35,6 +35,7 @@ public class DesignerService {
         designer = designerRepo.save(designer);
         designer.setAfterTime(LocalTime.parse(dto.getAfterTime()));
         designer.setMorningTime(LocalTime.parse(dto.getMorningTime()));
+        designer.setEmail(dto.getEmail());
         saveDayOffs(dto, designer);
         return designer;
     }
@@ -86,6 +87,7 @@ public class DesignerService {
         dto.setSalDate(designerEntity.getSalDate());
         dto.setAfterTime(String.valueOf(designerEntity.getAfterTime()));
         dto.setMorningTime(String.valueOf(designerEntity.getMorningTime()));
+        dto.setEmail(designerEntity.getEmail());
         return dto;
     }
 
@@ -103,6 +105,7 @@ public class DesignerService {
             designerDto.setSalDate(designerEntity.getSalDate());
             designerDto.setMorningTime(String.valueOf(designerEntity.getMorningTime()));
             designerDto.setAfterTime(String.valueOf(designerEntity.getAfterTime()));
+            designerDto.setEmail(designerEntity.getEmail());
             // dayOffList 채우기
             List<String> dayOffList = new ArrayList<>();
             for (DayOffEntity dayOffEntity : designerEntity.getDayOffs()) {
