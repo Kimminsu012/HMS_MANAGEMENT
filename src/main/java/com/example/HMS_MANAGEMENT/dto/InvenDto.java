@@ -5,6 +5,7 @@ import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -38,5 +39,7 @@ public class InvenDto {
 
     private Integer cash; // 개당 가격
 
-    private Integer result; // 합계
+    private Integer buyCash;
+
+    private Integer sellCash;
 }

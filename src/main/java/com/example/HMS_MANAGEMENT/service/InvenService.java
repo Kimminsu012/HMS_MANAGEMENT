@@ -34,7 +34,8 @@ public class InvenService {
         inven.setDate(LocalDate.now());
         inven.setTime(LocalTime.now());
         inven.setCash(dto.getCash());
-        inven.setResult(dto.getCount()*dto.getCash());
+        inven.setBuyCash(dto.getBuyCash());
+        inven.setSellCash(dto.getSellCash());
         inven = invenRepo.save(inven);
 
         return inven;
@@ -48,24 +49,28 @@ public class InvenService {
                 invenSave(invenDto);
             }else{
                 InvenEntity inven = invenRepo.findById(invenDto.getId()).get();
+
                 switch (invenDto.getInvenStatus()) {
                     case BUY:
                         inven.setCount(inven.getCount()+invenDto.getCount());
-                        inven.setResult(inven.getCount()*inven.getCash());
+                        inven.setBuyCash(inven.getCount()*inven.getCash());
                         break;
                     case SELL:
                         inven.setCount(inven.getCount()-invenDto.getCount());
-                        inven.setResult(inven.getCount()*inven.getCash());
+                        inven.setSellCash(invenDto.getCount()*inven.getCash());
                         break;
                     default:
                         // 처리할 수 없는 상태입니다. 오류 처리 로직 추가
                         break;
                 }
+
+
                 invenSave(invenDto);
             }
 
         } else {
             // 유효하지 않은 입력입니다. 오류 처리 로직 추가
+
         }
 
     }
@@ -103,7 +108,8 @@ public class InvenService {
         dto.setDate(entity.getDate());
         dto.setTime(entity.getTime());
         dto.setCash(entity.getCash());
-        dto.setResult(entity.getResult());
+        dto.setBuyCash(entity.getBuyCash());
+        dto.setSellCash(entity.getSellCash());
         return dto;
     }
 

@@ -12,5 +12,4 @@ public interface InvenRepo extends JpaRepository<InvenEntity,Long> {
 
     List<InvenEntity> findAllByInvenStatusOrderByTimeDesc(InvenStatus invenStatus);
 
-    List<InvenEntity> findByItemNmOrIdCodeOrIdClassOrItemL(String itemNm, Integer idCode, String idClass, Integer itemL);
 }

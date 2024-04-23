@@ -44,5 +44,8 @@ public class InvenEntity {
     private Integer cash; // 개당 가격
 
     @Column
-    private Integer result; // 합계
+    private Integer buyCash;
+
+    @Column
+    private Integer sellCash;
 }
