@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmailDto {
+    private Long id;
     private String designerName;
     private String designerEmail;
     private Integer basicSal;

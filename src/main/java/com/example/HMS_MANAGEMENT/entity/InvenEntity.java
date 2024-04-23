@@ -39,4 +39,10 @@ public class InvenEntity {
 
     @Column
     private LocalTime time;
+
+    @Column
+    private Integer cash; // 개당 가격
+
+    @Column
+    private Integer result; // 합계
 }

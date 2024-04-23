@@ -32,7 +32,11 @@ public class InvenDto {
     @NotNull(message = "등록하는 방식을 선택 해주세요.")
     private InvenStatus invenStatus; // 분류
 
-    private LocalDate date;
+    private LocalDate date; // 날짜
 
-    private LocalTime time;
+    private LocalTime time; // 시간순 정렬
+
+    private Integer cash; // 개당 가격
+
+    private Integer result; // 합계
 }

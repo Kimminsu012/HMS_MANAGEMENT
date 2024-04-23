@@ -77,4 +77,6 @@ function sendSalaryStatement() {
             console.error('이메일 전송 오류:', error);
             alert("이메일 전송에 실패했습니다.");
         });
+
+
 }

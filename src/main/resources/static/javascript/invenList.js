@@ -146,6 +146,7 @@ function handleCodeSelection(select){
         $("#itemNm").val($(".itemNm-list").eq(idx).text());
         $("#idClass").val($(".idClass-list").eq(idx).text());
         $("#itemL").val($(".itemL-list").eq(idx).text());
+        $("#cash").val($(".cash-list").eq(idx).text());
         $("#count").val($(".count-list")).focus();
         $("#idCode").val(selectedCode);
 
