@@ -1,12 +1,16 @@
 package com.example.HMS_MANAGEMENT.control;
 
+import com.example.HMS_MANAGEMENT.dto.CustomerDetailDto;
 import com.example.HMS_MANAGEMENT.dto.CustomerDto;
 import com.example.HMS_MANAGEMENT.dto.SalesDto;
+import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.CustomerEntity;
 import com.example.HMS_MANAGEMENT.entity.SalesEntity;
+import com.example.HMS_MANAGEMENT.repository.CustomerDetailRepo;
 import com.example.HMS_MANAGEMENT.repository.SalesRepository;
 import com.example.HMS_MANAGEMENT.service.CustomerService;
 import com.example.HMS_MANAGEMENT.service.SalesService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,6 +33,9 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     SalesRepository salesRepository;
+
+    @Autowired
+    CustomerDetailRepo customerDetailRepo;
 
     //페이징수
     @GetMapping("/customer/cusList")
@@ -48,7 +56,6 @@ public class CustomerController {
     public String cusReg(Model model) {
         List<String> optionsList = customerService.getOptions();
         model.addAttribute("optionsList", optionsList);
-//        model.addAttribute("optionsList", customerService.getOptions());
         model.addAttribute("customerDto", new CustomerDto());
         return "customer/cusReg";
 
@@ -79,14 +86,37 @@ public class CustomerController {
         Map<String, List<CustomerEntity>> groupCustomer = new HashMap<>();
         groupCustomer.put(customer.getName(), customerList);
 
-//        SalesEntity sales = salesRepository.findById(customer.getSales().getId())
-//                        .orElseThrow(()-> new NoSuchElementException("id" + customer.getSales().getId()));
-//        customer.setCusCost(sales.getCost());
-//        customer.setRecord(sales.getCut());
-
         model.addAttribute("customers", groupCustomer);
 
         return "customer/useList";
     }
+
+    @GetMapping("/customer/test")
+    public String test(@RequestParam(value = "id", required = false) Long customerId, Model model) {
+        List<String> optionsList = customerService.getOptions();
+        model.addAttribute("optionsList", optionsList);
+        model.addAttribute("customerDetailDto", new CustomerDetailDto());
+        if (customerId != null) {
+            model.addAttribute("selectedCustomerId", customerId);
+        }
+        return "customer/test";
+    }
+
+
+
+    @PostMapping("/customer/test")
+    public String addCustomer(@Valid @ModelAttribute("customerDetailDto") CustomerDetailDto customerDetailDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("customerDetailDto", customerDetailDto);
+            return "customer/test";
+        }
+
+        customerService.detailCustomer(customerDetailDto);
+        return "redirect:/customer/cusList";
+    }
+
+
+
+
 
 }

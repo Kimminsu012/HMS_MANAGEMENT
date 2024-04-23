@@ -1,8 +1,11 @@
 package com.example.HMS_MANAGEMENT.service;
 
+import com.example.HMS_MANAGEMENT.dto.CustomerDetailDto;
 import com.example.HMS_MANAGEMENT.dto.CustomerDto;
+import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.CustomerEntity;
 import com.example.HMS_MANAGEMENT.entity.SalesEntity;
+import com.example.HMS_MANAGEMENT.repository.CustomerDetailRepo;
 import com.example.HMS_MANAGEMENT.repository.CustomerRepository;
 import com.example.HMS_MANAGEMENT.repository.SalesRepository;
 import org.slf4j.Logger;
@@ -12,10 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class CustomerService {
@@ -23,23 +23,20 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private SalesRepository salesRepository;
+    @Autowired
+    private CustomerDetailRepo customerDetailRepo;
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
 
-
     public void saveCustomer(CustomerDto customerDto) {
-
-
         String formatPhoneNumber = formatPhoneNumber(customerDto.getTel());
-
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setName(customerDto.getName());
         customerEntity.setFirstVisit(customerDto.getFirstVisit());
         customerEntity.setTel(formatPhoneNumber);
         customerEntity.setRecord(customerDto.getRecord());
         customerEntity.setFrequentDesigner(customerDto.getFrequentDesigner());
-
 
         logger.debug("Searching for SalesEntity with type: {}", customerDto.getRecord());
         List<SalesEntity> salesEntities = salesRepository.findByType(customerDto.getRecord());
@@ -51,13 +48,23 @@ public class CustomerService {
             customerEntity.setRecord(selectedSale.getType());
             customerEntity.setCusCost(selectedSale.getCost());
         }
-
-
         customerRepository.save(customerEntity);
+
+
+        CustomerDetailEntity customerDetailEntity = new CustomerDetailEntity();
+        customerDetailEntity.setName(customerEntity.getName());
+        customerDetailEntity.setVisit(customerEntity.getFirstVisit());
+        customerDetailEntity.setCutType(customerDto.getRecord());
+        customerDetailEntity.setDesigner(customerEntity.getFrequentDesigner());
+        customerDetailEntity.setCost(customerEntity.getCusCost());
+
+        customerDetailEntity.setSales(customerEntity.getSales());
+        customerDetailEntity.setCustomer(customerEntity);
+        customerDetailRepo.save(customerDetailEntity);
     }
 
     //고객정보 페이징
-    public Page<CustomerEntity> getAllCustomer(Pageable pageable){
+    public Page<CustomerEntity> getAllCustomer(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
 
@@ -74,20 +81,22 @@ public class CustomerService {
     }
 
     //고객정보에서 정보 보여주기
-    public List<CustomerDto> getCustomer(){
+    public List<CustomerDto> getCustomer() {
         List<CustomerEntity> customerEntities = customerRepository.findAll();
         List<CustomerDto> customer = new ArrayList<>();
 
-        for(CustomerEntity entity : customerEntities){
+        for (CustomerEntity entity : customerEntities) {
             CustomerDto dto = new CustomerDto();
             dto.setName(entity.getName());
             dto.setFrequentDesigner(entity.getFrequentDesigner());
             dto.setRecord(entity.getRecord());
+            customer.add(dto);
         }
         return customer;
     }
 
-    public List<CustomerEntity> getAllCustomer(){
+
+    public List<CustomerEntity> getAllCustomer() {
         return customerRepository.findAll();
     }
 
@@ -97,16 +106,51 @@ public class CustomerService {
                 .orElseThrow(() -> new NoSuchElementException("id" + customerId));
     }
 
+
     // 서비스 아이디
-    public SalesEntity getSalesId(Long salesId, String cut){
+    public SalesEntity getSalesId(Long salesId, String cut) {
         return salesRepository.findById(salesId)
                 .orElseThrow(() -> new NoSuchElementException("id" + salesId));
     }
 
     //시술종류 리스트
     public List<String> getOptions() {
-        return Arrays.asList("남성커트", "여성커트", "남성포인트펌", "여성일반펌", "셋팅펌", "뿌리염색","전체염색","두피케어");
+        return Arrays.asList("남성커트", "여성커트", "남성포인트펌", "여성일반펌", "셋팅펌", "뿌리염색", "전체염색", "두피케어");
     }
+
+
+
+
+    public void detailCustomer(CustomerDetailDto customerDetailDto) {
+        CustomerDetailEntity customerDetailEntity = new CustomerDetailEntity();
+
+        List<SalesEntity> salesEntities = salesRepository.findByType(customerDetailDto.getCutType());
+        if (salesEntities.isEmpty()) {
+            logger.error("해당 타입의 판매 정보를 찾을 수 없음: {}", customerDetailDto.getCutType());
+        } else {
+            SalesEntity selectedSale = salesEntities.get(0);
+            customerDetailEntity.setSales(selectedSale);
+            customerDetailEntity.setCutType(selectedSale.getType());
+            customerDetailEntity.setCost(selectedSale.getCost());
+        }
+
+        customerDetailEntity.setVisit(customerDetailDto.getVisit());
+        customerDetailEntity.setCutType(customerDetailDto.getCutType());
+        customerDetailEntity.setDesigner(customerDetailDto.getDesigner());
+        customerDetailEntity.setCost(customerDetailEntity.getCost());
+        customerDetailEntity.setName(customerDetailEntity.getName());
+
+
+        customerDetailRepo.save(customerDetailEntity);
+
+    }
+
+
+
+
+
+
+
 
 
 }

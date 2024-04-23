@@ -1,5 +1,6 @@
 package com.example.HMS_MANAGEMENT.repository;
 
+import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.CustomerEntity;
 import org.apache.el.stream.Optional;
 import org.springframework.data.domain.Page;

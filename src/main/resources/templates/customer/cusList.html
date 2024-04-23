@@ -31,7 +31,7 @@
                     <td>
                         <a th:href="@{/customer/useList(id=${customer.id})}" th:text="${customer.name}"></a>
                     </td>
-                    <td th:text="${#temporals.format(customer.firstVisit,'yyyy.MM.dd')}"></td>
+                    <td th:text="${customer.firstVisit}"></td>
                     <td th:text="${customer.tel}"></td>
                     <td th:text="${customer.record}"></td>
                     <td th:text="${customer.frequentDesigner}"></td>

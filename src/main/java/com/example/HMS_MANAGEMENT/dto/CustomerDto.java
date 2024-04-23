@@ -31,7 +31,7 @@ public class CustomerDto {
 
     private String record; // 이용기록
 
-    @NotBlank(message = "디자이너은 필수 선택입니다.")
+    @NotBlank(message = "디자이너는 필수 선택입니다.")
     private String frequentDesigner; // 자주찾는 디자이너
 
     private Integer cusCost;
@@ -40,7 +40,6 @@ public class CustomerDto {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salesId")
     private SalesEntity sales;
-
 
 
 }

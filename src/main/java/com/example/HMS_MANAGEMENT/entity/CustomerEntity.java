@@ -3,9 +3,16 @@ package com.example.HMS_MANAGEMENT.entity;
 import com.example.HMS_MANAGEMENT.dto.SalesDto;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -41,8 +48,3 @@ public class CustomerEntity {
     private SalesEntity sales;
 
 }
-
-
-
-//@Query(" select sum(c.cusCost) from CustomerEntity c where c.firstVisit= :d ")
-// int totalCustomCost(LocalDate d);

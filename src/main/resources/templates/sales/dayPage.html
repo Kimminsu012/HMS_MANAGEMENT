@@ -18,14 +18,50 @@
             <span th:text="${date}"></span>
             <a th:href="@{/sales/dayPage(date=${nextDate})}"><i class="fa-solid fa-chevron-right"></i></a>
         </div>
-
-        <div class="InCome">
-
+        <div class="aaa">
+            <span>수입현황</span>
+            <span>지출현황</span>
         </div>
 
+        <div class="dayContent">
+            <div class="InCome">
+                <div class="IncomeTitle">
+                    <span>상품</span>
+                    <span>금액</span>
+                </div>
+                <div class="incomeService">
+                    <span>서비스 금액</span>
+                    <p th:text="${#numbers.formatInteger(serviceIncome,1,'COMMA') + '원'}"></p>
+                </div>
+                <div class="incomeProduct">
+                    <span>상품판매</span>
+                    <p>ㅇㅇㅇㅇ</p>
+                </div>
+                <div class="incomeCost">
+                    <span>수입 합계</span>
+                    <p th:text="${#numbers.formatInteger(TotalIncome,1,'COMMA') + '원'}"></p>
+                </div>
+            </div>
 
-        <p th:text="'서비스금액: ' + ${#numbers.formatInteger(serviceIncome,1,'COMMA') + '원'}"></p>
-        <p th:text="'총 금액: ' + ${#numbers.formatInteger(TotalIncome,1,'COMMA') + '원'}"></p>
+            <div class="spending">
+                <div class="spendingTitle">
+                    <span>상품</span>
+                    <span>금액</span>
+                </div>
+                <div class="spendingSalary">
+                    <span>월급</span>
+                    <p>ㅇㅇㅇㅇ</p>
+                </div>
+                <div class="spendingProduct">
+                    <span>상품 구입</span>
+                    <p>ddddd</p>
+                </div>
+                <div class="spendingCost">
+                    <span>지출 합계</span>
+                    <p>ㅇㅇㅇㅇ</p>
+                </div>
+            </div>
+        </div>
 
 
     </div>

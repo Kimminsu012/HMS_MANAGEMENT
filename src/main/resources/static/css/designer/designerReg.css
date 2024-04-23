@@ -44,6 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .designer_reg_right{
     width: 100%;
@@ -105,16 +106,21 @@ input[type='number'] {
 }
 a{ color: #000000}
 
-#morningTime, #afternoonTime{
+#morningTime, #afterTime{
     width: 35%;
 }
-.morningLabel{
+
+.morningText{
     position: absolute;
-    top: -5px;
-    left: 50px;
+    top: 0;
+    left: 26px;
+    width: 180px;
+    color: red;
 }
-.afterLabel{
+.afterText{
     position: absolute;
-    top: -5px;
-    right: 50px;
+    top: 0;
+    right: -23px;
+    width: 180px;
+    color: red;
 }

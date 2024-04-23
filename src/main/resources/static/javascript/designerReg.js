@@ -15,6 +15,7 @@ function setSelectOptions(selectElement, startHour, endHour) {
         for (var j = 0; j < 60; j += 10) {
             var hour = padWithZero(i);
             var minute = padWithZero(j);
+            if (!selectElement) return;
             selectElement.options[selectElement.options.length] = new Option(hour + ":" + minute + (i < 12 ? " 오전" : " 오후"), hour + ":" + minute);
         }
     }
@@ -26,12 +27,12 @@ $(document).ready(function() {
     setSelectOptions(document.getElementById("morningTime"), 6, 11);
 
     // 오후 시간 분 단위 설정
-    setSelectOptions(document.getElementById("afternoonTime"), 12, 20);
+    setSelectOptions(document.getElementById("afterTime"), 12, 23);
 
     // 오후 시간 선택 제한
     $("#afternoonTime").on("change", function () {
         var value = $(this).val();
-        if (value < "12:00" || value > "20:50") {
+        if (value < "12:00" || value > "23:50") {
             $(this).val("12:00");
         }
     });

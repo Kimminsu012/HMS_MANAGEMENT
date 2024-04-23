@@ -1,4 +1,3 @@
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
@@ -13,6 +12,9 @@
 <div layout:fragment="content">
     <div class="customer-box" th:each="entry : ${customers}">
         <h2 th:text="${entry.key}"></h2>
+        <button class="cusInfoBtn" th:each="customer : ${entry.value}">
+            <a th:href="@{/customer/test(id=${customer.id})}">추가하기</a>
+        </button>
         <table class="customerList">
             <thead>
             <tr>
@@ -34,8 +36,4 @@
         </table>
     </div>
 </div>
-
-
-
-
 </html>
