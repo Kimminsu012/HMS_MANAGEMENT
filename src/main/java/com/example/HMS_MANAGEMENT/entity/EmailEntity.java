@@ -33,4 +33,6 @@ public class EmailEntity {
     private Integer incomeTax;
     @Column
     private Integer netSalary;
+    @Column
+    private String emailContent;
 }

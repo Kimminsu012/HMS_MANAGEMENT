@@ -17,4 +17,5 @@ public class EmailDto {
     private Integer employmentInsurance;
     private Integer incomeTax;
     private Integer netSalary;
+    private String emailContent;
 }

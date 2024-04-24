@@ -1,13 +1,13 @@
 package com.example.HMS_MANAGEMENT.service;
 
+import com.example.HMS_MANAGEMENT.dto.CommuteListDto;
 import com.example.HMS_MANAGEMENT.dto.DesignerDto;
+import com.example.HMS_MANAGEMENT.entity.CommuteListEntity;
 import com.example.HMS_MANAGEMENT.entity.DayOffEntity;
 import com.example.HMS_MANAGEMENT.entity.DesignerEntity;
 import com.example.HMS_MANAGEMENT.repository.DayOffRepo;
 import com.example.HMS_MANAGEMENT.repository.DesignerRepo;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -117,6 +117,7 @@ public class DesignerService {
             // 주어진 ID의 디자이너가 없는 경우 처리
             return null;
         }
-        }
+    }
+
 
 }

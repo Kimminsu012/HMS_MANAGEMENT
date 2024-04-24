@@ -40,32 +40,28 @@ function sendSalaryStatement() {
     var incomeTax = document.getElementById("incomeTaxInput").value;
     var netSalary = document.getElementById("netSalary").innerText;
 
-    // 이메일 본문 생성
-    var emailContent = "디자이너: " + designerName + "\n" +
-        "기본급: " + basicSal + "\n" +
-        "초과근무수당: " + overtimeAllowance + "\n" +
-        "식비: " + mealAllowance + "\n" +
-        "국민연금: " + pension + "\n" +
-        "건강보험: " + healthInsurance + "\n" +
-        "고용보험: " + employmentInsurance + "\n" +
-        "근로소득세: " + incomeTax + "\n" +
-        "실 수령액: " + netSalary;
+    // DTO 객체에 값 설정
+    var emailDto = {
+        designerName: designerName,
+        designerEmail: designerEmail,
+        basicSal: basicSal,
+        overtimeAllowance: overtimeAllowance,
+        mealAllowance: mealAllowance,
+        pension: pension,
+        healthInsurance: healthInsurance,
+        employmentInsurance: employmentInsurance,
+        incomeTax: incomeTax,
+        netSalary: netSalary
+    };
 
-    // 서버로 요청을 보내기 위한 설정
-    var requestOptions = {
+    // 서버로 전송
+    fetch('/send-salary-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            designerName: designerName,
-            designerEmail: designerEmail,
-            emailContent: emailContent
-        })
-    };
-
-    // 서버로 요청 보내기
-    fetch('/send-salary-email', requestOptions)
+        body: JSON.stringify(emailDto)
+    })
         .then(response => {
             if (response.ok) {
                 alert("급여명세서가 이메일로 전송되었습니다.");
@@ -77,6 +73,4 @@ function sendSalaryStatement() {
             console.error('이메일 전송 오류:', error);
             alert("이메일 전송에 실패했습니다.");
         });
-
-
 }

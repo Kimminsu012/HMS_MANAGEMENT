@@ -32,6 +32,7 @@ public class InvenEntity {
     private Integer itemL; // 제품 용량
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "inven_status")
     private InvenStatus invenStatus; // 분류
 
     @Column

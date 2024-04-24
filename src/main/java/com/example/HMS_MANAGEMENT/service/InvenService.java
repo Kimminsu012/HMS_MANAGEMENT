@@ -122,8 +122,9 @@ public class InvenService {
         // 삭제할 물품을 먼저 찾습니다.
         Optional<InvenEntity> invenEntityOptional = invenRepo.findById(invenId);
         if (invenEntityOptional.isPresent()) {
-            // 물품을 찾았다면 삭제합니다.
-            invenRepo.delete(invenEntityOptional.get());
+            InvenEntity invenEntity = invenEntityOptional.get();
+            invenRepo.delete(invenEntity);
+            invenRepo.deleteAllByIdCode(invenEntity.getIdCode());
         } else {
             // 찾지 못했을 경우 예외 처리를 할 수 있습니다.
             // 여기에서는 간단히 메시지만 출력합니다.

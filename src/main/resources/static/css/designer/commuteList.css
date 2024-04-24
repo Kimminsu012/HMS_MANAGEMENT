@@ -63,3 +63,17 @@
 .com_nt:hover, .com_pt:hover, .now-date:hover{
     cursor: pointer;
 }
+.designer_commute_name{
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 20%);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+.designer_option{
+    width: 100%;
+    height: 20px;
+    font-size: 18px;
+}
