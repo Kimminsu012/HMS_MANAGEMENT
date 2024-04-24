@@ -40,6 +40,14 @@ $(function () {
         updateDate(currentYear, currentMonth, currentDay); // 날짜 업데이트
     });
 
+    $(".now-date").on("click", function () {
+        // 현재 날짜로 변수들을 갱신하고 화면을 업데이트
+        currentDate = new Date();
+        currentDay = currentDate.getDate();
+        currentMonth = currentDate.getMonth() + 1;
+        currentYear = currentDate.getFullYear();
+        updateDate(currentYear, currentMonth, currentDay);
+    });
     // 초기 날짜 표시
     updateDate(currentYear, currentMonth, currentDay);
 });

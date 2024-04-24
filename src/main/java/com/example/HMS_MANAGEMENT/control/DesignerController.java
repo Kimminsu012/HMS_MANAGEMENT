@@ -13,6 +13,7 @@ import com.example.HMS_MANAGEMENT.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -78,11 +79,9 @@ public class DesignerController {
     }
 
     @GetMapping("/designer/commuteList")
-    public String commuteList(Model model){
+    public String commuteList(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model){
 
-        List<DesignerDto> designerDtoList = designerService.getAllDesigners();
-        List<CommuteListDto> commuteListDto = commuteListService.getAllCommute();
-        model.addAttribute("designer", designerDtoList);
+        List<CommuteListDto> commuteListDto = commuteListService.getCommuteListByDate(date);
         model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("commute", commuteListDto);
 

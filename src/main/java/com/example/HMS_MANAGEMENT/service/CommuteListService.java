@@ -43,14 +43,15 @@ public class CommuteListService {
         dto.setCommuteStatus(entity.getCommuteStatus());
         dto.setMorningTime(entity.getMorningTime());
         dto.setAfterTime(entity.getAfterTime());
+        LocalTime resultTime = entity.getMorningTime().minusHours(entity.getAfterTime().getHour()).minusMinutes(entity.getAfterTime().getMinute());
+        dto.setResultTime(resultTime);
         dto.setDate(entity.getDate());
         dto.setTime(entity.getTime());
         dto.setATime(entity.getATime());
         dto.setMTime(entity.getMTime());
         dto.setName(entity.getName());
 
-        LocalTime resultTime = entity.getMorningTime().minusHours(entity.getAfterTime().getHour()).minusMinutes(entity.getAfterTime().getMinute());
-        dto.setResultTime(resultTime);
+
 
         return dto;
     }
@@ -60,5 +61,9 @@ public class CommuteListService {
         return commuteListEntities.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    public List<CommuteListDto> getCommuteListByDate(LocalDate date) {
+        return commuteListRepo.findByDate(date);
     }
 }

@@ -46,7 +46,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="commute_list_text" th:each="commuteList, designer : ${commute}" th:if="${commuteList.date == localDate}">
+                <div class="commute_list_text" th:each="commuteList : ${commute}">
                     <div class="commute_list_cont name_com">
                         <span th:text="${commuteList.name}"></span>
                     </div>
