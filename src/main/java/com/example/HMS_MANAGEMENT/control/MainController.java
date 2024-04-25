@@ -38,14 +38,14 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String main(Model model){
+    public String main(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
 
-        List<CustomerDetailEntity> cus = customerDetailRepo.findAllByOrderByVisitDesc();
+        List<CustomerDetailEntity> cus = customerDetailRepo.findAllByOrderByIdDesc();
+        List<DesignerCalendarEntity> calendarDto = calendarRepo.findAllByOrderByIdDesc();
 
-        List<DesignerCalendarEntity> calendarDto = calendarRepo.findAllByOrderByEndDesc();
-
-        model.addAttribute("customer", cus);
-        model.addAttribute("calendar", calendarDto);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("customer", cus.subList(page * 5, Math.min((page + 1) * 5, cus.size())));
+        model.addAttribute("calendar", calendarDto.subList(page * 5, Math.min((page + 1) * 5, calendarDto.size())));
 
         return "main";
     }

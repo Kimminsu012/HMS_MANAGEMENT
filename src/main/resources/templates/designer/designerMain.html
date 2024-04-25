@@ -71,13 +71,13 @@
                     </div>
                 </div>
                 <div class="designer_bottom_content" th:each="cus : ${customer}">
-                    <div class="cus_bottom_cont">
+                    <div class="cus_bottom_cont" th:if="${cusStat.index < 6}">
                         <span th:text="${cus.name}"></span>
                     </div>
-                    <div class="cus_bottom_cont">
+                    <div class="cus_bottom_cont" th:if="${cusStat.index < 6}">
                         <span th:text="${cus.cutType}"></span>
                     </div>
-                    <div class="cus_bottom_cont">
+                    <div class="cus_bottom_cont" th:if="${cusStat.index < 6}">
                         <span th:text="${#temporals.format(cus.visit, 'yyyy.MM.dd')}"></span>
                     </div>
                 </div>

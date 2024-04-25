@@ -14,6 +14,8 @@ public interface CustomerDetailRepo extends JpaRepository<CustomerDetailEntity ,
 
     List<CustomerDetailEntity> findByCustomerId(Long customerId);
 
+    List<CustomerDetailEntity> findAllByOrderByIdDesc();
+
     List<CustomerDetailEntity> findAllByOrderByVisitDesc();
     List<CustomerDetailEntity> findByVisitBetween(LocalDate start , LocalDate end , Sort visit);
 

@@ -107,7 +107,7 @@ public class DesignerController {
 
     @GetMapping("/designer/detailPage/{id}")
     public String detailPage(@PathVariable Long id, Model model){
-        List<CustomerDetailEntity> cus = customerDetailRepo.findAllByOrderByVisitDesc();
+        List<CustomerDetailEntity> cus = customerDetailRepo.findAllByOrderByIdDesc();
         DesignerDto designerDto = designerService.getDesignerByID(id);
 
         model.addAttribute("designerDto",designerDto);

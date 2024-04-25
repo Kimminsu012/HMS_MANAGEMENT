@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface DesignerCalendarRepo extends JpaRepository<DesignerCalendarEntity,Long> {
 
-    List<DesignerCalendarEntity> findAllByOrderByEndDesc();
+    List<DesignerCalendarEntity> findAllByOrderByIdDesc();
 
     List<DesignerCalendarEntity> findByStartBetween(LocalDateTime startDate, LocalDateTime endDate, Sort start);
 }

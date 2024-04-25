@@ -52,7 +52,7 @@ public class DesignerService {
     }
 
     public List<DesignerDto> getAllDesigners() {
-        List<DesignerEntity> designers = designerRepo.findAll();
+        List<DesignerEntity> designers = designerRepo.findAllByOrderByIdDesc();
         return designers.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());

@@ -16,6 +16,7 @@ public interface DesignerRepo extends JpaRepository<DesignerEntity,Long> {
 
     List<DesignerEntity> findByDateBetween(LocalDate start , LocalDate end , Sort date);
 
+    List<DesignerEntity> findAllByOrderByIdDesc();
 
     @Query("select sum(c.sal) from DesignerEntity c where c.date = :e")
     Integer totalExpense(LocalDate e);
