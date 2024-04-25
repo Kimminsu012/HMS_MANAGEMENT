@@ -9,13 +9,13 @@ public class EmailDto {
     private Long id;
     private String designerName;
     private String designerEmail;
-    private Integer basicSal;
-    private Integer overtimeAllowance;
-    private Integer mealAllowance;
-    private Integer pension;
-    private Integer healthInsurance;
-    private Integer employmentInsurance;
-    private Integer incomeTax;
-    private Integer netSalary;
+    private String basicSal;
+    private String overtimeAllowance;
+    private String mealAllowance;
+    private String pension;
+    private String healthInsurance;
+    private String employmentInsurance;
+    private String incomeTax;
+    private String netSalary;
     private String emailContent;
 }

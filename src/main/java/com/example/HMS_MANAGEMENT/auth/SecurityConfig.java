@@ -1,7 +1,5 @@
 //package com.example.HMS_MANAGEMENT.auth;
 //
-//import com.example.HMS_MANAGEMENT.service.LoginService;
-//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +11,6 @@
 //@Configuration
 //@EnableWebSecurity
 //public class SecurityConfig {
-//
-//    @Autowired
-//    LoginService loginService;
 //
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{

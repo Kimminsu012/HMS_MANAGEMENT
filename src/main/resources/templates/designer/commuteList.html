@@ -8,15 +8,14 @@
 
 <th:block layout:fragment="script">
     <script th:src="@{/javascript/commuteList.js}"></script>
+
 </th:block>
 
 <div layout:fragment="content">
     <div id="commute_list_wrap">
         <div id="commute_list_in_wrap">
             <div id="commute_list_date">
-                <i class="bi bi-arrow-left com_nt"></i>
                 <span th:text="${#temporals.format(localDate,'MM.dd')}" class="now-date"></span>
-                <i class="bi bi-arrow-right com_pt"> </i>
             </div>
             <div id="commute_list_content">
                 <div class="commute_list_text">
@@ -46,7 +45,8 @@
                         </span>
                     </div>
                 </div>
-                <div class="commute_list_text" th:each="commuteList : ${commute}">
+                <div class="commute_list_text" th:each="commuteList : ${commute}" th:if="${#temporals.format(commuteList.date, 'yyyy-MM-dd') == #temporals.format(localDate, 'yyyy-MM-dd')}">
+                    <span th:text="${commuteList.date}" hidden="hidden"></span>
                     <div class="commute_list_cont name_com">
                         <span th:text="${commuteList.name}"></span>
                     </div>
@@ -67,14 +67,6 @@
                         <span th:text="${commuteList.resultTime}"></span>
                     </div>
                 </div>
-            </div>
-            <div class="commute_list_page">
-                <i class="bi bi-caret-left-fill"></i>
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <i class="bi bi-caret-right-fill"></i>
             </div>
         </div>
     </div>

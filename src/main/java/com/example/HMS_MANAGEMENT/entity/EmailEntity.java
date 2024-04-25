@@ -18,21 +18,21 @@ public class EmailEntity {
     @Column
     private String designerEmail;
     @Column
-    private Integer basicSal;
+    private String basicSal;
     @Column
-    private Integer overtimeAllowance;
+    private String overtimeAllowance;
     @Column
-    private Integer mealAllowance;
+    private String mealAllowance;
     @Column
-    private Integer pension;
+    private String pension;
     @Column
-    private Integer healthInsurance;
+    private String healthInsurance;
     @Column
-    private Integer employmentInsurance;
+    private String employmentInsurance;
     @Column
-    private Integer incomeTax;
+    private String incomeTax;
     @Column
-    private Integer netSalary;
+    private String netSalary;
     @Column
     private String emailContent;
 }

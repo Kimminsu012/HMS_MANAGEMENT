@@ -2,6 +2,7 @@ package com.example.HMS_MANAGEMENT.control;
 
 import com.example.HMS_MANAGEMENT.dto.CustomerDetailDto;
 import com.example.HMS_MANAGEMENT.dto.CustomerDto;
+import com.example.HMS_MANAGEMENT.dto.DesignerDto;
 import com.example.HMS_MANAGEMENT.dto.SalesDto;
 import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.CustomerEntity;
@@ -9,6 +10,7 @@ import com.example.HMS_MANAGEMENT.entity.SalesEntity;
 import com.example.HMS_MANAGEMENT.repository.CustomerDetailRepo;
 import com.example.HMS_MANAGEMENT.repository.SalesRepository;
 import com.example.HMS_MANAGEMENT.service.CustomerService;
+import com.example.HMS_MANAGEMENT.service.DesignerService;
 import com.example.HMS_MANAGEMENT.service.SalesService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,13 @@ public class CustomerController {
     @Autowired
     CustomerDetailRepo customerDetailRepo;
 
+    private final DesignerService designerService;
+
+    public CustomerController(DesignerService designerService) {
+        this.designerService = designerService;
+    }
+
+
     //페이징수
     @GetMapping("/customer/cusList")
     public String cusList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, Model model) {
@@ -54,9 +63,13 @@ public class CustomerController {
     // 고객정보에서 등록하기를 클릭했을때
     @GetMapping("/customer/cusReg")
     public String cusReg(Model model) {
+        List<DesignerDto> designerDtoList = designerService.getAllDesigners();
+        List<SalesEntity> option = salesRepository.findAll();
         List<String> optionsList = customerService.getOptions();
         model.addAttribute("optionsList", optionsList);
         model.addAttribute("customerDto", new CustomerDto());
+        model.addAttribute("designer", designerDtoList);
+        model.addAttribute("options",option);
         return "customer/cusReg";
 
     }
@@ -100,6 +113,10 @@ public class CustomerController {
         model.addAttribute("optionsList", optionsList);
         CustomerDetailDto customerDetailDto = new CustomerDetailDto();
         customerDetailDto.setCustomerId(customerId);
+        List<DesignerDto> designerDtoList = designerService.getAllDesigners();
+        List<SalesEntity> option = salesRepository.findAll();
+        model.addAttribute("designer", designerDtoList);
+        model.addAttribute("options",option);
         model.addAttribute("customerDetailDto", customerDetailDto);
         if (customerId != null) {
             model.addAttribute("selectedCustomerId", customerId);

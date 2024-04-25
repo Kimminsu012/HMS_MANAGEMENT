@@ -1,12 +1,15 @@
+
 package com.example.HMS_MANAGEMENT.service;
 
 import com.example.HMS_MANAGEMENT.dto.CustomerDetailDto;
 import com.example.HMS_MANAGEMENT.dto.CustomerDto;
 import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.CustomerEntity;
+import com.example.HMS_MANAGEMENT.entity.DesignerCalendarEntity;
 import com.example.HMS_MANAGEMENT.entity.SalesEntity;
 import com.example.HMS_MANAGEMENT.repository.CustomerDetailRepo;
 import com.example.HMS_MANAGEMENT.repository.CustomerRepository;
+import com.example.HMS_MANAGEMENT.repository.DesignerCalendarRepo;
 import com.example.HMS_MANAGEMENT.repository.SalesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,8 @@ public class CustomerService {
     private SalesRepository salesRepository;
     @Autowired
     private CustomerDetailRepo customerDetailRepo;
+    @Autowired
+    private DesignerCalendarRepo designerCalendarRepo;
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
@@ -139,10 +144,18 @@ public class CustomerService {
         customerDetailEntity.setCutType(customerDetailDto.getCutType());
         customerDetailEntity.setDesigner(customerDetailDto.getDesigner());
         customerDetailEntity.setCost(customerDetailEntity.getCost());
-        customerDetailEntity.setName(customerDetailEntity.getName());
-
+        customerDetailEntity.setName(customerEntity.getName());
 
         customerDetailRepo.save(customerDetailEntity);
 
+        DesignerCalendarEntity designerCalendarEntity = new DesignerCalendarEntity();
+        designerCalendarEntity.setWhoAmI("고객");
+        designerCalendarEntity.setName(customerDetailEntity.getName());
+        designerCalendarEntity.setEventType("예약");
+        designerCalendarEntity.setAllDay(true);
+        designerCalendarEntity.setTitle(customerDetailEntity.getName()+"-"+customerDetailDto.getCutType()+"("+customerDetailDto.getDesigner()+")");
+        designerCalendarEntity.setStart(customerDetailDto.getVisit().atStartOfDay());
+        designerCalendarEntity.setEnd(customerDetailDto.getVisit().atTime(8,59));
+        designerCalendarRepo.save(designerCalendarEntity);
     }
 }

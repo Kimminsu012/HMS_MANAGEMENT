@@ -48,6 +48,7 @@ img{ width: 100%}
     align-items: center;
     flex-direction: column;
     gap: 30px;
+    position: relative;
 }
 .id, .pw{
     width: 55%;
@@ -64,4 +65,9 @@ img{ width: 100%}
     border-radius: 30px;
     border: 1px solid rgba(0, 0, 0, 20%);
     font-size: 25px;
+}
+.error-msg{
+    color: red;
+    position: absolute;
+    bottom: 210px;
 }

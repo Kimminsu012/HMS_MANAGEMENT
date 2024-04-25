@@ -1,9 +1,12 @@
 package com.example.HMS_MANAGEMENT.control;
 
+import com.azure.core.annotation.Get;
 import com.example.HMS_MANAGEMENT.dto.*;
 import com.example.HMS_MANAGEMENT.entity.CommuteListEntity;
+import com.example.HMS_MANAGEMENT.entity.CustomerDetailEntity;
 import com.example.HMS_MANAGEMENT.entity.DesignerCalendarEntity;
 import com.example.HMS_MANAGEMENT.entity.DesignerEntity;
+import com.example.HMS_MANAGEMENT.repository.CustomerDetailRepo;
 import com.example.HMS_MANAGEMENT.repository.DesignerCalendarRepo;
 import com.example.HMS_MANAGEMENT.repository.DesignerRepo;
 import com.example.HMS_MANAGEMENT.service.CommuteListService;
@@ -37,16 +40,19 @@ public class DesignerController {
 
     private final CommuteListService commuteListService;
 
+    private final CustomerDetailRepo customerDetailRepo;
+
     @Autowired
-    public DesignerController(DesignerService designerService, EmailService emailService, CommuteListService commuteListService){
+    public DesignerController(DesignerService designerService, EmailService emailService, CommuteListService commuteListService, CustomerDetailRepo customerDetailRepo){
         this.designerService = designerService;
         this.emailService = emailService;
         this.commuteListService = commuteListService;
+        this.customerDetailRepo = customerDetailRepo;
     }
 
     @GetMapping("/designer")
     public String designerMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
-
+        List<CustomerDetailEntity> cus = customerDetailRepo.findAllByOrderByVisitDesc();
         List<DesignerDto> designerDtoList = designerService.getAllDesigners();
         Pageable pageable = PageRequest.of(page, 8);
         List<DesignerDto> designerDtoListWithDayOff = designerService.getAllDesignersWithDayOff();
@@ -55,6 +61,7 @@ public class DesignerController {
         model.addAttribute("designerDto", new DesignerDto());
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
+        model.addAttribute("customer", cus);
 
 
         return "designer/designerMain";
@@ -79,10 +86,20 @@ public class DesignerController {
     }
 
     @GetMapping("/designer/commuteList")
-    public String commuteList(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model){
+    public String commuteListDay(Model model){
+
+        List<CommuteListDto> commuteListDto = commuteListService.getAllCommute();
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("commute", commuteListDto);
+
+        return "designer/commuteList";
+    }
+
+    @GetMapping("/designer/commuteList/{date}")
+    public String commuteList(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")  LocalDate date, Model model){
 
         List<CommuteListDto> commuteListDto = commuteListService.getCommuteListByDate(date);
-        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("localDate", date);
         model.addAttribute("commute", commuteListDto);
 
         return "designer/commuteList";
@@ -134,33 +151,6 @@ public class DesignerController {
         return "redirect:/designer";
     }
 
-    @PostMapping("/designer/salaryPage/{id}")
-    public ResponseEntity<String> sendSalaryEmail(@RequestBody EmailDto emailDto, Long id) {
-        DesignerDto designerDto = designerService.getDesignerByID(id);
-        try {
-            // 이메일 내용 구성
-            StringJoiner emailContent = new StringJoiner("\n");
-            emailContent.add("디자이너: " + emailDto.getDesignerName());
-            emailContent.add("기본급: " + emailDto.getBasicSal());
-            emailContent.add("초과근무수당: " + emailDto.getOvertimeAllowance());
-            emailContent.add("식비: " + emailDto.getMealAllowance());
-            emailContent.add("국민연금: " + emailDto.getPension());
-            emailContent.add("건강보험: " + emailDto.getHealthInsurance());
-            emailContent.add("고용보험: " + emailDto.getEmploymentInsurance());
-            emailContent.add("근로소득세: " + emailDto.getIncomeTax());
-            emailContent.add("실 수령액: " + emailDto.getNetSalary());
 
-            // EmailDto에 이메일 내용 설정
-            emailDto.setEmailContent(emailContent.toString());
-
-            // 이메일 전송
-            emailService.sendSalaryEmail(emailDto);
-            return ResponseEntity.ok("급여명세서 이메일이 성공적으로 전송되었습니다.");
-
-        } catch (MessagingException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("급여명세서 이메일 전송 중 오류가 발생했습니다.");
-        }
-    }
 
 }

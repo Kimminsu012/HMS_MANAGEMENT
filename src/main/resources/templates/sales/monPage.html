@@ -1,4 +1,3 @@
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
@@ -12,86 +11,28 @@
 
 <div layout:fragment="content">
     <div class="monPageWrap">
-        <table class="monPageList">
-            <thead>
-            <tr>
-                <th>구분</th>
-                <th>수입</th>
-                <th>지출</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1월</td>
-                <td>25,000,000원</td>
-                <td>18,000,000원</td>
-            </tr>
-            <tr>
-                <td>2월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>3월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>4월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>5월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>6월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>7월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>8월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>9월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>10월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>11월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-            <tr>
-                <td>12월</td>
-                <td>24,000,000원</td>
-                <td>19,000,000원</td>
-            </tr>
-
-            </tbody>
-            <tfoot>
-            <tr class="total">
-                <td>합계</td>
-                <td>300,000,000원</td>
-                <td>150,000,000원</td>
-            </tr>
-            </tfoot>
-        </table>
+        <div class="monPageList">
+            <div class="monPageHeader">
+                <span>월</span>
+                <span>수입 합계</span>
+                <span>지출 합계</span>
+            </div>
+            <div class="monPageContent" th:each="detail:${monthlyDetails}">
+                <span th:text="${detail.month} + '월'"></span>
+                <span th:text="${#numbers.formatInteger(detail.totalIncome,1,'COMMA') + '원'}"></span>
+                <span th:text="${#numbers.formatInteger(detail.totalExpense,1,'COMMA') + '원'}"></span>
+            </div>
+        </div>
     </div>
+
+
 </div>
 
-</html>
+<!--    <div th:if="${#lists.isEmpty(monthlyDetails)}">-->
+<!--        데이터가 없습니다.-->
+<!--    </div>-->
+<!--    <div class="monPageContent" th:each="detail:${monthlyDetails}" th:unless="${#lists.isEmpty(monthlyDetails)}">-->
+<!--        <span th:text="${detail.month} + '월'"></span>-->
+<!--        <span th:text="${#numbers.formatInteger(detail.totalIncome,1,'COMMA') + '원'}"></span>-->
+<!--        <span th:text="${#numbers.formatInteger(detail.totalExpense,1,'COMMA') + '원'}"></span>-->
+<!--    </div>-->

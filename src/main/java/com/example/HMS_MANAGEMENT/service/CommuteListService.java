@@ -4,6 +4,8 @@ import com.example.HMS_MANAGEMENT.dto.CommuteListDto;
 import com.example.HMS_MANAGEMENT.entity.CommuteListEntity;
 import com.example.HMS_MANAGEMENT.repository.CommuteListRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +17,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommuteListService {
+@Component
+public class CommuteListService implements Converter<CommuteListEntity, CommuteListDto> {
 
     private final CommuteListRepo commuteListRepo;
 
@@ -51,8 +54,6 @@ public class CommuteListService {
         dto.setMTime(entity.getMTime());
         dto.setName(entity.getName());
 
-
-
         return dto;
     }
 
@@ -65,5 +66,23 @@ public class CommuteListService {
 
     public List<CommuteListDto> getCommuteListByDate(LocalDate date) {
         return commuteListRepo.findByDate(date);
+    }
+
+    @Override
+    public CommuteListDto convert(CommuteListEntity entity) {
+        CommuteListDto dto = new CommuteListDto();
+        dto.setId(entity.getId());
+        dto.setCommuteStatus(entity.getCommuteStatus());
+        dto.setMorningTime(entity.getMorningTime());
+        dto.setAfterTime(entity.getAfterTime());
+        LocalTime resultTime = entity.getMorningTime().minusHours(entity.getAfterTime().getHour()).minusMinutes(entity.getAfterTime().getMinute());
+        dto.setResultTime(resultTime);
+        dto.setDate(entity.getDate());
+        dto.setTime(entity.getTime());
+        dto.setATime(entity.getATime());
+        dto.setMTime(entity.getMTime());
+        dto.setName(entity.getName());
+
+        return dto;
     }
 }

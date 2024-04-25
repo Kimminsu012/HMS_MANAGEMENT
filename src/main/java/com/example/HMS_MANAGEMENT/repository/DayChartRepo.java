@@ -8,12 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-public interface DayChartRepo extends JpaRepository<DayChartEntity,Long> {
 
-    @Query("select sum(c.cusCost) from CustomerEntity c where c.firstVisit = :d")
-    Integer totalCustomCost(LocalDate d);
-
+public interface DayChartRepo extends JpaRepository<DayChartEntity, Long> {
 
 }

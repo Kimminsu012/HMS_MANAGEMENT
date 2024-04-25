@@ -27,4 +27,7 @@ public class DesignerCalendarEntity {
     private boolean allDay; // 종일 이벤트 여부
     @Column
     private String eventType; // 이벤트 유형
+
+    private String name;
+    private String whoAmI;
 }

@@ -28,7 +28,7 @@ function handleInputChange(inputId) {
 }
 
 function sendSalaryStatement() {
-    // 디자이너 정보 및 급여 관련 데이터 가져오기
+    // 디자이너 정보 및 급여 관련 데이터를 가져옵니다.
     var designerName = document.querySelector(".salary_cont_title span").innerText;
     var designerEmail = document.querySelector("#designerEmail").textContent;
     var basicSal = document.querySelector(".basic_sal span").innerText;
@@ -40,7 +40,7 @@ function sendSalaryStatement() {
     var incomeTax = document.getElementById("incomeTaxInput").value;
     var netSalary = document.getElementById("netSalary").innerText;
 
-    // DTO 객체에 값 설정
+    // DTO 객체에 값을 설정합니다.
     var emailDto = {
         designerName: designerName,
         designerEmail: designerEmail,
@@ -54,7 +54,7 @@ function sendSalaryStatement() {
         netSalary: netSalary
     };
 
-    // 서버로 전송
+    // 서버로 JSON 데이터를 전송합니다.
     fetch('/send-salary-email', {
         method: 'POST',
         headers: {

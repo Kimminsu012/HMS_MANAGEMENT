@@ -1,4 +1,3 @@
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
@@ -12,33 +11,29 @@
 </th:block>
 
 <div layout:fragment="content">
+    <div class="weekWarp">
+        <div class="weekNav">
+            <a th:href="@{/sales/weekPage(yearMonth=${prevYearMonth})}" style="color: #000000">
+                <i class="fa-solid fa-caret-left"></i>
+            </a>
+            <span>주간이동</span>
+            <a th:href="@{/sales/weekPage(yearMonth=${nextYearMonth})}" style="color: #000000">
+                <i class="fa-solid fa-caret-right" ></i>
+            </a>
+        </div>
 
+        <div class="weekList" th:each="weekDetail : ${weeklyIncomeDetails}">
+            <div class="weekContainer">
+                <div class="weekDates" th:text="${weekDetail['weekRange']}"></div>
+                <div class="dailyDetails">
+                    <div class="dailyContent" th:each="entry : ${weekDetail['dailyDetails']}" >
+                        <span th:text="${entry.key}"></span>
+                        <span th:text="'수입' + ${#numbers.formatInteger(entry.value['totalIncomeCost'],1,'COMMA') +'원'}"></span>
+                        <span th:text="'지출' + ${#numbers.formatInteger(entry.value['totalExpenseCost'],1,'COMMA') +'원'}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!--<h2>주간 매출 현황</h2>-->
-<!--<div style="display: flex; width: 100%;">-->
-<!--    <ul style="display: flex; margin-right: 40px; flex-direction: column">-->
-<!--        <li th:each="weekDay : ${weekDayList}" th:text="${weekDay}"></li>-->
-<!--    </ul>-->
-<!--    <div style="display: flex; margin-right: 40px;">-->
-
-<!--    </div>-->
-<!--    <div th:each="sale : ${dayChartData}">-->
-<!--        <p th:text="${sale.date}"></p>-->
-<!--        <p>수입: <span th:text="${sale.income}"></span></p>-->
-<!--        <p>지출: <span th:text="${sale.spending}"></span></p>-->
-<!--        <p>총수입합계: <span th:text="${sale.weekIncome}"></span></p>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</div>-->

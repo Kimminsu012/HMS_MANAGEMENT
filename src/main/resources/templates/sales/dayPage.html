@@ -31,15 +31,15 @@
                 </div>
                 <div class="incomeService">
                     <span>서비스 금액</span>
-                    <p th:text="${#numbers.formatInteger(serviceIncome,1,'COMMA') + '원'}"></p>
+                    <p th:text="${#numbers.formatInteger(serviceCost,1,'COMMA') + '원'}"></p>
                 </div>
                 <div class="incomeProduct">
                     <span>상품판매</span>
-                    <p>ㅇㅇㅇㅇ</p>
+                    <p th:text="${#numbers.formatInteger(productSellCost,1,'COMMA') + '원'}"></p>
                 </div>
                 <div class="incomeCost">
                     <span>수입 합계</span>
-                    <p th:text="${#numbers.formatInteger(TotalIncome,1,'COMMA') + '원'}"></p>
+                    <p th:text="${#numbers.formatInteger(totalIncomeCost,1,'COMMA') + '원'}"></p>
                 </div>
             </div>
 
@@ -50,15 +50,15 @@
                 </div>
                 <div class="spendingSalary">
                     <span>월급</span>
-                    <p>ㅇㅇㅇㅇ</p>
+                    <p th:text="${#numbers.formatInteger(salaryCost,1,'COMMA') + '원'}"></p>
                 </div>
                 <div class="spendingProduct">
                     <span>상품 구입</span>
-                    <p>ddddd</p>
+                    <p th:text="${#numbers.formatInteger(productBuyCost,1,'COMMA') + '원'}"></p>
                 </div>
                 <div class="spendingCost">
                     <span>지출 합계</span>
-                    <p>ㅇㅇㅇㅇ</p>
+                    <p th:text="${#numbers.formatInteger(totalExpenseCost,1,'COMMA') + '원'}"></p>
                 </div>
             </div>
         </div>

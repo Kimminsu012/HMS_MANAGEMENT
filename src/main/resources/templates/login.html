@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="login_out_wrap">
-    <form method="post" action="/login_chk">
+    <form method="POST" action="/login_chk">
         <div id="login_wrap">
             <div id="login_box">
                 <div id="login_logo">
@@ -17,6 +17,9 @@
                 <div id="login_input_box">
                     <input type="text" name="id" class="id" placeholder="아이디 입력">
                     <input type="password" name="pw" class="pw" placeholder="비밀번호 입력">
+                    <div th:if="${param.error}" class="error-msg">
+                        <p>아이디 또는 비밀번호를 제대로 입력 해주세요.</p>
+                    </div>
                     <button>로그인</button>
                 </div>
             </div>
