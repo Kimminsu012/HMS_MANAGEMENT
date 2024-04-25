@@ -133,6 +133,31 @@ $(function() {
         $(".cash_n input").val('');
         $("#modal_wrap").hide();
     });
+
+    $(".list_input").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $(".list_content_text").each(function () {
+            var itemNmText = $(this).find(".itemNm-list").text().toLowerCase();
+            var idCodeText = $(this).find(".idCode-list").text().toLowerCase();
+            var itemLText = $(this).find(".itemL-list").text().toLowerCase();
+            var idClassText = $(this).find(".idClass-list").text().toLowerCase();
+            var dateString = $(this).find(".date-list").text(); // 수정된 부분
+            var date = new Date(dateString);
+            var formattedDate = (date.getMonth() + 1) + "." + date.getFullYear(); // 예: "4.2024"
+
+            // 검색어와 비교
+            if (idClassText.indexOf(value) !== -1 ||
+                itemNmText.indexOf(value) !== -1 ||
+                idCodeText.indexOf(value) !== -1 ||
+                itemLText.indexOf(value) !== -1 ||
+                dateString.indexOf(value) !== -1 ||
+                formattedDate.indexOf(value) !== -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 });
 
 // 코드 선택 옵션 처리

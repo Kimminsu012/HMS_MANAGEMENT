@@ -74,11 +74,8 @@
                         <span th:text="${#temporals.format(designerDto.salDate, 'dd')+' 일'}"></span>
                     </div>
                 </div>
-                <div class="designer_detail_text">
-
-                </div>
             </div>
-            <div id="designer_right_box">
+            <div id="designer_right_box" style="overflow: hidden;">
                 <div class="designer_right_box_title">
                     <span>시술이력</span>
                 </div>
@@ -96,18 +93,18 @@
                         <span>금액</span>
                     </div>
                 </div>
-                <div class="designer_right_box_cont">
+                <div class="designer_right_box_cont" th:each="customer : ${customer}" th:if="${customer.designer == designerDto.name}">
                     <div class="designer_right_box_text">
-                        <span>4.1</span>
+                        <span th:text="${#temporals.format(customer.visit,'MM.dd')}"></span>
                     </div>
                     <div class="designer_right_box_text">
-                        <span>아무개</span>
+                        <span th:text="${customer.name}"></span>
                     </div>
                     <div class="designer_right_box_text">
-                        <span>커트</span>
+                        <span th:text="${customer.cutType}">커트</span>
                     </div>
                     <div class="designer_right_box_text">
-                        <span>24,000</span>
+                        <span th:text="${customer.cost}">24,000</span>
                     </div>
                 </div>
             </div>
