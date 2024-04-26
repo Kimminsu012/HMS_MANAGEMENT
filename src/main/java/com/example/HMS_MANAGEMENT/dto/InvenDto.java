@@ -16,10 +16,10 @@ public class InvenDto {
 
     private Long id; // 제품 번호
 
-    @NotNull(message = "제품 코드를 입력 또는 선택 해주세요.")
+    @NotNull(message = "제품 코드를 입력 해주세요.")
     private Integer idCode; // 제문 코드
 
-    @NotNull(message = "제품명을 입력 해주세요.")
+    @NotNull(message = "제품명을 입력 또는 선택 해주세요.")
     private String itemNm; // 제품 이름
 
     @NotNull(message = "수량은 1개 이상 , 재고수량 확인 해주세요.")

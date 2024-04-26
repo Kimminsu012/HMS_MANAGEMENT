@@ -63,7 +63,7 @@
                             <span th:text="${customer.cutType}"></span>
                         </div>
                         <div class="cont_box" th:if="${customerStat.index < 5}">
-                            <span th:text="${customer.cost}"></span>
+                            <span th:text="${#numbers.formatInteger(customer.cost, 3, 'COMMA')+'원'}"></span>
                         </div>
                     </div>
                 </div>

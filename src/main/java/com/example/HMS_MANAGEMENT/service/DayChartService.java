@@ -1,7 +1,8 @@
+
 package com.example.HMS_MANAGEMENT.service;
 
+import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import com.example.HMS_MANAGEMENT.dto.MonthChartDto;
-import com.example.HMS_MANAGEMENT.dto.WeekChartDto;
 import com.example.HMS_MANAGEMENT.entity.*;
 import com.example.HMS_MANAGEMENT.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.*;
 
@@ -27,50 +27,6 @@ public class DayChartService {
     private InvenRepo invenRepo;
     @Autowired
     private CustomerRepository customerRepository;
-
-//    public int[][] getChartDayData(String nowDate){
-//        LocalDate date = LocalDate.parse(nowDate);
-//        int yearValue = date.getYear();
-//        int monthValue = date.getMonthValue(); // 현재 월의 숫자 값 (1부터 12까지)
-//        int lastDayOfMonth = date.lengthOfMonth(); // 이번 달의 마지막 일
-//        WeekFields weekFields = WeekFields.of(Locale.getDefault());
-//        LocalDate start = LocalDate.of(yearValue, monthValue, 1);
-//        LocalDate end = LocalDate.of(yearValue, monthValue, start.lengthOfMonth());
-//
-//        // 해당 월의 첫 번째 주의 첫 번째 날과 마지막 주의 마지막 날을 찾음
-//        LocalDate firstDayOfFirstWeek = start.with(DayOfWeek.MONDAY);
-//        LocalDate lastDayOfLastWeek = end.with(DayOfWeek.SUNDAY);
-//
-//        // 첫 번째 주와 마지막 주 사이의 주 수 계산
-//        int weeksInMonth = (int) ((lastDayOfLastWeek.toEpochDay() - firstDayOfFirstWeek.toEpochDay()) / 7) + 1;
-//
-//        List<CustomerEntity> findIncome = customerRepository.findByFirstVisitBetween(start ,end , Sort.by(Sort.Direction.ASC,"firstVisit"));
-//        List<CustomerEntity> findYearIncome = customerRepository.findByFirstVisitBetween(LocalDate.of(yearValue,1,1),
-//                LocalDate.of(yearValue,12,31),Sort.by(Sort.Direction.ASC,"firstVisit"));
-//
-//        int[][] income = new int[3][];
-//        int[] dayIncome = new int[lastDayOfMonth];
-//        int[] weekIncome = new int[weeksInMonth];
-//        int[] monthIncome = new int[12];
-//        for(CustomerEntity customerEntity : findIncome) {
-//            int idx=customerEntity.getFirstVisit().getDayOfMonth()-1;
-//            int weekNumber = customerEntity.getFirstVisit().get(weekFields.weekOfMonth());
-//            dayIncome[idx] += customerEntity.getCusCost();
-//            weekIncome[weekNumber-1] +=customerEntity.getCusCost();
-//        }
-//        for(CustomerEntity customerEntity: findYearIncome){
-//            int idx = customerEntity.getFirstVisit().getMonthValue();
-//            monthIncome[idx-1] += customerEntity.getCusCost();
-//        }
-//
-//        income[0]=dayIncome;
-//        income[1]=weekIncome;
-//        income[2]=monthIncome;
-//        return income;
-//    }
-
-
-
 
 
     // 알별그래프 상세보기 클릭하면 일별 데이터부분
@@ -95,13 +51,11 @@ public class DayChartService {
             productBuy = 0;
         }
 
-
         dayChartEntity.setDate(date); // 날짜
         dayChartEntity.setServiceIncome(service); // 서비스 금액
         dayChartEntity.setSalaryExpense(salary); // 월급 금액
         dayChartEntity.setProductSales(productSell); // 상품판매수입
         dayChartEntity.setProductPurchase(productBuy); // 상품구입 지출
-
 
         int serviceCost = dayChartEntity.getServiceIncome();
         int salaryCost = dayChartEntity.getSalaryExpense(); // 음수 표현하기 위해서
@@ -129,6 +83,9 @@ public class DayChartService {
 
         return resultMap;
     }
+
+
+
 
     // 주간 그래프에서 상세보기 클릭하면 주간별 데이터부분
     public Map<LocalDate, Map<String, Integer>> dailyServiceIncomeAndExpenseDetails(LocalDate startDate, LocalDate endDate) {
@@ -161,12 +118,14 @@ public class DayChartService {
             monthChartDto.setTotalIncome(totalMonthIncome);
             monthChartDto.setTotalExpense(totalMonthExpense);
             monthChartDtos.add(monthChartDto);
+            System.out.println(totalMonthIncome);
         }
 
         return monthChartDtos;
     }
 
-    public int[][] getChartDayData(String nowDate){
+    // 차트 부분
+    public int[][][] getChartDayData(String nowDate) {
         LocalDate date = LocalDate.parse(nowDate);
         int yearValue = date.getYear();
         int monthValue = date.getMonthValue(); // 현재 월의 숫자 값 (1부터 12까지)
@@ -182,68 +141,90 @@ public class DayChartService {
         // 첫 번째 주와 마지막 주 사이의 주 수 계산
         int weeksInMonth = (int) ((lastDayOfLastWeek.toEpochDay() - firstDayOfFirstWeek.toEpochDay()) / 7) + 1;
 
-//        List<CustomerDetailEntity> findIncome = customerDetailRepo.findByVisitBetween(start ,end , Sort.by(Sort.Direction.ASC,"visit"));
-//        List<CustomerDetailEntity> findYearIncome = customerDetailRepo.findByVisitBetween(LocalDate.of(yearValue,1,1),
-//                LocalDate.of(yearValue,12,31),Sort.by(Sort.Direction.ASC,"visit"));
-//
-//
-//        List<DesignerEntity> findIncome1 = designerRepo.findByDateBetween(start ,end , Sort.by(Sort.Direction.ASC,"date"));
-//        List<DesignerEntity> findYearIncome1 = designerRepo.findByDateBetween(LocalDate.of(yearValue,1,1),
-//                LocalDate.of(yearValue,12,31),Sort.by(Sort.Direction.ASC,"date"));
+        List<CustomerDetailEntity> findIncome = customerDetailRepo.findByVisitBetween(start, end, Sort.by(Sort.Direction.ASC, "visit"));
+        List<CustomerDetailEntity> findYearIncome = customerDetailRepo.findByVisitBetween(LocalDate.of(yearValue, 1, 1),
+                LocalDate.of(yearValue, 12, 31), Sort.by(Sort.Direction.ASC, "visit"));
 
 
-        List<InvenEntity> findIncome2 = invenRepo.findByDateBetween(start ,end , Sort.by(Sort.Direction.ASC,"date"));
-        List<InvenEntity> findYearIncome2 = invenRepo.findByDateBetween(LocalDate.of(yearValue,1,1),
-                LocalDate.of(yearValue,12,31),Sort.by(Sort.Direction.ASC,"date"));
+        List<DesignerEntity> findIncome1 = designerRepo.findByDateBetween(start, end, Sort.by(Sort.Direction.ASC, "date"));
+        List<DesignerEntity> findYearIncome1 = designerRepo.findByDateBetween(LocalDate.of(yearValue, 1, 1),
+                LocalDate.of(yearValue, 12, 31), Sort.by(Sort.Direction.ASC, "date"));
+
+        List<InvenEntity> findIncome2 = invenRepo.findByInvenStatusNotAndDateBetween(InvenStatus.BASIC, start, end, Sort.by(Sort.Direction.ASC, "date"));
+        List<InvenEntity> findYearIncome2 = invenRepo.findByInvenStatusNotAndDateBetween(InvenStatus.BASIC, LocalDate.of(yearValue, 1, 1),
+                LocalDate.of(yearValue, 12, 31), Sort.by(Sort.Direction.ASC, "date"));
 
 
-
+        int[][][] money = new int[2][][];
 
         int[][] income = new int[3][];
         int[] dayIncome = new int[lastDayOfMonth];
         int[] weekIncome = new int[weeksInMonth];
         int[] monthIncome = new int[12];
 
-//        for(CustomerDetailEntity customerDetailEntity : findIncome) {
-//            int idx=customerDetailEntity.getVisit().getDayOfMonth()-1;
-//            int weekNumber = customerDetailEntity.getVisit().get(weekFields.weekOfMonth());
-//            dayIncome[idx] += customerDetailEntity.getCost();
-//            weekIncome[weekNumber-1] +=customerDetailEntity.getCost();
-//        }
-//        for(CustomerDetailEntity customerDetailEntity: findYearIncome){
-//            int idx = customerDetailEntity.getVisit().getMonthValue();
-//            monthIncome[idx-1] += customerDetailEntity.getCost();
-//        }
-//
-//        for(DesignerEntity designerEntity : findIncome1) {
-//            int idx=designerEntity.getDate().getDayOfMonth()-1;
-//            int weekNumber = designerEntity.getDate().get(weekFields.weekOfMonth());
-//            dayIncome[idx] += -1 * designerEntity.getSal();
-//            weekIncome[weekNumber-1] +=designerEntity.getSal();
-//        }
-//        for(DesignerEntity designerEntity: findYearIncome1){
-//            int idx = designerEntity.getDate().getMonthValue();
-//            monthIncome[idx-1] += designerEntity.getSal();
-//        }
+        int[][] expense = new int[3][];
+        int[] dayExpense = new int[lastDayOfMonth];
+        int[] weekExpense = new int[weeksInMonth];
+        int[] monthExpense = new int[12];
 
 
-        for(InvenEntity invenEntity : findIncome2) {
-            int idx=invenEntity.getDate().getDayOfMonth()-1;
+        for (CustomerDetailEntity customerDetailEntity : findIncome) {
+            int idx = customerDetailEntity.getVisit().getDayOfMonth() - 1;
+            int weekNumber = customerDetailEntity.getVisit().get(weekFields.weekOfMonth());
+            dayIncome[idx] += customerDetailEntity.getCost();
+            weekIncome[weekNumber - 1] += customerDetailEntity.getCost();
+        }
+        for (CustomerDetailEntity customerDetailEntity : findYearIncome) {
+            int idx = customerDetailEntity.getVisit().getMonthValue();
+            monthIncome[idx - 1] += customerDetailEntity.getCost();
+        }
+
+        for (DesignerEntity designerEntity : findIncome1) {
+            int idx = designerEntity.getDate().getDayOfMonth() - 1;
+            int weekNumber = designerEntity.getDate().get(weekFields.weekOfMonth());
+            dayExpense[idx] -= designerEntity.getSal();
+            weekExpense[weekNumber - 1] -= designerEntity.getSal();
+        }
+        for (DesignerEntity designerEntity : findYearIncome1) {
+            int idx = designerEntity.getDate().getMonthValue();
+            monthExpense[idx - 1] -= designerEntity.getSal();
+        }
+
+        for (InvenEntity invenEntity : findIncome2) {
+            int idx = invenEntity.getDate().getDayOfMonth() - 1;
             int weekNumber = invenEntity.getDate().get(weekFields.weekOfMonth());
-            dayIncome[idx] += invenEntity.getBuyCash();
-            weekIncome[weekNumber-1] +=invenEntity.getBuyCash();
+            dayExpense[idx] -= invenEntity.getBuyCash();
+            weekExpense[weekNumber - 1] -= invenEntity.getBuyCash();
         }
-        for(InvenEntity invenEntity: findYearIncome2){
+        for (InvenEntity invenEntity : findYearIncome2) {
             int idx = invenEntity.getDate().getMonthValue();
-            monthIncome[idx-1] += invenEntity.getBuyCash();
+            monthExpense[idx - 1] -= invenEntity.getBuyCash();
         }
 
-        income[0]=dayIncome;
-        income[1]=weekIncome;
-        income[2]=monthIncome;
-        return income;
-    }
+        for (InvenEntity invenEntity : findIncome2) {
+            int idx = invenEntity.getDate().getDayOfMonth() - 1;
+            int weekNumber = invenEntity.getDate().get(weekFields.weekOfMonth());
+            dayIncome[idx] += invenEntity.getSellCash();
+            weekIncome[weekNumber - 1] += invenEntity.getSellCash();
+        }
+        for (InvenEntity invenEntity : findYearIncome2) {
+            int idx = invenEntity.getDate().getMonthValue();
+            monthIncome[idx - 1] += invenEntity.getSellCash();
+        }
 
+        income[0] = dayIncome;
+        income[1] = weekIncome;
+        income[2] = monthIncome;
+
+        expense[0] = dayExpense;
+        expense[1] = weekExpense;
+        expense[2] = monthExpense;
+
+        money[0] = income;
+        money[1] = expense;
+
+        return money;
+    }
 
 
 }

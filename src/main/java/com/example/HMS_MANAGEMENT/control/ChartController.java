@@ -1,3 +1,4 @@
+
 package com.example.HMS_MANAGEMENT.control;
 
 import com.example.HMS_MANAGEMENT.dto.MonthChartDto;
@@ -37,10 +38,10 @@ public class ChartController {
 
     @GetMapping("/sales/getData")
     public ResponseEntity<String> getData(@RequestParam("date") String nowDate) throws JsonProcessingException {
-        int[][] income = dayChartService.getChartDayData(nowDate);
+        int[][][] money = dayChartService.getChartDayData(nowDate);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(income);
+        String json = objectMapper.writeValueAsString(money);
         System.out.println(json);
         return ResponseEntity.ok(json);
     }
@@ -134,15 +135,3 @@ public class ChartController {
 
 
 }
-
-//@GetMapping("/sales/monPage")
-//public String monPage(Model model, @RequestParam(value = "year", required = false) Integer year) {
-//    if (year == null) {
-//        year = LocalDate.now().getYear();
-//    }
-//    List<MonthChartDto> monthlyDetails = dayChartService.getMonthlyIncomeAndExpenseDetails(year);
-//    model.addAttribute("monthlyDetails", monthlyDetails);
-//    model.addAttribute("selectedYear", year);
-//
-//    return "sales/monPage";
-//}

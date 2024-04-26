@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/designer")
 public class DesignerCalendarController {
     private final DesignerCalendarService calendarService;
 
@@ -25,7 +26,7 @@ public class DesignerCalendarController {
         this.calendarService = calendarService;
     }
 
-    @GetMapping("/designer/calendar")
+    @GetMapping("/calendar")
     public ResponseEntity<String> getCalendar() throws JsonProcessingException {
         List<DesignerCalendarDto> dtoList= calendarService.getCalendarData();
 
@@ -34,19 +35,19 @@ public class DesignerCalendarController {
 
         return ResponseEntity.ok(json);
     }
-    @PostMapping("/designer/calendarSave")
+    @PostMapping("/calendarSave")
     public ResponseEntity<DesignerCalendarEntity> calendarSave(@RequestBody DesignerCalendarDto calendarDto){
         DesignerCalendarEntity savedEvent = calendarService.calendarSave(calendarDto);
         return new ResponseEntity<>(savedEvent, HttpStatus.CREATED);
     }
 
-    @PostMapping("/designer/calendarUpdate")
+    @PostMapping("/calendarUpdate")
     public ResponseEntity<DesignerCalendarEntity> calendarUpdate(@RequestBody DesignerCalendarDto calendarDto){
         DesignerCalendarEntity updatedEvent = calendarService.calendarUpdate(calendarDto);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
-    @PostMapping("/designer/calendarDelete")
+    @PostMapping("/calendarDelete")
     public ResponseEntity<?> calendarDelete(@RequestBody DesignerCalendarDto calendarDto){
         calendarService.calendarDelete(calendarDto);
         return new ResponseEntity<>(HttpStatus.OK);

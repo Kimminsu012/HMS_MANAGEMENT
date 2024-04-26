@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $('.salesContent').click(function(){
         // 현재 선택된 차트에 따라 페이지를 결정

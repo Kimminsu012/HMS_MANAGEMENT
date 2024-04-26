@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface InvenRepo extends JpaRepository<InvenEntity,Long> {
 
     List<InvenEntity> findAllByInvenStatusOrderByTimeDesc(InvenStatus invenStatus);
-    List<InvenEntity> findByDateBetween(LocalDate start , LocalDate end , Sort date);
+    List<InvenEntity> findByInvenStatusNotAndDateBetween(InvenStatus i, LocalDate start , LocalDate end , Sort date);
     void deleteAllByIdCode(Integer idCode);
 
     @Query("select sum(c.sellCash) from InvenEntity c where c.date = :d")
@@ -24,4 +24,5 @@ public interface InvenRepo extends JpaRepository<InvenEntity,Long> {
 
     @Query("select sum(c.buyCash) from InvenEntity c where c.date = :d")
     Integer totalBuyProduct(LocalDate d );
+
 }

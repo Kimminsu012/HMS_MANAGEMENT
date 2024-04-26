@@ -29,11 +29,15 @@ public class InvenController {
     public String invenMain(@RequestParam(name = "page", required = false, defaultValue = "0") Integer page, Model model){
 
         List<InvenDto> invenList = invenService.getAllBasicItems();
+        List<InvenDto> buyList = invenService.getAllBuyItems();
+        List<InvenDto> sellList = invenService.getAllSellItems();
         Pageable pageable = PageRequest.of(page,10);
         int maxPage = (int)Math.ceil((double) invenList.size()/10);
         model.addAttribute("maxPage",maxPage);
         model.addAttribute("currentPage", page);
         model.addAttribute("invenList", invenList.subList(page * 10, Math.min((page + 1) * 10, invenList.size())));
+        model.addAttribute("buyList", buyList);
+        model.addAttribute("sellList", sellList);
         return "inven/invenMain";
     }
 

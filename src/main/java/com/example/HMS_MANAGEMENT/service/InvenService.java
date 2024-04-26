@@ -48,6 +48,7 @@ public class InvenService {
 
             if( invenDto.getInvenStatus() == InvenStatus.BASIC){
                 invenSave(invenDto);
+
             }else{
                 InvenEntity inven = invenRepo.findById(invenDto.getId()).get();
 
@@ -55,14 +56,15 @@ public class InvenService {
                     case BUY:
                         inven.setCount(inven.getCount() + invenDto.getCount());
                         invenDto.setBuyCash(invenDto.getCount() * inven.getCash());
-                        if (inven.getBuyCash() != null)
-                            inven.setBuyCash(invenDto.getBuyCash() + inven.getBuyCash());
+//                        if (inven.getBuyCash() != null)
+//                            inven.setBuyCash(invenDto.getBuyCash() + inven.getBuyCash());
                         break;
                     case SELL:
                         inven.setCount(inven.getCount() - invenDto.getCount());
                         invenDto.setSellCash(invenDto.getCount() * inven.getCash());
-                        if (inven.getSellCash() != null)
-                            inven.setSellCash(invenDto.getSellCash() + inven.getSellCash());
+//                        if (inven.getSellCash() != null)
+//                            inven.setSellCash(invenDto.getSellCash() + inven.getSellCash());
+
                         break;
                     default:
                         // 처리할 수 없는 상태입니다. 오류 처리 로직 추가

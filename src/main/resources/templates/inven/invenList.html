@@ -71,8 +71,8 @@
                 </div>
                 <div class="result_re" style="display: none;">
                     <span th:text="${invenDto.cash}" class="cash-list"></span>
-                    <span th:field="*{invenDto.buyCash}" class="buyPrice" th:text="${invenDto.buyCash}"></span>
-                    <span th:field="*{invenDto.sellCash}" class="sellPrice" th:text="${invenDto.sellCash}"></span>
+                    <span class="buyPrice" th:text="${invenDto.buyCash}"></span>
+                    <span class="sellPrice" th:text="${invenDto.sellCash}"></span>
                 </div>
                 <div class="status_re" style="display: none">
                     <input type="hidden" th:field="*{invenDto.invenStatus}">
@@ -96,7 +96,7 @@
                             <div id="modal_title">
                                 <div class="modal_head">
                                     <span class="modal_text"></span>
-                                    <span class="basic_text">코드 선택 이후 작성 해주세요.</span>
+                                    <span class="basic_text">제품명 선택 이후 작성 해주세요.</span>
                                 </div>
                                 <div class="modal_close">
                                     <button type="submit" class="btn btn-success modal_bt">작성완료</button>
@@ -128,17 +128,17 @@
                                     </div>
                                 </div>
                                 <div id="modal_cont_text">
-                                    <div class="inven_nm">
-                                        <input type="text" class="inven_input_box" th:field="*{itemNm}">
-                                        <span class="error" th:if="${#fields.hasErrors('itemNm')}" th:errors="*{itemNm}"></span>
-                                    </div>
                                     <div class="inven_code">
                                         <select name="code" class="code_select_box" onchange="handleCodeSelection(this)">
                                             <option value="제품 코드 선택" hidden>제품 코드 선택</option>
                                             <option value="직접 입력">직접 입력</option>
-                                            <option th:each="invenCode : ${invenList}" th:if="${invenCode.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}" th:value="${invenCode.idCode}" th:text="${invenCode.idCode}"></option>
+                                            <option th:each="invenCode : ${invenList}" th:if="${invenCode.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}" th:value="${invenCode.itemNm}" th:text="${invenCode.itemNm}"></option>
                                         </select>
-                                        <input type="text" name="selectInput" class="selectInput" th:field="*{idCode}" placeholder="추가할 코드 입력">
+                                        <input type="text" name="selectInput" class="selectInput" th:field="*{itemNm}" placeholder="추가할 코드 입력">
+                                        <span class="error" th:if="${#fields.hasErrors('itemNm')}" th:errors="*{itemNm}"></span>
+                                    </div>
+                                    <div class="inven_nm">
+                                        <input type="text" class="inven_input_box" th:field="*{idCode}">
                                         <span class="error" th:if="${#fields.hasErrors('idCode')}" th:errors="*{idCode}"></span>
                                     </div>
                                     <div class="inven_class">
@@ -164,6 +164,8 @@
                                                     th:value="${status}" th:text="${status}"></option>
                                         </select>
                                     </div>
+                                    <input type="text" th:field="*{sellCash}" class="sellCash" style="display: none;">
+                                    <input type="text" th:field="*{buyCash}" class="buyCash" style="display:none;">
                                 </div>
                             </div>
                         </form>

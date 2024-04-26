@@ -53,6 +53,7 @@ $(function(){
                         contentType: "application/json",
                         success: function(response) {
                             console.log("이벤트가 성공적으로 추가되었습니다.");
+                            location.reload(true);
                         },
                         error: function(xhr, status, error) {
                             console.error("이벤트 추가 중 오류가 발생했습니다: " + error);

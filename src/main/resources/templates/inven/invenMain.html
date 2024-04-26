@@ -65,26 +65,36 @@
         <div class="inven_graph_out">
             <div class="inven_graph_box">
                 <div class="graph_title">
-                    <span>판매수량</span>
-                </div>
-                <div class="graph">
-
+                    <span>구매 기록</span>
                 </div>
                 <div class="graph_name">
-                    <span>샴푸</span><span>트리트먼트</span>
-                    <span>염색약</span><span>에센스</span>
+                    <span>분류</span><span>제품명</span>
+                    <span>수량</span><span>금액</span>
+                </div>
+                <div class="graph">
+                    <div class="buy_box" th:each="buy : ${buyList}">
+                        <span th:text="${buy.idClass}" th:if="${buyStat.index < 5}"></span>
+                        <span th:text="${buy.itemNm}" th:if="${buyStat.index < 5}"></span>
+                        <span th:text="${buy.count}" th:if="${buyStat.index < 5}"></span>
+                        <span th:text="${#numbers.formatInteger(buy.buyCash, 3, 'COMMA')+'원'}" th:if="${buyStat.index < 5}"></span>
+                    </div>
                 </div>
             </div>
             <div class="inven_graph_box">
                 <div class="graph_title">
-                    <span>판매수량</span>
-                </div>
-                <div class="graph">
-
+                    <span>판매 기록</span>
                 </div>
                 <div class="graph_name">
-                    <span>샴푸</span><span>트리트먼트</span>
-                    <span>염색약</span><span>에센스</span>
+                    <span>분류</span><span>제품명</span>
+                    <span>수량</span><span>금액</span>
+                </div>
+                <div class="graph">
+                    <div class="sell_box" th:each="sell : ${sellList}">
+                        <span th:text="${sell.idClass}" th:if="${sellStat.index < 5}"></span>
+                        <span th:text="${sell.itemNm}" th:if="${sellStat.index < 5}"></span>
+                        <span th:text="${sell.count}" th:if="${sellStat.index < 5}"></span>
+                        <span th:text="${#numbers.formatInteger(sell.sellCash, 3, 'COMMA')+'원'}" th:if="${sellStat.index < 5}"></span>
+                    </div>
                 </div>
             </div>
         </div>

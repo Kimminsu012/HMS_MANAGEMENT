@@ -62,21 +62,29 @@ function makeChart(nowDate) {
     var daysIn = [];
     var weeksIn = [];
     for (var i = 1; i <= lastDay; i++) daysIn.push(month + "." + i);
-    for(var i=1; i<=chartData[1].length; i++) weeksIn.push(i+"주차");
+    for(var i=1; i<=chartData[0][1].length; i++) weeksIn.push(i+"주차");
 
 
     window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: daysIn,
+            labels: daysIn, // X축 라벨
             datasets: [{
-                label: 'Day',
-                data: chartData[0], // 데이터 저장해서 배열로 한 다음 넘겨주면됨 ex) datCost
+                label: 'DayIncome',
+                data: chartData[0][0], // 첫 번째 데이터 세트
                 yAxisID: 'yAxes',
-                backgroundColor: '#0d6efd',
-                borderColor: '#0d6efd',
+                backgroundColor: '#0d6efd', // 첫 번째 데이터 세트의 배경 색상
+                borderColor: '#0d6efd', // 첫 번째 데이터 세트의 테두리 색상
                 borderWidth: 4
-            }]
+            },
+                {
+                    label: 'DayExpense',
+                    data: chartData[1][0],
+                    yAxisID: 'yAxes',
+                    backgroundColor: '#dc3545',
+                    borderColor: '#dc3545',
+                    borderWidth: 4
+                }]
         },
         options: {
             scales: {
@@ -95,24 +103,31 @@ function makeChart(nowDate) {
     });
 
 
+
     const ctx1 = document.getElementById('myChart1');
     window.myChart1 = new Chart(ctx1, {
         type: 'line',
         data: {
             labels: weeksIn,
             datasets: [{
-                label: 'Week',
-                data: chartData[1],
-                borderColor: '#198754',
-                backgroundColor: '#198754',
+                label: 'WeekIncome',
+                data: chartData[0][1],
+                borderColor: '#0d6efd',
+                backgroundColor: '#0d6efd',
+                borderWidth: 1
+            },{
+                label: 'WeekExpense',
+                data: chartData[1][1],
+                borderColor: '#dc3545',
+                backgroundColor: '#dc3545',
                 borderWidth: 1
             }]
         },
         options: {
             scales: {
                 y: {
-                    min: 0,
-                    max: 1000000,
+                    min: -50000000,
+                    max: 50000000,
                     beginAtZero: true
                 }
             },
@@ -130,8 +145,13 @@ function makeChart(nowDate) {
                 'July', 'August', 'September', 'October', 'November', 'December'],
 
             datasets: [{
-                label: 'Month',
-                data: chartData[2],
+                label: 'MonthIncome',
+                data: chartData[0][2],
+                borderWidth: 1,
+                backgroundColor: '#0d6efd',
+            },{
+                label: 'MonthExpense',
+                data: chartData[1][2],
                 borderWidth: 1,
                 backgroundColor: '#dc3545',
             }]

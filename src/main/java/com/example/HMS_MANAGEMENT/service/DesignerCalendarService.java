@@ -68,10 +68,10 @@ public class DesignerCalendarService {
 
         DesignerCalendarEntity event = optionalEvent.get();
         event.setTitle(calendarDto.getTitle());
-        event.setStart(convertToLocalDateTime(calendarDto.getStart()) );
-        event.setEnd(convertToLocalDateTime(calendarDto.getEnd()));
-        event.setAllDay(calendarDto.isAllDay());
-        event.setEventType(calendarDto.getEventType()); // eventType 설정
+        event.setStart(event.getStart() );
+        event.setEnd(event.getEnd());
+        event.setAllDay(event.isAllDay());
+        event.setEventType(event.getEventType()); // eventType 설정
         // 업데이트된 이벤트를 저장하고 반환합니다.
         return designerCalendarRepo.save(event);
     }
