@@ -25,7 +25,10 @@ $(function() {
             invenStatusSelect.find("option:not(:selected)").hide();
             $(".code_select_box option[value*='직접 입력']").hide();
             $(".basic_text").show();
-            $("#count").prop("readonly", false);
+            $("#count").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
             $("#cash").prop("readonly", true);
             $("#itemL").prop("readonly", true);
             $("#idClass").prop("readonly", true);
@@ -37,7 +40,10 @@ $(function() {
             invenStatusSelect.find("option:not(:selected)").hide();
             $(".code_select_box option[value*='직접 입력']").hide();
             $(".basic_text").show();
-            $("#count").prop("readonly", false);
+            $("#count").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
             $("#cash").prop("readonly", true);
             $("#itemL").prop("readonly", true);
             $("#idClass").prop("readonly", true);
@@ -51,11 +57,26 @@ $(function() {
             $(".code_select_box option[value*='직접 입력']").show();
             $(".basic_text").show();
             $("#count").prop("readonly", true);
-            $("#cash").prop("readonly", false);
-            $("#itemL").prop("readonly", false);
-            $("#idClass").prop("readonly", false);
-            $("#idCode").prop("readonly", false);
-            $("#itemNm").prop("readonly", false);
+            $("#cash").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
+            $("#itemL").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
+            $("#idClass").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
+            $("#idCode").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
+            $("#itemNm").prop("readonly", false).on("keydown",function(){
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });
         }
     });
 

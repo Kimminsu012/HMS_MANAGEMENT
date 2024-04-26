@@ -130,7 +130,7 @@
                                 <div id="modal_cont_text">
                                     <div class="inven_code">
                                         <select name="code" class="code_select_box" onchange="handleCodeSelection(this)">
-                                            <option value="제품 코드 선택" hidden>제품 코드 선택</option>
+                                            <option value="제품명 선택" hidden>제품명 선택</option>
                                             <option value="직접 입력">직접 입력</option>
                                             <option th:each="invenCode : ${invenList}" th:if="${invenCode.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}" th:value="${invenCode.itemNm}" th:text="${invenCode.itemNm}"></option>
                                         </select>

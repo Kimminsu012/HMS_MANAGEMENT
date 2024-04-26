@@ -15,12 +15,18 @@
     <div class="inven_cont_box">
         <div class="graph_box">
             <div class="salesWarp">
+                <div class="salesMonthView">
+                    <p class="salesMonthPre"> &lt </p>
+                    <p class="salesMonthNow"></p>
+                    <p class="salesMonthNext"> &gt </p>
+                </div>
                 <div class="canvas">
                     <canvas id="myChart"></canvas>
                     <canvas id="myChart1"></canvas>
                     <canvas id="myChart2"></canvas>
                 </div>
                 <script th:src="@{/javascript/chart.js}"></script>
+
                 <div class="salesDetail">
                     <button type="button" class="btn btn-primary day">Day</button>
                     <button type="button" class="btn btn-success week">Week</button>
