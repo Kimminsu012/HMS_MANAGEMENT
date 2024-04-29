@@ -8,7 +8,17 @@
     padding-right: 15px;
     position: relative;
 }
+.salesMonthView{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+
+.salesMonthNow{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .favorite_list {
     width: 200px;
     height: 100%;
@@ -109,8 +119,8 @@
     width: 80%;
     height: 80%;
     position: relative;
-    top: 7%;
-    left: 12%;
+    top: 8%;
+    left: 11%;
 }
 
 .today_work_list {
@@ -179,13 +189,4 @@
 .main_modify_bt:hover, .main_delete_bt:hover, .main_plus_bt:hover {
     background-color: rgba(0, 0, 0, 10%);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 15%);
-}
-.salesMonthView{
-    gap: 15px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-.salesMonthPre:hover, .salesMonthNext:hover, .salesMonthNow:hover{
-    cursor: pointer;
 }

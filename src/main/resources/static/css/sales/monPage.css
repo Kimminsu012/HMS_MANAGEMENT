@@ -32,3 +32,11 @@
     align-items: center;
     width: 100%;
 }
+.detailMon{
+    flex: 1;
+    text-align: center;
+}
+.detailIncome, .detailExpense{
+    flex: 1;
+    text-align: center;
+}

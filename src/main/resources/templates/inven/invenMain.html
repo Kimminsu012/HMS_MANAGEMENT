@@ -1,4 +1,5 @@
 
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout" layout:decorate="~{fragment/basic}">
 
@@ -26,101 +27,117 @@
 
 <div layout:fragment="content">
     <div id="inven_main_content">
-        <div class="now_inven_list_box">
-            <div class="now_inven_list_title">
-                <span>현재 재고 상태</span>
-                <div class="search_box">
-                    <input type="text" class="inven_input" id="inven_input" placeholder="제품명,분류 검색">
-                    <i class="bi bi-search"></i>
+        <div class="invenListWrap">
+            <div class="inven_title">
+                <span>재고관리</span>
+            </div>
+            <div class="now_inven_list_box">
+                <div class="now_inven_list_title">
+                    <span>현재 재고 상태</span>
+                    <div class="search_box">
+                        <input type="text" class="inven_input" id="inven_input" placeholder="제품명,분류 검색">
+                        <i class="bi bi-search"></i>
+                    </div>
+                </div>
+                <div class="now_inven_list">
+                    <div class="now_inven inven_list_title">
+                        <div class="now_inven">
+                            <span>분류</span>
+                        </div>
+                        <div class="now_inven">
+                            <span>제품명</span>
+                        </div>
+                        <div class="now_inven">
+                            <span>재고량</span>
+                        </div>
+                    </div>
+                    <div class="now_inven list_now" th:each="invenDto : ${invenList}" th:if="${invenDto.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}">
+                        <div class="now_inven">
+                            <span th:text="${invenDto.idClass}" class="class-text"></span>
+                        </div>
+                        <div class="now_inven">
+                            <span th:text="${invenDto.itemNm}" class="item-nm-text"></span>
+                        </div>
+                        <div class="now_inven">
+                            <span th:text="${invenDto.count}"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="now_inven_list">
-                <div class="now_inven inven_list_title">
-                    <div class="now_inven">
-                        <span>분류</span>
+            <div class="inven_graph_out">
+                <div class="inven_graph_box">
+                    <div class="graph_title">
+                        <span>구매 기록</span>
                     </div>
-                    <div class="now_inven">
-                        <span>제품명</span>
+                    <div class="graph_name">
+                        <div class="buy_sell_box">
+                            <span>분류</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>제품명</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>수량</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>금액</span>
+                        </div>
                     </div>
-                    <div class="now_inven">
-                        <span>재고량</span>
+                    <div class="graph">
+                        <div class="buy_box" th:each="buy : ${buyList}">
+                            <div class="buy_sell_box">
+                                <span th:text="${buy.idClass}" th:if="${buyStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${buy.itemNm}" th:if="${buyStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${buy.count}" th:if="${buyStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${#numbers.formatInteger(buy.buyCash, 3, 'COMMA')+'원'}" th:if="${buyStat.index < 5}"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="now_inven list_now" th:each="invenDto : ${invenList}" th:if="${invenDto.invenStatus == T(com.example.HMS_MANAGEMENT.constent.InvenStatus).BASIC}">
-                    <div class="now_inven">
-                        <span th:text="${invenDto.idClass}" class="class-text"></span>
+                <div class="inven_graph_box">
+                    <div class="graph_title">
+                        <span>판매 기록</span>
                     </div>
-                    <div class="now_inven">
-                        <span th:text="${invenDto.itemNm}" class="item-nm-text"></span>
+                    <div class="graph_name">
+                        <div class="buy_sell_box">
+                            <span>분류</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>제품명</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>수량</span>
+                        </div>
+                        <div class="buy_sell_box">
+                            <span>금액</span>
+                        </div>
                     </div>
-                    <div class="now_inven">
-                        <span th:text="${invenDto.count}"></span>
+                    <div class="graph">
+                        <div class="sell_box" th:each="sell : ${sellList}">
+                            <div class="buy_sell_box">
+                                <span th:text="${sell.idClass}" th:if="${sellStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${sell.itemNm}" th:if="${sellStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${sell.count}" th:if="${sellStat.index < 5}"></span>
+                            </div>
+                            <div class="buy_sell_box">
+                                <span th:text="${#numbers.formatInteger(sell.sellCash, 3, 'COMMA')+'원'}" th:if="${sellStat.index < 5}"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="inven_graph_out">
-            <div class="inven_graph_box">
-                <div class="graph_title">
-                    <span>구매 기록</span>
-                </div>
-                <div class="graph_name">
-                    <div class="buy_sell_box">
-                        <span>분류</span>
-                    </div>
-                    <div class="buy_sell_box">
-                        <span>제품명</span>
-                    </div>
-                    <div class="buy_sell_box">
-                        <span>수량</span>
-                    </div>
-                    <div class="buy_sell_box">
-                        <span>금액</span>
-                    </div>
-                </div>
-                <div class="graph">
-                    <div class="buy_box" th:each="buy : ${buyList}">
-                        <div class="buy_sell_box">
-                            <span th:text="${buy.idClass}" th:if="${buyStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${buy.itemNm}" th:if="${buyStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${buy.count}" th:if="${buyStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${#numbers.formatInteger(buy.buyCash, 3, 'COMMA')+'원'}" th:if="${buyStat.index < 5}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="inven_graph_box">
-                <div class="graph_title">
-                    <span>판매 기록</span>
-                </div>
-                <div class="graph_name">
-                    <span>분류</span><span>제품명</span>
-                    <span>수량</span><span>금액</span>
-                </div>
-                <div class="graph">
-                    <div class="sell_box" th:each="sell : ${sellList}">
-                        <div class="buy_sell_box">
-                            <span th:text="${sell.idClass}" th:if="${sellStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${sell.itemNm}" th:if="${sellStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${sell.count}" th:if="${sellStat.index < 5}"></span>
-                        </div>
-                        <div class="buy_sell_box">
-                            <span th:text="${#numbers.formatInteger(sell.sellCash, 3, 'COMMA')+'원'}" th:if="${sellStat.index < 5}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 

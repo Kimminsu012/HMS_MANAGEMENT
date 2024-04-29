@@ -1,4 +1,3 @@
-
 package com.example.HMS_MANAGEMENT.control;
 
 import com.example.HMS_MANAGEMENT.dto.MonthChartDto;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -31,23 +29,13 @@ public class ChartController {
     @Autowired
     private DayChartRepo dayChartRepo;
 
+    // 매출관리 첫 페이지
     @GetMapping("/sales")
     public String cusList(Model model) {
         return "sales/salesPage";
     }
 
-    @GetMapping("/sales/getData")
-    public ResponseEntity<String> getData(@RequestParam("date") String nowDate) throws JsonProcessingException {
-        int[][][] money = dayChartService.getChartDayData(nowDate);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(money);
-        System.out.println(json);
-        return ResponseEntity.ok(json);
-    }
-
-
-
+    // 일별 상세보기
     @GetMapping("/sales/dayPage")
     public String dayPage(@RequestParam(value = "date", required = false) String dateString, Model model) {
         LocalDate date;
@@ -78,7 +66,19 @@ public class ChartController {
         return "sales/dayPage";
     }
 
+    // chart 부분
+    @GetMapping("/sales/getData")
+    public ResponseEntity<String> getData(@RequestParam("date") String nowDate) throws JsonProcessingException {
+        int[][][] money = dayChartService.getChartDayData(nowDate);
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(money);
+        System.out.println(json);
+        return ResponseEntity.ok(json);
+    }
+
+
+    // 주간 상세보기
     @GetMapping("/sales/weekPage")
     public String monthlySales(@RequestParam(value = "yearMonth", required = false) String yearMonthStr, Model model) {
         YearMonth yearMonth;
@@ -124,6 +124,7 @@ public class ChartController {
     }
 
 
+    // 월간 상세보기
     @GetMapping("/sales/monPage")
     public String monPage(Model model) {
         int year =LocalDate.now().getYear();
@@ -132,6 +133,7 @@ public class ChartController {
 
         return "sales/monPage";
     }
+
 
 
 }

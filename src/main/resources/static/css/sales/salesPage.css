@@ -6,15 +6,23 @@
 .salesDetail{
     position: relative;
     width: 100%;
+    height: 100px;
     display: flex;
-    margin-top: 50px;
-
+    align-items: center;
+}
+.btnList{
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .salesDetail button{
     margin-left: 20px;
 }
 .salesContent {
+    width: 100px;
     position: absolute;
+    left: 77%;
     right: 100px;
     text-align: center;
     border: none;

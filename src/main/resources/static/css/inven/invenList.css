@@ -18,7 +18,7 @@
 .invenList_boxWrap{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     height: 50%;
     justify-content: center;
     align-items: center;
@@ -128,7 +128,7 @@
     height: 550px;
     position: absolute;
     top: 20%;
-    left: 20%;
+    left: 23%;
     background-color: rgba(0, 0, 0, 10%);
     border-radius: 20px;
 }

@@ -9,11 +9,14 @@
 }
 #designer_reg_box{
     width: 450px;
-    height: 530px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 10px;
 }
 .designer_reg_title{
     width: 100%;
@@ -22,6 +25,8 @@
     justify-content: center;
     align-items: center;
     font-size: 25px;
+    border-bottom: 1px solid  rgba(0, 0, 0, 0.1);
+
 }
 .designer_reg_content_box{
     width: 100%;
@@ -74,6 +79,9 @@
 .designer_reg_right_date label{
     display: flex;
     align-items: center;
+}
+.designer_bt_box{
+    margin-top: 10px;
 }
 .editBt{
     display: none;
