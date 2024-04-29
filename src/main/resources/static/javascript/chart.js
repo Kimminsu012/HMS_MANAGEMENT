@@ -75,7 +75,7 @@ function makeChart(nowDate) {
                 yAxisID: 'yAxes',
                 backgroundColor: '#0d6efd', // 첫 번째 데이터 세트의 배경 색상
                 borderColor: '#0d6efd', // 첫 번째 데이터 세트의 테두리 색상
-                borderWidth: 4
+                borderWidth: 1
             },
                 {
                     label: 'DayExpense',
@@ -83,7 +83,7 @@ function makeChart(nowDate) {
                     yAxisID: 'yAxes',
                     backgroundColor: '#dc3545',
                     borderColor: '#dc3545',
-                    borderWidth: 4
+                    borderWidth: 1
                 }]
         },
         options: {
@@ -126,8 +126,8 @@ function makeChart(nowDate) {
         options: {
             scales: {
                 y: {
-                    min: -50000000,
-                    max: 50000000,
+                    min: -10000000,
+                    max: 10000000,
                     beginAtZero: true
                 }
             },
