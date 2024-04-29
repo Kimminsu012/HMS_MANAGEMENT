@@ -23,5 +23,7 @@ function showAlertOnSubmit() {
         alert('첫 방문일을 입력해야 합니다.');
     }
 
+    location.reload();
+
     return !hasErrors;
 }

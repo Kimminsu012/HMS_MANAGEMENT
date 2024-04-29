@@ -1,3 +1,4 @@
+
 package com.example.HMS_MANAGEMENT.repository;
 
 import com.example.HMS_MANAGEMENT.entity.SalesEntity;

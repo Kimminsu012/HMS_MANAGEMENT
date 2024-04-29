@@ -102,4 +102,3 @@ function removeCommasBeforeSave(inputId) {
 
     input.value = value; // 쉼표가 제거된 값으로 입력 필드 업데이트
 }
-

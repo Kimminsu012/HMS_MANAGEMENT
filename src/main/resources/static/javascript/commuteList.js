@@ -1,3 +1,4 @@
+
 $(function () {
     var next = $(".com_nt");
     var prev = $(".com_pt");

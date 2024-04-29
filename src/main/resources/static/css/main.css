@@ -1,4 +1,4 @@
-.cont_head{
+.cont_head {
     width: 1100px;
     height: 60px;
     display: flex;
@@ -8,20 +8,23 @@
     padding-right: 15px;
     position: relative;
 }
-.favorite_list{
+
+.favorite_list {
     width: 200px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.graph_box{
-    width: 1100px;
-    height: 550px;
+
+.graph_box {
+    width: 100%;
+    height: 70%;
     position: relative;
     background-color: #ffffff;
 }
-.select_day{
+
+.select_day {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -29,7 +32,8 @@
     height: 20px;
     display: flex;
 }
-.bt{
+
+.bt {
     width: 30px;
     height: 100%;
     display: flex;
@@ -40,14 +44,16 @@
     background: none;
     border: none;
 }
-.cont_footer{
-    width: 1100px;
+
+.cont_footer {
+    margin-top: 40px;
     height: 175px;
     display: flex;
     gap: 15px;
     overflow: hidden;
 }
-.designer_work_list{
+
+.designer_work_list {
     width: 100%;
     height: 100%;
     display: flex;
@@ -55,22 +61,26 @@
     background-color: #ffffff;
     border-radius: 10px;
 }
-.work_header{
+
+.work_header {
     width: 100%;
     height: 35px;
     display: flex;
     justify-content: space-between;
 }
-.work_content{
+
+.work_content {
     width: 100%;
     height: 21px;
     display: flex;
     justify-content: space-between;
 }
-.work_header{
-    border-bottom: 1px solid rgba(0,0,0,20%);
+
+.work_header {
+    border-bottom: 1px solid rgba(0, 0, 0, 20%);
 }
-.work_content_box{
+
+.work_content_box {
     width: 100%;
     height: 130px;
     display: flex;
@@ -78,32 +88,32 @@
     gap: 8px;
     padding-top: 3px;
 }
-.cont_box{
+
+.cont_box {
     width: 25%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.cont_title_box{
+
+.cont_title_box {
     width: 25%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.inven_cont_box{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 27px;
+
+.inven_cont_box {
+    width: 80%;
+    height: 80%;
     position: relative;
-    bottom: 40px;
+    top: 7%;
+    left: 12%;
 }
-.today_work_list{
+
+.today_work_list {
     background-color: #ffffff;
     width: 70%;
     height: 175px;
@@ -111,27 +121,23 @@
     display: flex;
     flex-direction: column;
 }
-.today_work_title{
+
+.today_work_title {
     width: 100%;
     height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid rgba(0,0,0,20%);
+    border-bottom: 1px solid rgba(0, 0, 0, 20%);
 }
-.today_work_content{
+
+.today_work_content {
     width: 100%;
     height: 30px;
     display: flex;
 }
-.today_status{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.today_content{
+
+.today_status {
     width: 100%;
     height: 100%;
     display: flex;
@@ -139,10 +145,19 @@
     align-items: center;
 }
 
-.cont_head , .graph_box, .cont_footer{
+.today_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont_head, .graph_box, .cont_footer {
     border-radius: 10px;
 }
-.main_list_bt{
+
+.main_list_bt {
     width: 200px;
     height: 100%;
     display: flex;
@@ -153,22 +168,24 @@
     top: -50px;
     right: 0;
 }
-.main_modify_bt, .main_delete_bt, .main_plus_bt{
+
+.main_modify_bt, .main_delete_bt, .main_plus_bt {
     background: none;
     border: 1px solid rgba(0, 0, 0, 20%);
     border-radius: 10px;
     width: 50px;
 }
-.main_modify_bt:hover , .main_delete_bt:hover, .main_plus_bt:hover{
-    background-color: rgba(0, 0, 0, 10%);
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,15%);
-}
 
+.main_modify_bt:hover, .main_delete_bt:hover, .main_plus_bt:hover {
+    background-color: rgba(0, 0, 0, 10%);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 15%);
+}
 .salesMonthView{
+    gap: 15px;
+    align-items: center;
     display: flex;
     justify-content: center;
-    gap: 15px;
 }
-.salesMonthPre:hover, .salesMonthNow:hover, .salesMonthNext:hover{
+.salesMonthPre:hover, .salesMonthNext:hover, .salesMonthNow:hover{
     cursor: pointer;
 }

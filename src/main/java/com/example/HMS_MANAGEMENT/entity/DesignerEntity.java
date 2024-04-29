@@ -39,7 +39,7 @@ public class DesignerEntity {
 
     @Column
     private LocalTime afterTime; // 오후 근로시간
-    
+
     @Column
     private String email; // 명세서 받을 이메일
 

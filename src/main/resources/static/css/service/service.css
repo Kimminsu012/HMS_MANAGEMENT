@@ -1,9 +1,9 @@
 
+
 .serviceWrap {
-    position: absolute;
-    top: 60%;
-    left: 65%;
-    transform: translate(-65%,-60%);
+    position: relative;
+    top: 29%;
+    left: 23%;
     display: flex;
     flex-direction: column;
     padding: 10px;

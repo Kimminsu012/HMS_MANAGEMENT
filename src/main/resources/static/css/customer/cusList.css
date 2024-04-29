@@ -6,10 +6,10 @@ li{
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 85%;
-    transform: translate(-85%,-50%);
+    position: relative;
+    top: 48%;
+    transform: translateY(-48%);
+    left: 10%;
 }
 .cusInfoHeader{
     position: relative;

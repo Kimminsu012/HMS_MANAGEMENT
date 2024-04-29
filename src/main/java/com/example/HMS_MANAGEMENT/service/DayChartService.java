@@ -1,16 +1,16 @@
-
 package com.example.HMS_MANAGEMENT.service;
 
 import com.example.HMS_MANAGEMENT.constent.InvenStatus;
 import com.example.HMS_MANAGEMENT.dto.MonthChartDto;
 import com.example.HMS_MANAGEMENT.entity.*;
 import com.example.HMS_MANAGEMENT.repository.*;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.*;
 
@@ -82,46 +82,6 @@ public class DayChartService {
         resultMap.put("totalExpenseCost", totalExpenseCost);
 
         return resultMap;
-    }
-
-
-
-
-    // 주간 그래프에서 상세보기 클릭하면 주간별 데이터부분
-    public Map<LocalDate, Map<String, Integer>> dailyServiceIncomeAndExpenseDetails(LocalDate startDate, LocalDate endDate) {
-        Map<LocalDate, Map<String, Integer>> dailyIncomeAndExpenseDetails = new LinkedHashMap<>();
-        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-            Map<String, Integer> dailyResult = ServiceIncome(date);
-
-
-            Map<String, Integer> incomeAndExpenseResult = new HashMap<>();
-            incomeAndExpenseResult.put("totalIncomeCost", dailyResult.getOrDefault("totalIncomeCost", 0)); // 수입합계
-            incomeAndExpenseResult.put("totalExpenseCost", dailyResult.getOrDefault("totalExpenseCost", 0)); // 지출합계
-
-            dailyIncomeAndExpenseDetails.put(date, incomeAndExpenseResult);
-        }
-        return dailyIncomeAndExpenseDetails;
-    }
-
-
-    //월별 그래프에서 상세보기 클릭하면 월별 데이터부분
-    public List<MonthChartDto> getMonthlyIncomeAndExpenseDetails(int year) {
-        List<MonthChartDto> monthChartDtos = new ArrayList<>();
-
-        for (int month = 1; month <= 12; month++) {
-            MonthChartDto monthChartDto = new MonthChartDto();
-
-            int totalMonthIncome = 0;
-            int totalMonthExpense = 0;
-
-            monthChartDto.setMonth(month);
-            monthChartDto.setTotalIncome(totalMonthIncome);
-            monthChartDto.setTotalExpense(totalMonthExpense);
-            monthChartDtos.add(monthChartDto);
-            System.out.println(totalMonthIncome);
-        }
-
-        return monthChartDtos;
     }
 
     // 차트 부분
@@ -225,6 +185,42 @@ public class DayChartService {
 
         return money;
     }
+
+    // 주간 그래프에서 상세보기 클릭하면 주간별 데이터부분
+    public Map<LocalDate, Map<String, Integer>> dailyServiceIncomeAndExpenseDetails(LocalDate startDate, LocalDate endDate) {
+        Map<LocalDate, Map<String, Integer>> dailyIncomeAndExpenseDetails = new LinkedHashMap<>();
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            Map<String, Integer> dailyResult = ServiceIncome(date);
+
+
+            Map<String, Integer> incomeAndExpenseResult = new HashMap<>();
+            incomeAndExpenseResult.put("totalIncomeCost", dailyResult.getOrDefault("totalIncomeCost", 0)); // 수입합계
+            incomeAndExpenseResult.put("totalExpenseCost", dailyResult.getOrDefault("totalExpenseCost", 0)); // 지출합계
+
+            dailyIncomeAndExpenseDetails.put(date, incomeAndExpenseResult);
+        }
+        return dailyIncomeAndExpenseDetails;
+    }
+
+    //월별 그래프에서 상세보기 클릭하면 월별 데이터부분
+    public List<MonthChartDto> getMonthlyIncomeAndExpenseDetails(int year) {
+        List<MonthChartDto> monthChartDtos = new ArrayList<>();
+
+        for (int month = 1; month <= 12; month++) {
+            MonthChartDto monthChartDto = new MonthChartDto();
+
+            int totalMonthIncome = 0;
+            int totalMonthExpense = 0;
+
+            monthChartDto.setMonth(month);
+            monthChartDto.setTotalIncome(totalMonthIncome);
+            monthChartDto.setTotalExpense(totalMonthExpense);
+            monthChartDtos.add(monthChartDto);
+        }
+        return monthChartDtos;
+    }
+
+
 
 
 }
